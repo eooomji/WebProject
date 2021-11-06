@@ -30,17 +30,17 @@ git add를 한 번이라도 해준 파일
 ==========================================================   
    
 Git 명령어     
-git add : working directory에 있는 파일을 staging area로 옮길 때   
-git status : git과 관련된 파일들의 상태를 알 수 있음 (어디에 위치하는지)   
-git status -s : A 파일명 : (staging area) / ?? 파일명 : (working directory) / AM 파일명 (staging area에 존재하지만, 파일이 수정된 상태 => 이땐 다시 add 해야겠쥬?)   
-git rm --cached 파일명 : staging area -> working directory의 untracked 상태로 돌아감   
-git diff : 수정된 내용을 구분해서 볼 수 있는 명령어   
-git commit : staging area -> git 리포지토리로 이동시켜줌!! (github에서 파일 commit하는 것과 동일한 개념!)   
-git commit -m "내용용용용" : commit과 함께 메세지 업로드 (메세지 내용은 " " 안에)   
-git commit -al : a(all)m(message) 즉, working directory, staging area에 있는 것을 다 commit 할 때 (add하기 귀찮을 때 => 되도록 안 쓰는 게 나을듯..)   
-git checkout <브랜치이름> : 브랜치이름으로 브랜치 이동   
-git push : 커밋을 원격 서버에 업로드 (자신이 수정한 파일들을 github에 업로드 될 것)   
-git pull : 원격 저장소의 변경 내용이 현재 디렉터리에 가져와 병합됨 (push와 반대 개념)   
-(NOT 명령어, 파일명) gitignore : git, github에 올리고 싶지 않은 파일명을 저장해놓는 파일   
+- git add : working directory에 있는 파일을 staging area로 옮길 때   
+- git status : git과 관련된 파일들의 상태를 알 수 있음 (어디에 위치하는지)   
+- git status -s : A 파일명 : (staging area) / ?? 파일명 : (working directory) / AM 파일명 (staging area에 존재하지만, 파일이 수정된 상태 => 이땐 다시 add 해야겠쥬?)   
+- git rm --cached 파일명 : staging area -> working directory의 untracked 상태로 돌아감   
+- git diff : 수정된 내용을 구분해서 볼 수 있는 명령어   
+- git commit : staging area -> git 리포지토리로 이동시켜줌!! (github에서 파일 commit하는 것과 동일한 개념!)   
+- git commit -m "내용용용용" : commit과 함께 메세지 업로드 (메세지 내용은 " " 안에)   
+- git commit -al : a(all)m(message) 즉, working directory, staging area에 있는 것을 다 commit 할 때 (add하기 귀찮을 때 => 되도록 안 쓰는 게 나을듯..)   
+- git checkout <브랜치이름> : 브랜치이름으로 브랜치 이동   
+- git push : 커밋을 원격 서버에 업로드 (자신이 수정한 파일들을 github에 업로드 될 것)   
+- git pull : 원격 저장소의 변경 내용이 현재 디렉터리에 가져와 병합됨 (push와 반대 개념)   
+- (NOT 명령어, 파일명) gitignore : git, github에 올리고 싶지 않은 파일명을 저장해놓는 파일   
    
 ++ 브랜치개념도 공부하자! main으로 모두 commit 한다면, 코드가 꼬였을 때 문제 찾기도 힘듬.. 각자 브랜치 만들고 해야할 듯 (저도 아직 잘 몰라서 공부해야합니다ㅏ)   

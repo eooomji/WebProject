@@ -29,7 +29,7 @@ git add를 한 번이라도 해준 파일
 
 ==========================================================
 
-Git 명령어"enter"
+Git 명령어  
 git add : working directory에 있는 파일을 staging area로 옮길 때
 git status : git과 관련된 파일들의 상태를 알 수 있음 (어디에 위치하는지)
 git status -s : A 파일명 : (staging area) / ?? 파일명 : (working directory) / AM 파일명 (staging area에 존재하지만, 파일이 수정된 상태 => 이땐 다시 add 해야겠쥬?)

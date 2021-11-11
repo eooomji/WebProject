@@ -1,0 +1,15 @@
+ul, li, label {
+    margin : 0;
+    padding : 0;
+}
+
+ul { list-style : none; }
+
+.warning_text {
+    color : red;
+    font-size : 9px;
+}
+
+.signup_label_star {
+    color : red;
+}

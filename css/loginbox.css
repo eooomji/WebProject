@@ -1,0 +1,25 @@
+html, body {
+    /* 로그인박스 중앙정렬을 위한 상하 크기 초기화 */
+    height : 100%;
+    overflow : hidden;
+}
+
+#login_box {
+    /* 로그인박스 중앙정렬 */
+    position : absolute;
+    top : calc(50% - 250px);
+    left : calc(50% - 225px);
+
+    /* 로그인박스의 기본스타일 지정 */
+    background : #FFFFFF;
+    border : 1px solid #B3B3B3;
+    border-radius : 15px;
+    width : 450px;
+    min-height : 500px;
+
+    /* 로그인박스와 내용의 간격조절 */
+    padding : 48px 40px 36px;
+
+    /* 패딩 자동증가 방지 */
+    box-sizing : border-box;
+}

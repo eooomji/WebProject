@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/background.css" rel="stylesheet">
+    <link href="../css/loginbox.css" rel="stylesheet">
+    <link href="../css/loginpage.css" rel="stylesheet">
+    <title>로그인</title>
+</head>
+<body>
+    <section id="login_box">
+        <div><form method="post">
+            <div>
+                <span>
+                    <img src="../images/username.svg" width=25 height=25>
+                </span>
+                <input 
+                    class="input_box" maxlength="40"
+                    type="text" placeholder="아이디 또는 이메일">
+            </div>
+            <div>
+                <span>
+                    <img src="../images/password.svg" width=25 height=25>
+                </span>
+                <input 
+                    class="input_box" maxlength="30"
+                    type="password" placeholder="비밀번호">
+            </div>
+            <div id="other_option">
+                <div id="signup"><a href="signup.html">회원가입</a></div>
+                <div id="forget_id"><a href="forget_id.html">아이디찾기</a></div>
+                <div id="forget_pw"><a href="forget_pw.html">비밀번호찾기</a></div>
+            </div>
+            <button type="sibmit" id="login">
+                로그인
+            </button>
+            <button type="button" id="kakao_login">
+                <span id="kakao_icon">
+                    <img src="../images/kakaotalk_simbol.svg" width=40 height=40>
+                </span>
+                카카오 로그인
+            </button>
+        </form></div>
+    </section>
+</body>
+</html>

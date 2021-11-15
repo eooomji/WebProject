@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+    <!-- js -->
+    <script src="../js/main.js"></script>
+    
+    <title>메인페이지</title>
+    <style>
+        fieldset { width : 300px; }
+    </style>
+</head>
+<body>
+    <h1>메인페이지 입니다.</h1>
+    <button type="button" onclick="getMyInfo()">자신의 정보 가져오기</button>
+    <button type="button" onclick="logout()">로그아웃</button>
+    <br>아이디<input class="username" type="text" disabled>
+    <br>닉네임<input class="nickname" type="text" disabled>
+    <br>휴대전화<input class="tel" type="text" disabled>
+    <fieldset>
+        <legend>분야선택</legend>
+        <label><input type="checkbox" class="exercise" disabled>운동</label>
+        <label><input type="checkbox" class="volunteer" disabled>봉사</label>
+        <lable><input type="checkbox" class="habit" disabled>습관</lable>
+        <lable><input type="checkbox" class="manner" disabled>예절</lable>
+    </fieldset>
+</body>
+</html>

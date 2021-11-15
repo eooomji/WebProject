@@ -68,10 +68,10 @@ a:hover {
     line-height : 30px;
 }
 
-/*#kakao_login:hover {
+#kakao_login:hover {
     cursor : pointer;
     text-decoration : underline;
-}*/
+}
 
 #kakao_icon {
     margin-top : 3px;

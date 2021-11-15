@@ -10,10 +10,6 @@ ul { list-style : none; }
     font-size : 9px;
 }
 
-.signup_label_star {
+.kakao_signup_label_star {
     color : red;
-}
-
-h2 {
-    margin-top : 0;
 }

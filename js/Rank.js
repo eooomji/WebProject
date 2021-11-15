@@ -1,28 +1,16 @@
 
-onload = () => {
-	SessionCheck();
-	LoadRank();
-}
+let RankCount = 1;
 
-// 서버에서 사용자들의 순위를 받아서 표시
-const LoadRank = async () => {
-	try {
-		const Response = await fetch('../php/LoadRank.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
-		if (!Response.ok) {
-			throw `${Response.status} ${Response.statusText}`;
-		}
-		const ResponseData = await Response.json();
-
-		const RankTable = document.querySelector('#ranktable');
-		for (const element of ResponseData["data"]) {
-			const row = RankTable.insertRow(-1);
-			row.insertCell(-1).innerText = ResponseData["StartRank"]++;
-			for (const CellData of element) {
-				row.insertCell(-1).innerText = CellData;
-			}
-		}
-	} catch (error) {
-		alert(error);
-	}
+const AddRow = () => {
+	fetch('http://127.0.0.1:8000/', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
+		return Response.statusText === "OK" ? Response.json() : alert(Response.statusText);
+	}).then((Result) => {
+		
+		var row = document.getElementById("ranktable").insertRow(-1);
+		row.insertCell(-1).innerText = Result["StartRank"]++;
+		row.insertCell(-1).innerText = '2';
+		row.insertCell(-1).innerText = '3';
+		row.insertCell(-1).innerText = '4';
+	});
 }
 

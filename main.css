@@ -1,0 +1,78 @@
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    text-align:center;
+}
+
+.site-header a {
+    color: #8e8e8e;
+    transition: color .15s ease-in-out;
+}
+
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.link{
+    display:flex;
+    justify-content:center; 
+}
+
+.totalscore{
+    display:flex;
+    justify-content:center; 
+}
+
+
+
+.link-to-main1{
+    font-size: 30px;
+    margin: 10px 10px 10px 10px;
+}
+
+.link-to-main2{
+    font-size: 30px;
+    margin: 10px 10px 10px 10px;
+}
+
+.show {
+    float: left;
+    border: 0.5px;
+    width: 400px;
+    height: 120px;
+}
+
+
+.dailyscore-show{
+    float: left;
+    font-size: 100px;
+    border: 0.5px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.left{
+    float: left;
+    width: 140px;
+    height: 110px;
+    margin: 5px 5px 5px 5px;
+}
+
+.right{
+    float: right;
+    width: 180px;
+    height: 120px;
+}
+
+.monthscore-show{
+    border: 0.5px;
+    font-size: 100px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}

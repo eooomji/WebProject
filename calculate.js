@@ -1,8 +1,8 @@
-var score_daily, score_month;
-var mission_daily_cleared, mission_daily_total;
-var score_daily_pre, score_daily_change;
-var days_in_month;
-var rank;
+const score_daily, score_month;
+const mission_daily_cleared, mission_daily_total;
+const score_daily_pre, score_daily_change;
+const days_in_month;
+const rank;
 
 score_daily=(mission_daily_cleared/mission_daily_total)*100; //일간 점수 계산
 score_daily_change=((score_daily/score_daily_pre)*100)-100; //main 에서 점수 변화를 반영하는 부분

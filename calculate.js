@@ -1,13 +1,19 @@
-var mission_length, mission_cleared, score_now, score_pre, score_change, score_rank;
+var score_daily, score_month;
+var mission_daily_cleared, mission_daily_total;
+var score_daily_pre, score_daily_change;
+var days_in_month;
 var rank;
 
-score_now=(mission_cleared/score_length)*100;
+score_daily=(mission_daily_cleared/mission_daily_total)*100; //일간 점수 계산
+score_daily_change=((score_daily/score_daily_pre)*100)-100; //main 에서 점수 변화를 반영하는 부분
 
-score_change = score_now / score_before + score_now % score_before;
-score_rank = mission_cleared/score_length;
+for (var i = 0; i < days_in_month; i++) {
+    month_score=month_score+(score_daily[i]/days_in_month);
+}
+month_score=month_score*100; //월간 점수 계산
 
-if (score_rank>0.8) rank = "A";
-else if (0.8>=score_rank>0.6) rank = "B";
-else if (0.6>=score_rank>0.4) rank = "C";
-else if (0.4>=score_rank>0.2) rank = "F";
-else rank = "D";
+if (month_score/100>0.8) rank = "A";
+else if (month_score/100>0.6) rank = "B";
+else if (month_score/100>0.4) rank = "C";
+else if (month_score/100>0.2) rank = "F";
+else rank = "D"; //db에서 월간 점수 반영

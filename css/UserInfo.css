@@ -5,6 +5,6 @@
 	visibility: hidden;
 }
 
-#LoadingCircle {
+#UserInfoLoadingCircle, #SettingLoadingCircle {
 	visibility: hidden;
 }

@@ -6,9 +6,8 @@ header("Content-Type:application/json");
 
 $host = '127.0.0.1';
 $user = 'root';
-$pw = 'password';
-$dbName = 'goodPerson';
+$pw = 'passwd';
+$dbName = 'test';
 $db = new mysqli($host, $user, $pw, $dbName);
 
 mysqli_set_charset($db, "utf8");
-?>

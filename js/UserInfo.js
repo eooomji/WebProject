@@ -1,21 +1,45 @@
 
-const init = () => {
-	//LoadUser();
+onload = () => {
+	SessionCheck();
+	LoadUser();
 	DisableUserInfoChange(true);
 }
 
+const SessionCheck = () => {
+	fetch('../php/sessionCheck.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
+		return Response.statusText === "OK" ? Response.json() : alert(`${Response.status} ${Response.statusText}`);
+	}).then(Result => {
+		if (!Result) {
+			location.replace("../html/loginpage.html");
+		}
+	});
+}
+
 const LoadUser = () => {
-	fetch('http://127.0.0.1:8000/', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
+	fetch('../php/LoadUser.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
 		return Response.statusText === "OK" ? Response.json() : alert(Response.statusText);
 	}).then((Result) => {
-		if (Result == null) { return; }
 		Object.keys(Result).forEach((element) => {
-			let target = document.getElementsByName(element);
-			Result[element].split('-').forEach((elem, index, arr) => {
-				target = index < arr.length ? target[elem] : elem;
-				}
-			);
+			let target = document.getElementById(element);
+			if (target.value != null) {
+				target.value = Result[element];
+			} else if (target.textContent != null) {
+				target.textContent = Result[element];
+			}
 		});
+	});
+}
+
+const onClickChangeUserInfo = () => {
+	SendChange('UserInfo', (ResponseJson) => {
+		ResponseJson["Result"] === "Success" ? DisableUserInfoChange(true) : null;
+		SendChangeComplete('UserInfo', ResponseJson);
+	});
+}
+
+const onClickChangeSetting = () => {
+	SendChange('Setting', (ResponseJson) => {
+		SendChangeComplete('Setting', ResponseJson);
 	});
 }
 
@@ -26,28 +50,27 @@ const DisableUserInfoChange = (IsDisable) => {
 	document.getElementById('changeinfo').style.visibility = IsDisable ? 'hidden' : 'visible';
 }
 
-const SendChange = (ChangeTarget) => {
-	const TargetContainer = document.getElementById(ChangeTarget);
-	TargetContainer.querySelector('#LoadingCircle').style.visibility = 'visible';
+const SendChange = (target, ProcessFunc) => {
+	const TargetContainer = document.getElementById(target);
+	document.getElementById(`${target}LoadingCircle`).style.visibility = 'visible';
 	const Data = {};
-	EachUserInfoElement(ChangeTarget, (element) => {
-		Data[element.name] = element.value;
+	EachUserInfoElement(target, (element) => {
+		Data[element.id] = element.value;
 	});
-	fetch('http://127.0.0.1:8000/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Data) }).then(Response => {
-		const IsSuccess = Response.statusText === "OK" ? true : false;
-		if (ChangeTarget === 'UserInfo') {
-			DisableUserInfoChange(IsSuccess);
-		}
+	fetch('../php/SendChange.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Data) }).then(Response => {
 		return Response.json();
 	}).then((ResponseJson) => {
-		TargetContainer.getElementById('LoadingCircle').style.visibility = 'hidden';
-		TargetContainer.getElementById('ResultInfo').textContent = ResponseJson["Message"];
+		ProcessFunc(ResponseJson);
 	});
 }
 
+const SendChangeComplete = (target, ResponseJson) => {
+	document.getElementById(`${target}LoadingCircle`).style.visibility = 'hidden';
+	document.getElementById(`${target}Result`).textContent = ResponseJson["Message"];
+}
 
 const EachUserInfoElement = (target, func) => {
-	document.querySelectorAll(`#${target}Item`).forEach((element) => {
+	document.getElementsByName(`${target}Item`).forEach((element) => {
 		func(element);
 	});
 }

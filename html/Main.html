@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>메인페이지</title>
+
+        <!-- *** BOOTSTRAP *** -->
+        <!-- CSS only -->
+        <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
+            crossorigin="anonymous">
+        <!-- JavaScript Bundle with Popper -->
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+            crossorigin="anonymous">
+        </script>
+
+        <!-- CSS -->
+        <link href="../css/Main.css" rel="stylesheet">
+        <!-- 헤더부분 css import-->
+        <link href="../css/Calendar.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- 헤더부분 통일 -->
+        <header>
+            <div class="LOGOimg">
+                <a href="../html/main.html"><img src="../images/LOGO.svg" width="200" height="100"></a>
+            </div>
+        </header>
+        
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick = "location.href = '../html/UserInfo.html'">User</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-calendar" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" onclick = "location.href = '../html/Calendar.html'">Calendar</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick = "location.href = '../html/Rank.html'">Rank</button>
+            </div>
+        </nav>
+        </header>
+        <main>
+            <div class="link">
+                <a class="link-to-main1" href="#">기본과제</a>
+                <a class="link-to-main2" href="#">추가과제</a>
+            </div>
+            <div class="display">
+                <div class="show">
+                    <section class="left">
+                        <p class="monthscore-show">XX</p>
+                    </section>
+                    <section class="right">
+                        <p class="monthscore-text">매달달성점수</p>
+                        <p class="monthscore-rank">랭크: A/B/C/F/D</p>
+                        <p class="monthscore-change">점수변동: +XX(+XX%)</p>
+                    </section>
+                </div>
+                <div class="show">
+                    <section class="left">
+                        <p class="dailyscore-show">XX</p>
+                    </section>
+                    <section class="right">
+                        <p class="dailyscore-text">일간달성점수</p>
+                        <p class="dailyscore-change">점수변동: +XX(+XX%)</p>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

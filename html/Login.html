@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+
+    <!-- kakao -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>window.Kakao.init("36fe7aa2beef85ae40b6a5601f75dc43")</script>
+
+    <!-- CSS -->
+    <link href="../css/Background.css" rel="stylesheet">
+    <link href="../css/LoginBox.css" rel="stylesheet">
+    <link href="../css/Login.css" rel="stylesheet">
+    
+    <!-- JavaScript -->
+    <script src="../js/Login.js"></script>
+</head>
+<body>
+    <section id="login_box">
+        <div>
+            <div>
+                <span>
+                    <img src="../images/username.svg" width=25 height=25>
+                </span>
+                <input 
+                    id="idInput" class="input_box" maxlength="40"
+                    type="text" placeholder="ID">
+            </div>
+            <div>
+                <span>
+                    <img src="../images/password.svg" width=25 height=25>
+                </span>
+                <input 
+                    id="pwInput" class="input_box" maxlength="30"
+                    type="password" placeholder="PASSWORD">
+            </div>
+            <div id="other_option">
+                <div id="signup"><a href="signup.html">회원가입</a></div>
+                <div id="forget_id"><a href="forgetID.html">아이디찾기</a></div>
+                <div id="forget_pw"><a href="forgetPW.html">비밀번호찾기</a></div>
+            </div>
+            <button type="button" id="login" onclick="login()">
+                로그인
+            </button>
+            <button type="button" id="kakao_login" onclick="kakaologin()">
+                <span id="kakao_icon">
+                    <img src="../images/kakaotalk_simbol.svg" width=40 height=40>
+                </span>
+                카카오 로그인
+            </button>
+        </div>
+    </section>
+</body>
+</html>

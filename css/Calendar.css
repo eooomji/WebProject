@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.btnDiv {
+  display: grid;
+  grid-template-columns: 50px 110px 50px;
+  justify-content: center;
+}
+
+/* arrow */
+.arrow {
+  grid-template-columns: 1fr;
+}
+
+.arrow div {
+  width: auto;
+  height: auto;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.leftArrow {
+  margin-left: 100px;
+}
+
+.rightArrow {
+  margin-right: 100px;
+}
+
+/* 달력 */
+
+.rap {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.date_text {
+  text-align: center; 
+  padding: 1rem 0;
+}
+
+.date_head {
+  margin-bottom: 10px;
+}
+
+.date_head div {
+  background: #9370DB;
+  color: #fff;
+  text-align: center;
+}
+
+.date_form {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+}
+
+.date_form div {
+  padding: 10px 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dateSel div {
+  font-weight: bold;
+  color: #333;
+  min-height: 120px;
+  padding: 1rem 1.3rem;
+  border-radius: 10px;
+  border: 2px solid #f7f7f7;
+}
+
+.background {
+  background: #f7f7f7;
+}
+
+.mission {
+  font-size: 18px;
+}
+
+/* 로고 중앙정렬 추가*/
+.LOGOimg {
+  text-align : center;
+}

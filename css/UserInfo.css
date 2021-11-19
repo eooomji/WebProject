@@ -1,0 +1,10 @@
+#userinformation {
+  width: 600px;
+}
+#changeinfo {
+	visibility: hidden;
+}
+
+#UserInfoLoadingCircle, #SettingLoadingCircle {
+	visibility: hidden;
+}

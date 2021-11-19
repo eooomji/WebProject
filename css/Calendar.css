@@ -5,6 +5,10 @@
     box-sizing: border-box;
   }
   
+.LOGOimg {
+  text-align: center;
+}
+
 .nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -14,28 +18,13 @@
 
 .btnDiv {
   display: grid;
-  grid-template-columns: 50px 110px 50px;
+  grid-template-columns: 50px 130px 50px;
   justify-content: center;
 }
 
-/* arrow */
-.arrow {
-  grid-template-columns: 1fr;
-}
-
-.arrow div {
-  width: auto;
-  height: auto;
-  max-width: 50px;
-  max-height: 50px;
-}
-
-.leftArrow {
-  margin-left: 100px;
-}
-
-.rightArrow {
-  margin-right: 100px;
+.btn:hover {
+  font-weight: bold;
+  color: #089136;
 }
 
 /* 달력 */
@@ -56,7 +45,7 @@
 }
 
 .date_head div {
-  background: #9370DB;
+  background: #A9D18E;
   color: #fff;
   text-align: center;
 }
@@ -83,10 +72,15 @@
   border: 2px solid #f7f7f7;
 }
 
+.oneDateSel:hover {
+  background: #dfecdf;
+}
+
 .background {
   background: #f7f7f7;
 }
 
 .mission {
-  font-size: 18px;
+  font-size: 20px;
+  text-align: center;
 }

@@ -11,16 +11,32 @@
     <script src="../js/Calendar.js"></script>
     <!-- <script src="../mission.json"></script> -->
     <link rel="stylesheet" href="../css/Calendar.css">
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
     <title>Calendar</title>
 </head>
 <body>
     <header>
         <h2>LOGO</h2>
     </header>
-    <br>
-    <article>
-        <h3 class='date_text' style="text-align: center; padding: 2rem 0"></h3>
 
+    <nav>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true">User</button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-calendar" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Calendar</button>
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rank</button>
+            </div>
+          </nav>
+        
+        <h3 class='date_text'></h3>
+        <div class="btnDiv">
+            <button class="btn leftButton" onclick="calendar(ToDay.getMonth()-1)">&lt;</button>
+            <button class="btn ThisMonth" onclick="thisMonth()">This Month</button>
+            <button class="btn rightButton" onclick="calendar(ToDay.getMonth()+1)">&gt;</button>
+        </div>
+    </nav>
+    <article>
         <div class='date_item rap'>
             <div class="grid date_form date_head">
                 <div>일</div>
@@ -34,7 +50,7 @@
             <div class="grid date_form dateSel"></div>
         </div>
 
-        <div class="mission"></div>
+        <div class="mission missionName"></div>
     </article>
 </body>
 </html>

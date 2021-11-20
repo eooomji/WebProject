@@ -9,7 +9,6 @@ Update
 = 해결 = 각 날짜에 맞는 미션 보여주기 (hidden했다가 open되는 방식으로! display:none 쓰기?)  
 
 해야할 것  
-- 체크박스 표시된 미션을 리스트 or 배열에 넣고 개수 뽑기?! => XXX
 - 그 날 미션 완료(체크)시 DB isDone에 1로 바뀜 => checkbox를 checked로 바꿈  
 - 새로고침해도 check 표시 남아있게 구현  
 - 월, 일별 미션 할당

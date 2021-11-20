@@ -10,4 +10,7 @@ Update
 
 해야할 것  
 - 체크박스 표시된 미션을 리스트 or 배열에 넣고 개수 뽑기?! => XXX
-- 그 날 미션 완료(체크)시 DB isDone에 1로 바뀜 => checkbox를 checked로 바꿈
+- 그 날 미션 완료(체크)시 DB isDone에 1로 바뀜 => checkbox를 checked로 바꿈  
+- 새로고침해도 check 표시 남아있게 구현  
+- 월, 일별 미션 할당
+- 미션 section 4개로 나누기 => 사용자가 지정한 걸로 할당되게~ 해야해요~

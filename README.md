@@ -1,10 +1,5 @@
 모듈 이름은 일단 moduel.js 로 지정
 
-html
-- <script>...</script> 에 type="module" 추가
-- <script type="module">...</script>
-
-
-js
-- import { SessionCheck } from 'module.js' 추가
-- SessionCheck(); 로 사용
+html 에서 기존 스크립트 추가 구문의 위에 배치
+- <script src="../js/module.js" charset="utf-8"></script> (추가)
+- <script>...</script> (기존)

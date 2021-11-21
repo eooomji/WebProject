@@ -9,9 +9,9 @@
     $row = $res->fetch_array(MYSQLI_ASSOC);
 
     if($row === null) {
-        echo JSON_ENCODE(false, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+        echo false;
     } else {
-        echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+        echo true;
     }
 
     mysqli_close($db);

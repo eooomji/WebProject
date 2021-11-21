@@ -2,34 +2,32 @@
 require_once("dbconfig.php"); 
 
 $_POST = JSON_DECODE(file_get_contents("php://input"), true);
-session_start();
 
-$name= $_POST["name"];
-$username = $_POST["username"]; 
-$email = $_POST["email"];
+$UserName = $_POST["UserName"];
+$password = password_hash($_POST["UserPassword"], PASSWORD_BCRYPT);
+$UserNickName = $_POST["UserNickName"]; 
+$UserEmail = $_POST["UserEmail"];
+
+session_start();
 $Name_on_Session = $_SESSION["sess_username"];
 
-if(empty($_POST["password"])) {	// 비밀번호를 변경하지 않을 경우
-	$sql = "UPDATE `user` SET `username` = '$username', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
-} else {						// 비밀번호를 변경하는 경우
-	$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-	$sql = "UPDATE `user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
-}
 
+$sql = "UPDATE `test`.`user` SET `UserName` = '$UserName', `password` = '$password', `name` = '$UserNickName', `email` = '$UserEmail' WHERE `UserName` = '$Name_on_Session'";
 $res = $db->query($sql); 
 
 $success = $res;
 
 if($success) {
-	if($_SESSION["sess_username"] != $username) {
-		$_SESSION["sess_username"] = $username;
+	if($_SESSION["sess_username"] != $UserName) {
+		$_SESSION["sess_username"] = $UserName;
 	}
-	$result = array("Result"=>"Success", "Message"=>"수정 완료");
+	$result = array("Result"=>"Success", "Message"=>"Success");
 } else {
-	$result = array("Result"=>"Failure", "Message"=>"수정 실패");
+	$result = array("Result"=>"Failure", "Message"=>"FailReason");
 }
 
-echo JSON_ENCODE($result, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+echo JSON_ENCODE($result);
+
 
 session_write_close();
 mysqli_close($db);

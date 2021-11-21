@@ -22,3 +22,5 @@ if($row) {
 }
 
 mysqli_close($db);
+
+?>

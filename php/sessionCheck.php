@@ -1,19 +1,20 @@
 <?php
-    //¼¼¼Çº¯¼ö »ç¿ë
+    //ì„¸ì…˜ë³€ìˆ˜ ì‚¬ìš©
     session_start();
 
-    // ¿¡·¯ ²ô±â
-    // ¿¡·¯¸¦ ²ôÁö ¾ÊÀ¸¸é SESSION º¯¼ö°¡ ¾øÀ» ¶§ null°ª ´ë½Å ¿¡·¯°ª ¸®ÅÏ
+    // ì—ëŸ¬ ë„ê¸°
+    // ì—ëŸ¬ë¥¼ ë„ì§€ ì•Šìœ¼ë©´ SESSION ë³€ìˆ˜ê°€ ì—†ì„ ë•Œ nullê°’ ëŒ€ì‹  ì—ëŸ¬ê°’ ë¦¬í„´
     error_reporting(0);
     ini_set("display_errors", 0);
 
-    // jsonÅë½Å
+    // jsoní†µì‹ 
     header("Content-Type:application/json");
 
     if ($_SESSION["sess_username"]) {
-        echo JSON_ENCODE($_SESSION["sess_username"], JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
+        echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
     } else {
         echo JSON_ENCODE(false, JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
     }
 
     session_write_close();
+?>

@@ -1,3 +1,26 @@
+import { SessionCheck } from './module.js';
+
+/*/
+const SessionCheck = () => {
+	fetch('../php/sessionCheck.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
+		CheckHttpResponseStatus(Response);
+	}).then(Result => {
+		if (Result === false) {
+			location.replace("../html/login.html");
+		}
+	}).catch(error => {
+		alert(error);
+	});
+}
+/*/
+
+const CheckHttpResponseStatus = (res => {
+	if (res.statusText === "OK") {
+		return res.json();
+	} else {
+		throw `${res.status} ${res.statusText}`;
+	}
+})
 
 onload = () => {
 	SessionCheck();
@@ -5,72 +28,84 @@ onload = () => {
 	DisableUserInfoChange(true);
 }
 
-const SessionCheck = () => {
-	fetch('../php/sessionCheck.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
-		return Response.statusText === "OK" ? Response.json() : alert(`${Response.status} ${Response.statusText}`);
-	}).then(Result => {
-		if (!Result) {
-			location.replace("../html/loginpage.html");
-		}
-	});
-}
-
 const LoadUser = () => {
+	document.getElementsByName(`SettingItem`).forEach((element) => {
+		element.checked = true;
+		element.checked = false;
+	});
 	fetch('../php/LoadUser.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
-		return Response.statusText === "OK" ? Response.json() : alert(Response.statusText);
-	}).then((Result) => {
-		Object.keys(Result).forEach((element) => {
-			let target = document.getElementById(element);
-			if (target.value != null) {
-				target.value = Result[element];
-			} else if (target.textContent != null) {
-				target.textContent = Result[element];
+		return CheckHttpResponseStatus(Response);
+	}).then(Result => {
+		Object.keys(Result).forEach(element => {
+			try {
+				const target = document.getElementById(element);
+				if (target.checked != null) {
+					target.checked = Result[element];
+				} else if (target.value != null) {
+					target.value = Result[element];
+				} else if (target.textContent != null) {
+					target.textContent = Result[element];
+				}
+			} catch (error) {
+				switch (element) {
+					case 'IsOAuth':
+						if (Result[element] == true) {
+							document.querySelectorAll('.HideOnOAuth').forEach(element => {
+								element.style.display = 'None';
+							});
+						}
+						break;
+					default:
+						alert(`${error} ${element}`);
+				}
 			}
 		});
+	}).catch(error => {
+		alert(error);
 	});
 }
 
-const onClickChangeUserInfo = () => {
-	SendChange('UserInfo', (ResponseJson) => {
-		ResponseJson["Result"] === "Success" ? DisableUserInfoChange(true) : null;
-		SendChangeComplete('UserInfo', ResponseJson);
-	});
-}
-
-const onClickChangeSetting = () => {
-	SendChange('Setting', (ResponseJson) => {
-		SendChangeComplete('Setting', ResponseJson);
-	});
-}
 
 const DisableUserInfoChange = (IsDisable) => {
-	EachUserInfoElement('UserInfo', (element) => {
+	document.getElementsByName(`UserInfoItem`).forEach((element) => {
 		element.disabled = IsDisable;
 	});
 	document.getElementById('changeinfo').style.visibility = IsDisable ? 'hidden' : 'visible';
 }
 
-const SendChange = (target, ProcessFunc) => {
-	const TargetContainer = document.getElementById(target);
-	document.getElementById(`${target}LoadingCircle`).style.visibility = 'visible';
+const onClickChangeUserInfo = () => {
+	SaveChange('UserInfo', 'value', (Result) => {
+		Result["Result"] === "Success" ? DisableUserInfoChange(true) : null;
+		ShowWaiterForResponse('UserInfo', Result, false);
+	});
+}
+
+const onClickChangeSetting = () => {
+	SaveChange('Setting', GetData('Setting', 'checked'), (Result) => {
+		ShowWaiterForResponse('Setting', Result, false);
+	});
+}
+
+const SaveChange = (target, Data, ProcessFunc) => {
+	ShowWaiterForResponse(target, true, true);
+	fetch(`../php/Change${target}.php`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Data) }).then(Response => {
+		return CheckHttpResponseStatus(Response);
+	}).then(Result => {
+		ProcessFunc(Result);
+	}).catch(error => {
+		alert(error);
+	});
+}
+
+const ShowWaiterForResponse = (target, Result, IsStart) => {
+	document.getElementById(`${target}LoadingCircle`).style.visibility = IsStart ? 'visible' : 'hidden';
+	document.getElementById(`${target}Result`).textContent = IsStart ? "" : Result["Message"];
+}
+
+const GetData = (target, property) => {
 	const Data = {};
-	EachUserInfoElement(target, (element) => {
-		Data[element.id] = element.value;
-	});
-	fetch('../php/SendChange.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Data) }).then(Response => {
-		return Response.json();
-	}).then((ResponseJson) => {
-		ProcessFunc(ResponseJson);
-	});
-}
-
-const SendChangeComplete = (target, ResponseJson) => {
-	document.getElementById(`${target}LoadingCircle`).style.visibility = 'hidden';
-	document.getElementById(`${target}Result`).textContent = ResponseJson["Message"];
-}
-
-const EachUserInfoElement = (target, func) => {
 	document.getElementsByName(`${target}Item`).forEach((element) => {
-		func(element);
+		Data[element.id] = element[property];
 	});
+	return Data;
 }

@@ -1,7 +1,3 @@
-* {
-    font-family: 'Do Hyeon', sans-serif;
-}
-
 html, body {
     /* 로그인박스 중앙정렬을 위한 상하 크기 초기화 */
     height : 100%;
@@ -11,33 +7,19 @@ html, body {
 #login_box {
     /* 로그인박스 중앙정렬 */
     position : absolute;
-    top : calc(50% - 275px);
+    top : calc(50% - 250px);
     left : calc(50% - 225px);
 
     /* 로그인박스의 기본스타일 지정 */
     background : #FFFFFF;
-    border : 1px solid #D3D3D3;
-    box-shadow: 1px 1px 10px black;
+    border : 1px solid #B3B3B3;
     border-radius : 15px;
     width : 450px;
-    min-height : 550px;
+    min-height : 500px;
 
     /* 로그인박스와 내용의 간격조절 */
-    padding : 30px 40px 36px;
+    padding : 48px 40px 36px;
 
     /* 패딩 자동증가 방지 */
     box-sizing : border-box;
-    transition : all 1s;
-}
-
-/* 헤더구간 */
-header {
-    text-align : center;
-}
-
-#info {
-    font-size : 20px;
-    font-weight : bold;
-    margin-top : 10px;
-    margin-bottom : 10px;
 }

@@ -1,7 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+.LOGOimg {
+	text-align: center;
+}
+
+.nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+
 #rankboard {
+	background-color: #A9D18E;
 	height: 800px;
 }
 
 #ranktable {
+	background-color: #A9D18E;
 	width: 800px;
 }

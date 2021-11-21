@@ -1,10 +1,19 @@
+
+const CheckHttpResponseStatus = (res => {
+	if (res.statusText === "OK") {
+		return res.json();
+	} else {
+		throw `${res.status} ${res.statusText}`;
+	}
+})
+
 onload = () => {
-	AddRow();
+	LoadRank();
 }
 
-const AddRow = () => {
-	fetch('../php/Rank.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
-		return Response.statusText === "OK" ? Response.json() : alert(Response.statusText);
+const LoadRank = () => {
+	fetch('../php/LoadRank.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
+		return CheckHttpResponseStatus(Response);
 	}).then((Result) => {
 		const RankTable = document.getElementById("ranktable");
 		Result["data"].forEach((element) => {
@@ -14,6 +23,8 @@ const AddRow = () => {
 				row.insertCell(-1).innerText = CellData;
 			});
 		});
+	}).catch(error => {
+		alert(error);
 	});
 }
 

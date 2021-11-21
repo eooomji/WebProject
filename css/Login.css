@@ -1,3 +1,8 @@
+/* 로그인 정보 입력 세션 */
+#inputID {
+    margin-bottom : 2px;
+}
+
 span {
     display : inline-block;
     vertical-align: middle;
@@ -18,6 +23,8 @@ input.input_box {
     font-size : 16px;
 }
 
+/* 회원가입, 아이디찾기, 비밀번호찾기 */
+
 #other_option {
     display : grid;
     grid-template-columns : 2fr 1fr 2fr;
@@ -30,6 +37,7 @@ input.input_box {
 a {
     font-weight : bolder;
 }
+
 a:link, a:visited, a:active {
     color : #000000;
     text-decoration : none;
@@ -40,7 +48,19 @@ a:hover {
     text-decoration : underline;
 }
 
-#login, #kakao_login {
+/* 
+<로그인 버튼 섹션>
+# 참고자료
+  * 구글 로그인 버튼 가이드라인 
+    https://developers.google.com/identity/branding-guidelines?hl=ko
+  * 네이버 로그인 버튼 가이드라인
+    https://developers.naver.com/docs/login/bi/bi.md
+  * 카카오 로그인 버튼 가이드라인
+    https://developers.kakao.com/docs/latest/ko/reference/design-guide
+*/
+    
+
+#login, #google_login, #naver_login, #kakao_login {
     margin-top : 7px;
     height : 50px;
     width : 100%;
@@ -62,11 +82,18 @@ a:hover {
     background-color : #0077FF;
 }
 
-#kakao_login {
-    background-color : #FFE500;
+
+#google_login, #naver_login, #kakao_login {
     text-align : left;
     line-height : 30px;
 }
+
+
+#google_login { background-color : #FFFFFF; }
+
+#naver_login { background-color : #03C75A; }
+
+#kakao_login { background-color : #FEE500; }
 
 #kakao_login:hover {
     cursor : pointer;

@@ -7,7 +7,7 @@ html, body {
 #login_box {
     /* 로그인박스 중앙정렬 */
     position : absolute;
-    top : calc(50% - 250px);
+    top : calc(50% - 275px);
     left : calc(50% - 225px);
 
     /* 로그인박스의 기본스타일 지정 */
@@ -15,11 +15,22 @@ html, body {
     border : 1px solid #B3B3B3;
     border-radius : 15px;
     width : 450px;
-    min-height : 500px;
+    min-height : 550px;
 
     /* 로그인박스와 내용의 간격조절 */
-    padding : 48px 40px 36px;
+    padding : 20px 40px 36px;
 
     /* 패딩 자동증가 방지 */
     box-sizing : border-box;
+}
+
+/* 헤더구간 */
+header {
+    text-align : center;
+    margin-bottom : 20px;
+}
+
+#info {
+    font-size : 20px;
+    font-weight : bold;
 }

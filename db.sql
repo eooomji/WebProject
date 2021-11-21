@@ -1,6 +1,5 @@
 CREATE TABLE `user` (
-  `ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `username` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL PRIMARY KEY,
   `password` VARCHAR(255) NOT NULL,
   `name` VARCHAR(40) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -9,28 +8,27 @@ CREATE TABLE `user` (
 );
 
 CREATE TABLE `missions` (
-  `ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `missionName` VARCHAR(255) NOT NULL,
+  `missionName` VARCHAR(255) NOT NULL PRIMARY KEY,
   `category` INT NOT NULL
 );
 
 CREATE TABLE `misson_log` (
-  `userID` INT NOT NULL,
-  `missionID` INT,
+  `username` VARCHAR(45) NOT NULL,
+  `missionName` VARCHAR(255),
   `check` TINYINT NOT NULL,
   `date` DATE NOT NULL,
-  FOREIGN KEY (userID) REFERENCES user(ID) ON DELETE CASCADE,
-  FOREIGN KEY (missionID) REFERENCES missions(ID) ON DELETE SET NULL
+  FOREIGN KEY (username) REFERENCES user(username) ON DELETE CASCADE,
+  FOREIGN KEY (missionName) REFERENCES missions(missionName) ON DELETE SET NULL
 );
 
 CREATE TABLE `login_log` (
-  `userID` INT NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `loginLog` DATE NOT NULL,
-  FOREIGN KEY (userID) REFERENCES `user`(ID) ON DELETE CASCADE
+  FOREIGN KEY (username) REFERENCES `user`(username) ON DELETE CASCADE
 );
 
 INSERT INTO `missions`
-(`missonName`, `category`)
+(`missionName`, `category`)
 VALUES
 ('오늘 하루 걸음 수 10000 걸음 채우기', -1),
 ('팔굽혀펴기 50개 하기', -1),

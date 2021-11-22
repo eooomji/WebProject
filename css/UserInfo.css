@@ -1,10 +1,101 @@
-#userinformation {
-  width: 600px;
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
 }
+
+.LOGOimg {
+	text-align: center;
+}
+
+.nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+
+#userinformation {
+	background-color: #A9D18E;
+	width: 40%;
+	display: inline-block;
+	text-align: left;
+}
+
+#UserInfo {
+	background-color: #A9D18E;
+	padding: 20px;
+	padding-left: 40px;
+}
+
+#Setting {
+	background-color: #A9D18E;
+	padding: 20px;
+	padding-left: 40px;
+}
+
 #changeinfo {
-	visibility: hidden;
+	visibility: visible;
 }
 
 #UserInfoLoadingCircle, #SettingLoadingCircle {
-	visibility: hidden;
+	visibility: visible;
+}
+
+.form {
+	margin: 10px;
+	border: solid 1px;
+}
+
+.container {
+	background-color: #A9D18E;
+	align-items: center;
+	margin: 25px;
+}
+
+.two {
+	justify-content: center;
+	display: flex;
+}
+
+#four {
+	float: left;
+	width: 40%;
+}
+
+#progress {
+	margin-left:10px;
+}
+
+#exp {
+}
+
+.line {
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+#changebutton {
+	margin-right:5px;
+}
+
+.UserInfoHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.Item {
+	width: 25%;
+}
+
+.five {
+	display: flex;
+	align-items: center;
+}
+
+#changeinfo, #changesetting {
+	margin-right: 10px;
 }

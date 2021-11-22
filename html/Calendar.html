@@ -32,22 +32,26 @@
 
     <!-- JavaScript -->
     <script src="../js/Calendar.js"></script>
-    <!-- <script src="../mission.json"></script> -->
 </head>
 <body>
-    <header class="LOGOimg">
-        <a href="../html/main.html"><img src="../images/LOGO.svg" width="200" height="100"></a>
+    <!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <header>
+        <div class="LOGOimg">
+            <a href="../html/main.html"><img src="../img/LOGO.png" width="200" height="100"></a>
+        </div>
     </header>
 
     <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick = "location.href = '../html/UserInfo.html'">User</button>
-            <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-calendar" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" onclick = "location.href = '../html/Calendar.html'">Calendar</button>
-            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick = "location.href = '../html/Rank.html'">Rank</button>
-        </div>
-    </nav>
-    <nav>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick = "location.href = '../html/UserInfo.html'">User</button>
+              <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-calendar" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" onclick = "location.href = '../html/Calendar.html'">Calendar</button>
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick = "location.href = '../html/Rank.html'">Rank</button>
+            </div>
+        </nav>
+        
         <h3 class='date_text'></h3>
+        <h5 class='checkNum'></h5>
         <div class="btnDiv">
             <button class="btn leftButton" onclick="calendar(ToDay.getMonth()-1)">&lt;</button>
             <button class="btn ThisMonth" onclick="thisMonth()">This Month</button>

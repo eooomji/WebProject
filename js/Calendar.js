@@ -11,9 +11,8 @@ const arr = async(nowMonth, maxDay) => {
  
     if(responsemission.data) {
       // console.log(responsemission.data);
-      console.log(responseday.data
-        
-        );
+      console.log(responseday.data);
+      
       for (let i = 0; i < maxDay; i++) {
         if(responsemission.data[i] === undefined) responsemission.data[i] = {content : ""};
         else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input${i+1}" type="checkbox" name="${nowMonth + 1}" onclick='getCheckedCnt(${i+1}, ${nowMonth + 1})'>${responsemission.data[i].missionName}</div>`;

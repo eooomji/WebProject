@@ -27,6 +27,9 @@ CREATE TABLE `login_log` (
   FOREIGN KEY (username) REFERENCES `user`(username) ON DELETE CASCADE
 );
 
+++
+ALTER TABLE misson_log ADD ( isDone TINYINT NOT NULL );
+
 INSERT INTO `missions`
 (`missionName`, `category`)
 VALUES

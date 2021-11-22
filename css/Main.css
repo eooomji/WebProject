@@ -1,25 +1,29 @@
 * {
     font-family: 'Do Hyeon', sans-serif;
+    background-color: #f7f7f7;
 }
 
 /*상위 단락에 대한 CSS 코드*/
 .division{
     display: flex;
     justify-content: center;
+    padding: 20px;
+    margin: 0.5em;
 }
 
 /*중위 단락에 대한 CSS 코드*/
 .left{
     float: left;
-    border: 1px solid #548235;
+    border: 3px solid #548235;
     border-radius: 8px;
     margin: 0.5em;
-    padding: 5px;
+    padding: 10px;
+    
 }
 
 .right{
     float: right;
-    border: 1px solid #548235;
+    border: 3px solid #548235;
     border-radius: 8px;
     margin: 0.5em;
     padding: 5px;
@@ -27,10 +31,16 @@
 
 .center{
     float: center;
-    border: 1px solid #548235;
+    border: 3px solid #548235;
     border-radius: 8px;
     margin: 0.5em;
     padding: 5px;
+}
+
+.left:hover,
+.right:hover,
+.center:hover {
+    background: #e2f2d7;
 }
 
 /*하위 단락에 대한 CSS 코드*/
@@ -52,14 +62,16 @@
 .title{
     background-color: #548235;
     color:#fff;
-    padding: 2px;
+    padding: 10px;
     margin: 0.5em;
-    border-radius: 2px;
-    display:inline-block;
+    border-radius: 3px;
+    font-size: 40px;
+    display: inline-block;
 }
 
 .zeromargin{
-    margin: 0em 0em 0em 0.5em;
+    margin: 0.5em 0em 0em 0.5em;
+    font-size: 25px;
 }
 
 .highlight-a{
@@ -73,9 +85,14 @@
 
 .highlight-b{
     font-size: 2em;
-    color: #548235;
-    margin: 0.05em;
+    color: #6A5ACD;
+    margin: 0.25em;
     display: inline-block;
+    font-size: 38px;
+}
+
+.highlight-c {
+    font-size: 20px;
 }
 
 .mission{
@@ -94,10 +111,20 @@
     border:#548235;
     background-color: #548235;
     color:#fff;
-    padding: 2px;
+    padding: 10px;
     margin: 0.5em;
     border-radius: 2px;
     display:inline-block;
     position: relative;
     float: right;
+    font-size: 20px;
+}
+
+.link:hover {
+    background-color: #6A5ACD;
+}
+
+.ftMission {
+    font-size: 50px;
+    text-align: center;
 }

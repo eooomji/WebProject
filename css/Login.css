@@ -1,3 +1,7 @@
+* {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
 /* 로그인 정보 입력 세션 */
 #inputID, #inputPW {
     display : grid;
@@ -49,11 +53,11 @@ a:hover {
 /* 
 <로그인 버튼 섹션>
 # 참고자료
-  * 구글 로그인 버튼 가이드라인 
+  - 구글 로그인 버튼 가이드라인 
     https://developers.google.com/identity/branding-guidelines?hl=ko
-  * 네이버 로그인 버튼 가이드라인
+  - 네이버 로그인 버튼 가이드라인
     https://developers.naver.com/docs/login/bi/bi.md
-  * 카카오 로그인 버튼 가이드라인
+  - 카카오 로그인 버튼 가이드라인
     https://developers.kakao.com/docs/latest/ko/reference/design-guide
 */
     

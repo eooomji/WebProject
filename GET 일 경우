@@ -1,0 +1,20 @@
+$listener = New-Object System.Net.HttpListener
+$listener.Prefixes.Add("http://127.0.0.1:8000/") // 주소부분
+$listener.start()
+
+$data = new-object byte[] 1000
+$size = 0
+
+$data = [system.text.encoding]::utf8.getbytes("문자열") // JSON 이 아님
+[system.text.encoding]::utf8.getstring($data)
+// - 여기까진 처음 1번만
+
+// Http 요청 수신마다 실행
+$context = $listener.GetContext()
+
+$context.response.Headers.Add("Access-Control-Allow-Methods", "POST")
+$context.response.Headers.Add("Access-Control-Allow-Headers", "content-type")
+$context.response.Headers.Add("Access-Control-Allow-Origin", "null")
+
+$context.response.outputstream.write($data,0,$size)
+$context.response.outputstream.close()

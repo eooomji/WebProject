@@ -1,80 +1,99 @@
-.site-header {
-    background-color: rgba(0, 0, 0, .85);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    text-align:center;
-}
-
-.site-header a {
-    color: #8e8e8e;
-    transition: color .15s ease-in-out;
-}
-
-.site-header a:hover {
-    color: #fff;
-    text-decoration: none;
-}
-
-.link{
-    display:flex;
-    justify-content:center; 
-}
-
-.display{
+/*상위 단락에 대한 CSS 코드*/
+.division{
     display: flex;
-    justify-content:center; 
+    justify-content: center;
 }
 
-.link-to-main1{
-    font-size: 30px;
-    margin: 10px 10px 10px 10px;
-}
-
-.link-to-main2{
-    font-size: 30px;
-    margin: 10px 10px 10px 10px;
-}
-
-.show {
-    float: left;
-    border: 0.5px;
-    width: 350px;
-    height: 120px;
-}
-
-
-.dailyscore-show{
-    float: left;
-    font-size: 100px;
-    border: 0.5px;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-
+/*중위 단락에 대한 CSS 코드*/
 .left{
     float: left;
-    width: 140px;
-    height: 110px;
-    margin: 5px 5px 5px 5px;
+    border: 1px solid #548235;
+    border-radius: 8px;
+    margin: 0.5em;
+    padding: 5px;
 }
 
 .right{
     float: right;
-    width: 180px;
-    height: 120px;
+    border: 1px solid #548235;
+    border-radius: 8px;
+    margin: 0.5em;
+    padding: 5px;
 }
 
-.monthscore-show{
-    border: 0.5px;
-    font-size: 100px;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+.center{
+    float: center;
+    border: 1px solid #548235;
+    border-radius: 8px;
+    margin: 0.5em;
+    padding: 5px;
 }
 
-.special_text{
-    font-size: 30px;
+/*하위 단락에 대한 CSS 코드*/
+.left-in{
+    float: left;
+    width: 8em;
+    height: 5em;
+    margin: 5px;
+}
+
+.right-in{
+    float: right;
+    width: 10em;
+    height: 5em;
+    padding: 5px;
+}
+
+/* 글자에 대한 CSS 코드*/
+.title{
+    background-color: #548235;
+    color:#fff;
+    padding: 2px;
+    margin: 0.5em;
+    border-radius: 2px;
+    display:inline-block;
+}
+
+.zeromargin{
+    margin: 0em 0em 0em 0.5em;
+}
+
+.highlight-a{
+    margin: 0em 0em 0em 1.5em;
+    font-size: 5em;
+    line-height: 5px;
+    color: #548235;
+    text-align: right;
+    display: inline-block;
+}
+
+.highlight-b{
+    font-size: 2em;
+    color: #548235;
+    margin: 0.05em;
+    display: inline-block;
+}
+
+.mission{
+    border:1px solid #548235;
+    margin: 0.5em;
+    border-radius: 2px;
+    display:inline-block;
+    width: 12em;
+}
+
+.cb{
+    margin: 0em 0em 0em 0.5em;
+}
+
+.link{
+    border:#548235;
+    background-color: #548235;
+    color:#fff;
+    padding: 2px;
+    margin: 0.5em;
+    border-radius: 2px;
+    display:inline-block;
+    position: relative;
+    float: right;
 }

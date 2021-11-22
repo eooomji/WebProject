@@ -1,13 +1,13 @@
 <?php
 require_once("dbconfig.php"); 
 
-$sql = "SELECT `UserName`, `score` FROM user ORDER BY `score` DESC";
+$sql = "SELECT `username`, `score` FROM user ORDER BY `score` DESC";
 $res = $db->query($sql); 
 
 $data = array();
 for ($i = 0; $i < $res->num_rows; $i++) {
     $row = $res->fetch_array(MYSQLI_ASSOC);
-    $row = array($row['UserName'], $row['score']);
+    $row = array($row['username'], $row['score']);
     array_push($data, $row);
 }
  

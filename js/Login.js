@@ -36,18 +36,11 @@ const login = async() => {
     }
 }
 
-//const google_login = () => {
-    const google_login = (googleUser) => {
-        const profile = googleUser.getBasicProfile();
-        console.log("id: " + profile.getId());
-        console.log("Full Name: " + profile.getName());
-        console.log("Email: " + profile.getEmail());
+const google_login = () => {
+    console.log("google 로그인");
+}
 
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-    }
-
-const naver_id_login = () => {
+const naver_login = () => {
     const naverLogin = new naver.LoginWithNaverId({
         clientId : "lu6p3IJh8_cSRKZpHEkS",
         callbackUrl : "http://localhost/html/OauthRedirect.html",
@@ -58,7 +51,7 @@ const naver_id_login = () => {
     
     naverLogin.init();
     
-    document.querySelector("#naverIdLogin_loginButton").click();
+    document.querySelector("#naverIdLogin_loginButton").click()
 }
 
 
@@ -85,11 +78,12 @@ const kakao_login = () => {
 const judge_data = async(username, name) => {
     const info = {
         username : username,
-        name : name
+        name : name,
+        email : username
     }
 
     try {
-        const response = await axios.post("../php/kakaoLogin.php", {
+        const response = await axios.post("../php/LoginForOauth.php", {
             username : username
         })
         if(response.data) {
@@ -105,6 +99,8 @@ const judge_data = async(username, name) => {
     }
 }
 
+
+// -------------------- API 구현 완료 후 삭제예정 ---------------------- //
 const getURL = (domain, param) => {
     let url = `${domain}?`;
     for(let key in param) {

@@ -155,7 +155,7 @@ const checkEmail = () => {
 }
 
 /* 가입하기 버튼을 눌렀을 경우 - PHP 통신 -> DB에 값 집어넣기 */
-const sign_up_demand = async() => {
+const join_demand = async() => {
     // DOM 조작
     const userID = document.querySelector(".userID").value;
     const userPW = document.querySelector(".userPW").value;
@@ -187,7 +187,7 @@ const sign_up_demand = async() => {
 };
 
 /* 취소하기 버튼을 눌렀을 경우 -> 메인페이지로 돌아가기 */
-const sign_up_cancel = () => {
+const join_cancel = () => {
     location.replace("../html/Login.html");
 }
 

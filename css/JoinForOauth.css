@@ -11,5 +11,6 @@ ul { list-style : none; }
 }
 
 .signup_label_star {
+    display : none;
     color : red;
 }

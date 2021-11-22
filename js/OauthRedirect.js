@@ -9,8 +9,8 @@ const naverLogin = new naver.LoginWithNaverId(
 
 naverLogin.init();
 
-window.addEventListener('load', function() {
-    naverLogin.getLoginStatus(function (status) {
+onload = async() => {
+    naverLogin.getLoginStatus(function(status) {
         if(status) {
             const email = naverLogin.user.getEmail();
             const name = naverLogin.user.getName();
@@ -27,10 +27,38 @@ window.addEventListener('load', function() {
                 return;
             }
 
-            self.close();
-            
+            judge_data(email, name);
+
         } else {
             console.log("callback 처리에 실패하였습니다.");
         }
     });
-});
+
+
+}
+
+const judge_data = async(username, name) => {
+    const info = {
+        username : username,
+        name : name,
+        email : username
+    }
+
+    try {
+        const response = await axios.post("../php/LoginForOauth.php", {
+            username : username
+        })
+        if(response.data) {
+            // 기존 사용자일 경우
+            opener.location.replace("../html/Main.html");
+        } else {
+            // 처음 사용자일 경우
+            opener.sessionStorage.setItem("info", JSON.stringify(info));
+            opener.location.replace("../html/JoinForOauth.html");
+        }
+    } catch(error) {
+        console.log(error);
+    } finally {
+        self.close();
+    }
+}

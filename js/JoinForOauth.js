@@ -2,8 +2,9 @@ let info;
 
 onload = () => {
     info = JSON.parse(sessionStorage.getItem("info"));
-    document.querySelector(".kakaoID").value = info["username"];
-    document.querySelector(".name").value = info["name"];
+    document.querySelector(".kakaoID").value = info.username;
+    document.querySelector(".name").value = info.name;
+    document.querySelector(".email").value = info.email;
 }
 
 const k_sign_up_demand = async() => {

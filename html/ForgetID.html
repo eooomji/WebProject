@@ -13,6 +13,9 @@
     <!-- CSS -->
     <link href="../css/Background.css" rel="stylesheet">
     <link href="../css/LoginBox.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="../js/ForgetID.js"></script>
 </head>
 <body>
     <div id="login_box">
@@ -20,13 +23,13 @@
             <img src="../images/LOGO.png" width=100 height=50>
             <div id="info">아이디찾기</div>
         </header>
-        <div>닉네임</div>
-        <input class="nickname" type="text" placeholder="닉네임">
-        <div>휴대폰번호</div>
-        <input class="tel" type="tel" maxlength="11" placeholder="- 빼고 입력">
+        <div>이름</div>
+        <input class="nickname" type="text" placeholder="이름">
+        <div>이메일주소</div>
+        <input class="tel" type="eamil" maxlength="11" placeholder="이메일주소">
         <div id="submit">
-            <button type="button" onclick="findID()">찾기</button>
-            <button type="button" onclick="cancle()">취소하기</button>
+            <button type="button" onclick="findID_demand()">찾기</button>
+            <button type="button" onclick="findID_cancle()">취소하기</button>
         </div>
     </div>
 </body>

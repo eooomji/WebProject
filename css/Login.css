@@ -1,13 +1,12 @@
 /* 로그인 정보 입력 세션 */
-#inputID {
-    margin-bottom : 2px;
+#inputID, #inputPW {
+    display : grid;
+    grid-template-columns: 1fr 9fr;
 }
 
-span {
-    display : inline-block;
+img {
+    margin : auto;
     vertical-align: middle;
-    position : relative;
-    top : 2px;
 }
 
 input.input_box {
@@ -18,7 +17,6 @@ input.input_box {
     border-bottom-width : 1px;
 
     /* 상자 크기 및 글자크기 조정 */
-    min-width : 330px;
     min-height : 35px;
     font-size : 16px;
 }

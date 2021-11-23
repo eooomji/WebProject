@@ -9,9 +9,10 @@ window.onload = async function() {
 
   document.querySelector('.highlight-b').innerText = `${name}`;
   document.querySelector('.highlight-a').innerText = `${score}`;
- 
+  
+  let username = getName.data.username;
   const getMission = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
   const getMonth = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});;
 
-  document.querySelector('.mission').innerText = '${getMission.data[getMission[getMonth.data.length].missionName]}';
+  document.querySelector('.mission').innerText = '${getMission.data[getMonth.data.length].missionName}';
 }

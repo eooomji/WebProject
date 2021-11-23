@@ -19,21 +19,27 @@ onload = async() => {
 const login = async() => {
     const username = document.querySelector("#idInput").value;
     const password = document.querySelector("#pwInput").value;
-    
-    try {
-        const response = await axios.post("../php/login.php", {
-            username : username,
-            password : password
-        });
 
-        if(response.data) {
-            alert("로그인 성공 !!");
-            location.replace("../html/Main.html");
-        } else {
-            alert("로그인 실패 !!");
+    if(username === "") {
+        alert("아이디를 입력해 주세요.");
+    } else if(password === "") {
+        alert("비밀번호를 입력해 주세요.");
+    } else {
+        try {
+            const response = await axios.post("../php/login.php", {
+                username : username,
+                password : password
+            });
+    
+            if(response.data) {
+                alert("로그인 성공 !!");
+                location.replace("../html/Main.html");
+            } else {
+                alert("로그인에 실패하였습니다. 아이디나 비밀번호를 다시 확인해주세요.");
+            }
+        } catch (error) {
+            console.log(error);
         }
-    } catch (error) {
-        console.log(error);
     }
 }
 

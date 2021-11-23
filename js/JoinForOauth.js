@@ -2,6 +2,10 @@ let info;
 
 onload = () => {
     info = JSON.parse(sessionStorage.getItem("info"));
+    if(info === undefined || info === null) {
+        alert("잘못된 접근입니다.");
+        location.replace("../html/Login.html");
+    }
     document.querySelector(".kakaoID").value = info.username;
     document.querySelector(".name").value = info.name;
     document.querySelector(".email").value = info.email;
@@ -15,7 +19,7 @@ const k_sign_up_demand = async() => {
 
     if (checkName() & checkEmail()) {
         try {
-            const response = await axios.post("../php/kakaoSignup.php", {
+            const response = await axios.post("../php/JoinForOauth.php", {
                 username : userID,
                 name : name,
                 email : email,

@@ -1,9 +1,8 @@
 let ToDay = new Date(); 
 let nowMonth = ToDay.getMonth(); 
-let userName ='eooomji';
 
 // DB에서 미션 다 불러오기
-const arr = async(nowMonth) => {
+const arr = async(nowMonth, userName) => {
   try {
     let missionHTML = '';
     const response = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
@@ -52,7 +51,8 @@ const arr = async(nowMonth) => {
 // 클릭하면 해당 일에 해당되는 미션 보여주는 함수
 const handleClick = async (event) => {
     const dateInArr = ['dateIn1', 'dateIn2', 'dateIn3', 'dateIn4', 'dateIn5', 'dateIn6', 'dateIn7', 'dateIn8', 'dateIn9', 'dateIn10', 'dateIn11', 'dateIn12', 'dateIn13', 'dateIn14', 'dateIn15', 'dateIn16', 'dateIn17', 'dateIn18', 'dateIn19', 'dateIn20', 'dateIn21', 'dateIn22', 'dateIn23', 'dateIn24', 'dateIn25', 'dateIn26', 'dateIn27', 'dateIn28', 'dateIn29', 'dateIn30', 'dateIn31'];
-    
+    const getName = await axios.get('../php/LoadUser.php');
+    let userName = getName.data.username;
     const monthDay2 = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});
 
     for (let i = 1; i <= monthDay2.data.length; i++) {
@@ -77,8 +77,11 @@ const getDate = (date) => {
 const pad = (str) => str > 9 ? str : '0' + str;  
 
 // 시작시 페이지에 로딩되는 함수 - thisMonth() 오버라이딩
-window.onload = function() {  
+window.onload = async function() {  
   SessionCheck();
+  const getName = await axios.get('../php/LoadUser.php');
+  let userName = getName.data.username;
+  let name = getName.data.name;
   const nowMonth = ToDay.getMonth(); // 현재 Month
 
   const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth))); 
@@ -87,9 +90,9 @@ window.onload = function() {
   const day = new Date([y, m, 1].join("-")).getDay() * 1;
   const maxDay = Math.ceil((day + lastDay) / 7) * 7; 
 
-  arr(nowMonth);
+  arr(nowMonth, userName);
 
-  CheckedCnt(nowMonth);
+  CheckedCnt(nowMonth, userName);
 
   let html = '';
   let dcnt = 0;
@@ -104,7 +107,7 @@ window.onload = function() {
     html += `<div class="oneDateSel ${tmpClass}">${d}</div>`;
   }
   document.querySelector('.dateSel').innerHTML = html;
-  document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
+  document.querySelector('.date_text').innerText = `${name}님의 ${y}년 ${pad(m)}월,`;
   
   for (let i = 1; i <= dcnt; i++) {
     document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
@@ -112,8 +115,10 @@ window.onload = function() {
   dcnt = 0;
 }
 
-const writeCal = (nowMonth) => { 
-    
+const writeCal = async(nowMonth) => { 
+  const getName = await axios.get('../php/LoadUser.php');
+  let userName = getName.data.username;
+  let name = getName.data.name;
   const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth))); 
 
   const lastDay = getDate(new Date(y, m, 0)).pop() * 1; 
@@ -121,9 +126,9 @@ const writeCal = (nowMonth) => {
   const day = new Date([y, m, 1].join("-")).getDay() * 1; 
   const maxDay = Math.ceil((day + lastDay) / 7) * 7; 
 
-  arr(nowMonth);
+  arr(nowMonth, userName);
 
-  CheckedCnt(nowMonth);
+  CheckedCnt(nowMonth, userName);
 
   let html = '';
   let dcnt = 0;
@@ -138,7 +143,7 @@ const writeCal = (nowMonth) => {
   }
 
   document.querySelector('.dateSel').innerHTML = html;
-  document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
+  document.querySelector('.date_text').innerText = `${name}님의 ${y}년 ${pad(m)}월,`;
 
   for (let i = 1; i <= dcnt; i++) { // 30으로 바꿔주면 addEventListener은 오류나지 않음.
     document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
@@ -159,7 +164,7 @@ const thisMonth = () => {
   writeCal(nowMonth);
 };
 
-const CheckedCnt = async(nowMonth) => {
+const CheckedCnt = async(nowMonth, userName) => {
   const checkTrue = await axios.post('../php/getCheck.php', {nowMonth: nowMonth+1, userName: userName});
   const checkcnt = checkTrue.data.length;
   
@@ -185,8 +190,10 @@ const getCheckedCnt = (i, nowMonth) => {
 };
 
 // 값이 1로 하나씩 바뀔 때마다 스코어가 1씩 증가! 
-const changeScore = async() => {
+const changeScore = async(userName) => {
   try {
+    const getName = await axios.get('../php/LoadUser.php');
+    let userName = getName.data.username;
     let response = await axios.post('../php/changeScore.php', {userName: userName});
   
     if(response.data) {
@@ -204,11 +211,12 @@ const changeScore = async() => {
 const changeCB = async(i, nowMonth) => {
   try {
     let nowDay = i;
-    userName = 'eooomji';
+    const getName = await axios.get('../php/LoadUser.php');
+    let userName = getName.data.username;
     const response = await axios.post('../php/changeCheck.php', {nowMonth: nowMonth, nowDay: nowDay, userName: userName});
 
     if(response.data) {
-      // console.log(response.data);
+      console.log(`${nowMonth}월 ${nowDay}일의 미션 완료`);
     } else {
         alert("실패!");
     }

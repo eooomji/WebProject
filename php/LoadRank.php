@@ -18,3 +18,5 @@ if ($Response) {
 }
 
 mysqli_close($db);
+
+?>

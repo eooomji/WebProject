@@ -11,11 +11,11 @@ $res = $db->query($sql);
 $row = $res->fetch_array(MYSQLI_ASSOC);
 
 if ($row) {
-    echo json_encode($row,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
-    if($row['password'] == 'KAKAOLOGIN') {
+    if($row['password'] == 'KAKAOLOGIN') { // if($row['password'] == 'OAuth') { 
         $row['IsOAuth'] = true;
-    }
+    } 
     unset($row['password']);
+    echo json_encode($row,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
 } else {
     http_response_code(400);
 }

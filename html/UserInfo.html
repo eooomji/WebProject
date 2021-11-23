@@ -7,11 +7,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 	<!-- CSS only -->
-	<link href="../css/UserInfo.css" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 		  rel="stylesheet"
 		  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 		  crossorigin="anonymous" />
+	<link href="../css/UserInfo.css" rel="stylesheet" />
 
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -37,16 +37,16 @@
 	</header>
 	<nav>
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = '../html/UserInfo.html'">User</button>
+			<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = '../html/UserInfo.html'">User</button>
 			<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-calendar" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" onclick="location.href = '../html/Calendar.html'">Calendar</button>
-			<button class="nav-link active" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="location.href = '../html/Rank.html'">Rank</button>
+			<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="location.href = '../html/Rank.html'">Rank</button>
 		</div>
 	</nav>
-	<div class="container two" id="two">
+	<div class="container" id="UserProfile">
 		<span class="form" id="three">
 			<img class="" src="../images/profileimage.png" alt="profile image" />
 		</span>
-		<div class="form" id="userinformation">
+		<div class="scoreboard">
 			<div class="line">
 				<label>점수</label>
 				<span id="score" name="score">1</span>
@@ -58,7 +58,7 @@
 		</div>
 	</div>
 	<div class="container" id="UserInfo">
-		<div class="UserInfoHeader">
+		<div class="Header">
 			<label class="">사용자 정보</label>
 			<button class="btn btn-success" id="changebutton" onclick="DisableUserInfoChange(false)">Change</button>
 		</div>
@@ -98,26 +98,27 @@
 				   class="form-control UserInfoItem"
 				   id="UserPasswordCheck" />
 		</div>
-		<div class="line five">
+		<div class="line">
 			<button class="btn btn-primary" id="changeinfo" onclick="onClickChangeUserInfo()">변경하기</button>
-			<span class="spinner-border" id="UserInfoLoadingCircle"></span>
+			<span class="spinner-border LoadingCircle" id="UserInfoLoadingCircle"></span>
 			<span class="text-danger" id="UserInfoResult"></span>
 		</div>
 	</div>
 	<div class="container" id="Setting">
-		<div class="">
+		<div class="Header">
 			<label class="">설정</label>
 		</div>
-		<div class="line">
-			<label class="line" for="set1">분야선택</label>
-			<input class="SettingItem" type="checkbox" id="Settingexercise" name="SettingItem" />운동
-			<input class="SettingItem" type="checkbox" id="Settingvolunteer" name="SettingItem" />봉사
-			<input class="SettingItem" type="checkbox" id="Settinghabit" name="SettingItem" />습관
-			<input class="SettingItem" type="checkbox" id="Settingmanner" name="SettingItem" />예절
+		<div class="line Item">
+			<label>분야선택</label>
+			<br />
+			<input class="SettingItem" type="radio" id="Settingexercise" name="choice"/>운동
+			<input class="SettingItem" type="radio" id="Settingvolunteer" name="choice"/>봉사
+			<input class="SettingItem" type="radio" id="Settinghabit" name="choice"/>습관
+			<input class="SettingItem" type="radio" id="Settingmanner" name="choice"/>예절
 		</div>
-		<div class="line five">
+		<div class="line">
 			<button class="btn btn-primary visible" id="changesetting" onclick="onClickChangeSetting()">저장</button>
-			<span class="spinner-border" id="SettingLoadingCircle"></span>
+			<span class="spinner-border LoadingCircle" id="SettingLoadingCircle"></span>
 			<span class="text-danger" id="SettingResult"></span>
 		</div>
 	</div>

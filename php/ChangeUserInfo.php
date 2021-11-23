@@ -12,7 +12,7 @@ session_start();
 $Name_on_Session = $_SESSION["sess_username"];
 
 
-$sql = "UPDATE `test`.`user` SET `username` = '$email', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
+$sql = "UPDATE `test`.`user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
 $res = $db->query($sql); 
 
 $success = $res;

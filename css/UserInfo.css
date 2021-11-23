@@ -17,49 +17,47 @@
 	margin-bottom: 10px;
 }
 
-
-#userinformation {
-	background-color: #A9D18E;
-	width: 40%;
+.scoreboard {
+	font-size: x-large;
+	border: solid 2px;
+	width: 30%;
 	display: inline-block;
 	text-align: left;
 }
 
-#UserInfo {
-	background-color: #A9D18E;
-	padding: 20px;
-	padding-left: 40px;
+.scoreboard .line {
+	
 }
 
-#Setting {
-	background-color: #A9D18E;
-	padding: 20px;
-	padding-left: 40px;
+.scoreboard div span {
+	color: #ED5753;
 }
 
-#changeinfo {
+#UserProfile {
+	display: flex;
+	justify-content: center;
+}
+
+.LoadingCircle {
 	visibility: visible;
+	color: #FFFFFF;
 }
 
-#UserInfoLoadingCircle, #SettingLoadingCircle {
-	visibility: visible;
-}
-
-.form {
-	margin: 10px;
-	border: solid 1px;
-}
 
 .container {
-	background-color: #A9D18E;
+	padding: 20px;
 	align-items: center;
-	margin: 25px;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border-radius: 10px;
+	background: #A9D18E;
 }
 
-.two {
-	justify-content: center;
-	display: flex;
+.container div {
+	margin-left: 15px;
 }
+
 
 #four {
 	float: left;
@@ -67,36 +65,43 @@
 }
 
 #progress {
-	margin-left:10px;
+	margin-left: 10px;
 }
 
-#exp {
-}
 
 .line {
 	margin-top: 20px;
 	margin-bottom: 5px;
 }
 
+.line * {
+	vertical-align: middle;
+}
 #changebutton {
-	margin-right:5px;
+	margin-right: 5px;
 }
 
-.UserInfoHeader {
+.Header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	font-size: x-large;
+	color: #0D6EFD;
+}
+
+.line label {
+	font-size: large;
 }
 
 .Item {
 	width: 25%;
 }
 
-.five {
-	display: flex;
-	align-items: center;
-}
-
 #changeinfo, #changesetting {
 	margin-right: 10px;
+}
+
+.UserInfoItem {
+	disabled: true;
+	margin-top: 10px;
 }

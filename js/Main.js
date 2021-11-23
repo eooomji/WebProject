@@ -60,15 +60,15 @@ const LoadInfo = () => {
     SessionCheck();
 
     const dateInArr = ['dateIn1', 'dateIn2', 'dateIn3', 'dateIn4', 'dateIn5', 'dateIn6', 'dateIn7', 'dateIn8', 'dateIn9', 'dateIn10', 'dateIn11', 'dateIn12', 'dateIn13', 'dateIn14', 'dateIn15', 'dateIn16', 'dateIn17', 'dateIn18', 'dateIn19', 'dateIn20', 'dateIn21', 'dateIn22', 'dateIn23', 'dateIn24', 'dateIn25', 'dateIn26', 'dateIn27', 'dateIn28', 'dateIn29', 'dateIn30', 'dateIn31'];
-    
+    const getName = await axios.get('../php/LoadUser.php');
+    let userName = getName.data.username;
     const monthDay2 = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});
 
-    for (let i = 1; i <= monthDay2.data.length; i++) {
-        let mission = document.querySelector(`.missions${i}`);
-        mission.style.display='none';
-    }
-    const mission = document.querySelector(`.missions${nowMonth+1,nowadays}`);
-    mission.style.display='';
+    let mission = document.querySelector(`.missions${monthDay2.data.length}`);
+    mission.style.display='none';
+    
+    const mission = document.querySelector(`.missions${monthDay2.data.length+1}`);
+    mission.style.display='';  
 }
 
 // 미션 위젯에서 오늘 미션 보여주기

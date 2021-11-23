@@ -1,4 +1,5 @@
 let ToDay = new Date(); 
+let nowMonth = ToDay.getMonth(); 
 
 window.onload = async function() {  
   SessionCheck();
@@ -8,4 +9,9 @@ window.onload = async function() {
 
   document.querySelector('.highlight-b').innerText = `${name}`;
   document.querySelector('.highlight-a').innerText = `${score}`;
+ 
+  const getMission = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
+  const getMonth = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});;
+
+  document.querySelector('.mission').innerText += ${getMission.data[getMission[getMonth.data.length].missionName]};
 }

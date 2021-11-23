@@ -29,7 +29,7 @@ const k_sign_up_demand = async() => {
             if(response.data) {
                 alert("회원가입 성공!");
                 sessionStorage.clear();
-                const res = await axio.post("../php/LoginForOauth.php", {
+                const res = await axios.post("../php/LoginForOauth.php", {
                     username : userID
                 });
                 

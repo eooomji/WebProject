@@ -13,5 +13,5 @@ window.onload = async function() {
   const getMission = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
   const getMonth = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});;
 
-  document.querySelector('.mission').innerText += ${getMission.data[getMission[getMonth.data.length].missionName]};
+  document.querySelector('.mission').innerText = '${getMission.data[getMission[getMonth.data.length].missionName]}';
 }

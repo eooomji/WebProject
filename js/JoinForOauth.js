@@ -2,10 +2,10 @@ let info;
 
 onload = () => {
     info = JSON.parse(sessionStorage.getItem("info"));
-    /*if(info === undefined || info === null) {
+    if(info === undefined || info === null) {
         alert("잘못된 접근입니다.");
         location.replace("../html/Login.html");
-    }*/
+    }
     document.querySelector(".kakaoID").value = info.username;
     document.querySelector(".name").value = info.name;
     document.querySelector(".email").value = info.email;
@@ -17,7 +17,7 @@ const k_sign_up_demand = async() => {
     const email = document.querySelector(".email").value;
     const choice = choice_encoding();
 
-    if (checkName() & checkEmail()) {
+    if (checkID() & checkName() & checkEmail()) {
         try {
             const response = await axios.post("../php/JoinForOauth.php", {
                 username : userID,
@@ -48,6 +48,14 @@ const k_sign_up_demand = async() => {
         } catch(error) {
             console.log(error);
         }
+    }
+}
+
+const checkID = () => {
+    const userID = document.querySelector(".kakaoID").value;
+    if(userID === undefined || userID === null) {
+        alert("예기치 못한 에러가 발생하였습니다. 로그인 페이지로 돌아갑니다.");
+        location.replace("../html/Login.html");
     }
 }
 

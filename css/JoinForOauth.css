@@ -16,6 +16,13 @@ ul { list-style : none; }
 
 li { margin-top : 10px; }
 
+#login_box{
+    width : 600px;
+    min-height : 700px;
+    top : calc(50% - 350px);
+    left : calc(50% - 300px);
+}
+
 .warning_text {
     color : red;
     font-size : 14px;

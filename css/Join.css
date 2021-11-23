@@ -4,18 +4,9 @@
 
 #login_box{
     width : 600px;
-    min-height : 700px;
-    animation-name : load;
-    animation-duration : 2s;
-    animation-iteration-count : 3;
-    @-webkit-keyframes load {
-        0% {
-            left : 450px;
-        }
-        100% {
-            left : 600px;
-        }
-    }
+    min-height : 800px;
+    top : calc(50% - 400px);
+    left : calc(50% - 300px);
 }
 
 ul, li, label {
@@ -36,4 +27,25 @@ ul { list-style : none; }
 
 h2 {
     margin-top : 0;
+}
+
+.signup_label, fieldset {
+    font-size : 20px;
+}
+
+li input {
+    width : 100%;
+    font-size : 20px;
+    min-height : 35px;
+}
+
+fieldset {
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+fieldset label {
+    display : grid;
+    grid-template-columns: 1fr 1fr;
 }

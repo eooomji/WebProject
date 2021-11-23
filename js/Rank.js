@@ -8,6 +8,7 @@ const CheckHttpResponseStatus = (res => {
 })
 
 onload = () => {
+	SessionCheck();
 	LoadRank();
 }
 

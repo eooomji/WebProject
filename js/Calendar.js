@@ -78,7 +78,7 @@ const pad = (str) => str > 9 ? str : '0' + str;
 
 // 시작시 페이지에 로딩되는 함수 - thisMonth() 오버라이딩
 window.onload = function() {  
-  
+  SessionCheck();
   const nowMonth = ToDay.getMonth(); // 현재 Month
 
   const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth))); 

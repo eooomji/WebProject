@@ -1,3 +1,7 @@
+html, body {
+    background-color: #F7F7F7;
+}
+
 /* 헤더관련 CSS 파일 */
 header {
     display : grid;
@@ -40,26 +44,22 @@ img {
     width : 80px;
     height : 100px;
     background-color : #555555;
-    margin-top: 5px;
-    border-radius: 10px;
     font-weight : bold;
     text-align : center;
     position: relative;
     transform-style: preserve-3d;
     transform: perspective(2000px);
 }
-
 .door {
     width: 80px;
     height: 100px;
-    border: 3px solid #2e2e2e;
-    border-radius: 10px;
+    border: 1px solid black;
     position: absolute;
     top : 0;
     left : 0;
     font-size : 20px;
     line-height : 100px;
-    background-color: #97BC7E;
+    background-color: #089136;
     transform-style: preserve-3d;
     transform-origin: left;
     transition: all 2s;

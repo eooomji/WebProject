@@ -2,32 +2,8 @@
 // onload : html문서에 들어왔을 때 연결된 js에 onload가 있을 경우 구문 자동실행
 // overriding
 onload = async () => {
-    try {
-        const response = await axios.get("../php/sessionCheck.php");
-        if(response.data){ // 세션에 로그인정보가 있을 경우
-            ;
-        } else {  // 세션에 로그인정보가 없을 경우
-            location.replace("../html/loginpage.html");
-        }
-    } catch (error) {
-      console.log(error);
-    }
+    SessionCheck();
 };
-
-/* 로그아웃 */
-const logout = async() => {
-    try {
-        const response = await axios.get("../php/logout.php");
-        if(response.data) {
-            alert("로그아웃 되었습니다.");
-            location.replace("../html/loginpage.html");
-        } else {
-            alert("로그아웃 실패!!!");
-        }
-    } catch(error) {
-        console.log(error);
-    }
-}
 
 /* 사용자 정보 가져오기 */
 const getMyInfo = async() => {

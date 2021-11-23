@@ -37,7 +37,7 @@ img {
     position : absolute;
     transform-style: preserve-3d;
     transform-origin: left;
-    transition: all 2s;
+    transition: all 1s;
     opacity : 0;
 }
 .logout {
@@ -62,7 +62,7 @@ img {
     background-color: #089136;
     transform-style: preserve-3d;
     transform-origin: left;
-    transition: all 2s;
+    transition: all 1s;
 }
 
 .logout:hover .door {

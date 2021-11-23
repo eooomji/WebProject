@@ -2,6 +2,10 @@
     font-family: 'Do Hyeon', sans-serif;
 }
 
+img {
+    -webkit-user-drag : none;
+}
+
 #login_box{
     width : 600px;
     min-height : 800px;
@@ -16,17 +20,16 @@ ul, li, label {
 
 ul { list-style : none; }
 
+li { margin-top : 10px;}
+
 .warning_text {
     color : red;
-    font-size : 9px;
+    font-size : 14px;
+    margin-left : 10px;
 }
 
 .signup_label_star {
     color : red;
-}
-
-h2 {
-    margin-top : 0;
 }
 
 .signup_label, fieldset {
@@ -43,9 +46,27 @@ fieldset {
     display : grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    text-align : center;
 }
 
 fieldset label {
     display : grid;
+    grid-auto-columns: auto;
     grid-template-columns: 1fr 1fr;
+    justify-items : center;
+    align-items : center;
+}
+
+/* 분야선택 라벨 colspan */
+#exercise, #habit, #manner, #study { grid-column : 1 / span 2; }
+
+#btn {
+    display : grid;
+    grid-template-columns : 1fr 1fr;
+    margin-top : 20px;
+    min-height : 50px;
+}
+
+#btn button {
+    font-size : 20px;
 }

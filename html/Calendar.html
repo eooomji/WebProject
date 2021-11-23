@@ -1,83 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar</title>
+let ToDay = new Date(); 
+let nowMonth = ToDay.getMonth(); 
+let userName ='eooomji';
+let j = 0;
 
-    <!-- axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+// DB에서 미션 다 불러오기
+const arr = async(nowMonth, maxDay) => {
+  try {
+    let missionHTML = '';
+    const response = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
+    const checkTrue = await axios.post('../php/getCheck.php', {userName: userName, nowMonth: nowMonth+1});
+    
+    if(response.data) {
+      // console.log(checkTrue.data);
+      // console.log(checkTrue.data.length);
+      // console.log(checkTrue.data);
+      // console.log("maxDay: ", maxDay);
+      let checkTrueNum = checkTrue.data.length;
 
-    <!-- *** BOOTSTRAP *** -->
-    <!-- CSS only -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
-        crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-        crossorigin="anonymous">
-    </script>
+      if(checkTrue.data) {
+        for (let i = 0; i < maxDay; i++) {
+          if(response.data[i] === undefined) response.data[i] = {content : ""};
+          else if (i + 1 == checkTrue.data[j][`DAY(date)`]) {
+            console.log("if문: ", checkTrue.data[j][`DAY(date)`]);
+            missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})' checked />${response.data[i].missionName}</div>`;
+            if(j < checkTrueNum - 1) j++;
+          }
+          else {
+            // console.log("else문 작동");
+            missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${response.data[i].missionName}</div>`;       
+          }
+        }
+      }
+      else {
+        for (let i = 0; i < maxDay; i++) {
+          if(response.data[i] === undefined) response.data[i] = {content : ""};
+          else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${response.data[i].missionName}</div>`;
+        }
+      }
+    } 
+    else {
+      alert(`${nowMonth+1}월의 미션 데이터가 없어 로딩 실패`);
+    }
+      
+    document.querySelector('.missionName').innerHTML = missionHTML;
+    for (let i = 1; i <= maxDay; i++) {
+        let mission = document.querySelector(`.missions${i}`);
+        mission.style.display='none';
+    }
+  } catch(error) {
+  console.log(error); 
+  } 
+};
 
-    <!-- favicon -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="..images/favicon.ico" type="image/x-icon">
+// 클릭하면 해당 일에 해당되는 미션 보여주는 함수
+const handleClick = (event) => {
+    const dateInArr = ['dateIn1', 'dateIn2', 'dateIn3', 'dateIn4', 'dateIn5', 'dateIn6', 'dateIn7', 'dateIn8', 'dateIn9', 'dateIn10', 'dateIn11', 'dateIn12', 'dateIn13', 'dateIn14', 'dateIn15', 'dateIn16', 'dateIn17', 'dateIn18', 'dateIn19', 'dateIn20', 'dateIn21', 'dateIn22', 'dateIn23', 'dateIn24', 'dateIn25', 'dateIn26', 'dateIn27', 'dateIn28', 'dateIn29', 'dateIn30', 'dateIn31'];
 
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
+    for (let i = 1; i <= 30; i++) {
+        let mission = document.querySelector(`.missions${i}`);
+        mission.style.display='none';
+    }
+    
+    for (let i = 0; i < 30; i++) {
+        if(event.target.classList.contains(dateInArr[i])) {
+            const mission = document.querySelector(`.missions${i+1}`);
+            mission.style.display='';          
+        }
+    }
+};
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/Calendar.css">
+// 날짜 변환 함수 (년, 월, 일을 반환) 
+const getDate = (date) => { 
+  return date.toLocaleDateString().replace(/\./g, "").split(" "); 
+};
 
-    <!-- JavaScript -->
-    <script src="../js/Calendar.js"></script>
-</head>
-<body>
-    <!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-    <header>
-        <div class="LOGOimg">
-            <a href="../html/main.html"><img src="../images/LOGO.png" width="200" height="100"></a>
-        </div>
-    </header>
+// pad 함수 ( 10 이하는 앞에 0붙이기 )
+const pad = (str) => str > 9 ? str : '0' + str;  
 
-    <nav>
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick = "location.href = '../html/UserInfo.html'">User</button>
-              <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-calendar" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" onclick = "location.href = '../html/Calendar.html'">Calendar</button>
-              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick = "location.href = '../html/Rank.html'">Rank</button>
-            </div>
-        </nav>
-        
-        <h3 class='date_text'></h3>
-        <h5 class='checkNum'></h5>
-        <div class="btnDiv">
-            <button class="btn leftButton" onclick="calendar(ToDay.getMonth()-1)">&lt;</button>
-            <button class="btn ThisMonth" onclick="thisMonth()">This Month</button>
-            <button class="btn rightButton" onclick="calendar(ToDay.getMonth()+1)">&gt;</button>
-        </div>
-    </nav>
-    <article>
-        <div class='date_item rap'>
-            <div class="grid date_form date_head">
-                <div>일</div>
-                <div>월</div>
-                <div>화</div>
-                <div>수</div>
-                <div>목</div>
-                <div>금</div>
-                <div>토</div>
-            </div>
-            <div class="grid date_form dateSel"></div>
-        </div>
+// 시작시 페이지에 로딩되는 함수 - thisMonth() 오버라이딩
+window.onload = function() {  
+  
+  const nowMonth = ToDay.getMonth(); // 현재 Month
 
-        <div class="mission missionName"></div>
-    </article>
-</body>
-</html>
+  const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth))); 
+
+  const lastDay = getDate(new Date(y, m, 0)).pop() * 1; 
+  const day = new Date([y, m, 1].join("-")).getDay() * 1;
+  const maxDay = Math.ceil((day + lastDay) / 7) * 7; 
+
+  arr(nowMonth, maxDay);
+
+  CheckedCnt(nowMonth);
+
+  let html = '';
+
+  // 요일과 마지막 일을 합친 수만큼 반복문
+  for (let i = 1; i <= maxDay; i++) {
+    const diff = i - day; // dateSel 개수 (11월 기준 0-34까지 35칸)
+
+    const d = diff <= lastDay && i > day ? diff : ''; // date가 유효한 날만 d로 뽑아냄
+    
+    const tmpClass = !d ? 'background' : `dateIn${d}`; 
+
+    html += `<div class="oneDateSel ${tmpClass}">${d}</div>`;
+  }
+  document.querySelector('.dateSel').innerHTML = html;
+  document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
+  
+  for (let i = 1; i <= maxDay; i++) {
+    document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
+  }
+}
+
+const writeCal = (nowMonth) => { 
+    
+  const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth))); 
+
+  const lastDay = getDate(new Date(y, m, 0)).pop() * 1; 
+  
+  const day = new Date([y, m, 1].join("-")).getDay() * 1; 
+  const maxDay = Math.ceil((day + lastDay) / 7) * 7; 
+
+  arr(nowMonth, maxDay);
+
+  CheckedCnt(nowMonth);
+
+  let html = '';
+
+  // 요일과 마지막 일을 합친 수만큼 반복문
+  for (let i = 1; i <= maxDay; i++) {
+    const diff = i - day;
+    const d = diff <= lastDay && i > day ? diff : '';
+    const tmpClass = !d ? 'background' : `dateIn${d}`;
+
+    html += `<div class="dateSel ${tmpClass}">${d}</div>`;
+  }
+
+  document.querySelector('.dateSel').innerHTML = html;
+  document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
+
+  for (let i = 1; i <= maxDay; i++) {
+    document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
+  }
+};
+
+ // 전 달, 다음 달 보여주는 함수
+const calendar = (month) => { 
+  nowMonth = month;
+  writeCal(nowMonth);
+};
+
+// 이번 달을 보여주는 함수
+const thisMonth = () => {  
+  ToDay = new Date();
+  nowMonth = ToDay.getMonth();
+  writeCal(nowMonth);
+};
+
+const CheckedCnt = async(nowMonth) => {
+  const checkTrue = await axios.post('../php/getCheck.php', {nowMonth: nowMonth+1, userName: userName});
+  const checkcnt = checkTrue.data.length;
+  
+  if(checkcnt > 0) document.querySelector('.checkNum').innerText = `${checkcnt}개의 미션을 완료했습니다!`;
+  else document.querySelector('.checkNum').innerText = `0개의 미션을 완료했습니다!`;
+};
+
+const getCheckedCnt = (i, nowMonth) => {
+  // 선택된 목록 가져오기
+  const query = `input[name="${nowMonth}"]:checked`;
+
+  changeCB(i, nowMonth);  // DB에 체크 유무 표시 (0 -> 1)
+  
+  changeScore();
+
+  const selectedElements = document.querySelectorAll(query);
+  
+  // 선택된 목록의 개수 세기
+  const selectedElementsCnt = selectedElements.length;
+  
+  document.querySelector('.checkNum').innerText = `${selectedElementsCnt}개의 미션을 완료했습니다!`;
+
+};
+
+// 값이 1로 하나씩 바뀔 때마다 스코어가 1씩 증가! 
+const changeScore = async() => {
+  try {
+    let response = await axios.post('../php/changeScore.php', {userName: userName});
+  
+    if(response.data) {
+      console.log("점수가 증가하였습니다.");
+    } else {
+        alert("점수 증가 실패!");
+    }
+  } catch(error) {
+  console.log(error); 
+  } 
+};
+
+
+// DB isDone 값 0 -> 1로 변경
+const changeCB = async(i, nowMonth) => {
+  try {
+    let nowDay = i;
+    userName = 'eooomji';
+    const response = await axios.post('../php/changeCheck.php', {nowMonth: nowMonth, nowDay: nowDay, userName: userName});
+
+    if(response.data) {
+      // console.log(response.data);
+    } else {
+        alert("실패!");
+    }
+  } catch(error) {
+  console.log(error); 
+  } 
+};

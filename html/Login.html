@@ -27,7 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    
     <!-- CSS -->
     <link href="../css/Background.css" rel="stylesheet">
     <link href="../css/LoginBox.css" rel="stylesheet">
@@ -46,7 +47,7 @@
             <div id="inputID">
                 <img src="../images/username.svg" width=25 height=25>
                 <input 
-                    id="idInput" class="input_box" maxlength="40"
+                    id="idInput" class="input_box" maxlength="45"
                     type="text" placeholder="ID">
             </div>
             <div id="inputPW">
@@ -60,26 +61,28 @@
                 <div id="forget_id"><a href="ForgetID.html">아이디찾기</a></div>
                 <div id="forget_pw"><a href="ForgetPW.html">비밀번호찾기</a></div>
             </div>
+        </section>
+        <section id="button_sec">
             <button type="button" id="login" onclick="login()">
                 로그인
             </button>
             <button type="button" id="google_login" onclick="google_login()">
-                <span id="google_icon">
-                    <img src="../images/kakaotalk_simbol.svg" width=40 height=40>
+                <span>
+                    <img src="../images/google_simbol.svg" width=30 height=30>
                 </span>
-                구글 로그인
+                <span>Sign in with Google</span>
             </button>
             <button type="button" id="naver_login" onclick="naver_login()">
-                <span id="naver_icon">
-                    <img src="../images/kakaotalk_simbol.svg" width=40 height=40>
+                <span>
+                    <img src="../images/naver_simbol.svg" width=30 height=30>
                 </span>
-                네이버 로그인
+                <span>네이버로 시작하기</span>
             </button>
             <button type="button" id="kakao_login" onclick="kakao_login()">
-                <span id="kakao_icon">
-                    <img src="../images/kakaotalk_simbol.svg" width=40 height=40>
+                <span>
+                    <img src="../images/kakao_simbol.svg" width=30 height=30>
                 </span>
-                카카오 로그인
+                <span>카카오 로그인</span>
             </button>
         </section>
     </div>

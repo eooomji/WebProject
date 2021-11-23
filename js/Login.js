@@ -1,3 +1,4 @@
+let flag = 0;
 /* 세션체크 */
 // onload : html문서에 들어왔을 때 연결된 js에 onload가 있을 경우 구문 자동실행
 // overriding
@@ -18,27 +19,43 @@ onload = async() => {
 const login = async() => {
     const username = document.querySelector("#idInput").value;
     const password = document.querySelector("#pwInput").value;
-    
-    try {
-        const response = await axios.post("../php/login.php", {
-            username : username,
-            password : password
-        });
 
-        if(response.data) {
-            alert("로그인 성공 !!");
-            location.replace("../html/Main.html");
-        } else {
-            alert("로그인 실패 !!");
+    if(username === "") {
+        alert("아이디를 입력해 주세요.");
+    } else if(password === "") {
+        alert("비밀번호를 입력해 주세요.");
+    } else {
+        try {
+            const response = await axios.post("../php/login.php", {
+                username : username,
+                password : password
+            });
+    
+            if(response.data) {
+                alert("로그인 성공 !!");
+                location.replace("../html/Main.html");
+            } else {
+                alert("로그인에 실패하였습니다. 아이디나 비밀번호를 다시 확인해주세요.");
+            }
+        } catch (error) {
+            console.log(error);
         }
-    } catch (error) {
-        console.log(error);
     }
 }
 
 const google_login = () => {
-    console.log("google 로그인");
+    document.querySelector(".abcRioButtonContentWrapper").click();
 }
+
+function onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    const username = profile.getEmail();
+    const name = profile.getName();
+    judge_data(username, name);
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.disconnect();
+}
+
 
 const naver_login = () => {
     const naverLogin = new naver.LoginWithNaverId({
@@ -57,7 +74,11 @@ const naver_login = () => {
 
 
 const kakao_login = () => {
-    Kakao.init("36fe7aa2beef85ae40b6a5601f75dc43");
+    if(flag === 0) {
+        Kakao.init("36fe7aa2beef85ae40b6a5601f75dc43");
+        flag = 1;
+    }
+
     Kakao.Auth.login({
         scope : "profile_nickname, account_email",
         success : function() {
@@ -97,36 +118,4 @@ const judge_data = async(username, name) => {
     } catch(error) {
         console.log(error);
     }
-}
-
-
-// -------------------- API 구현 완료 후 삭제예정 ---------------------- //
-const getURL = (domain, param) => {
-    let url = `${domain}?`;
-    for(let key in param) {
-        url += `${key}=${param[key]}&`;
-    }
-    return url;
-}
-
-/* oauth 2.0 spec의 state 값 자동 생성 */
-const getState = () => {
-    const state = stat_str = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8); return v.toString(16); });
-    return state;
-}
-
-/* axios CORS 에러로 인해 html form 방식 활용 */
-const sendPost = (action, param) => {
-    let form = document.createElement("form");
-    form.setAttribute("method", "post");
-    form.setAttribute("action", action);
-    for (let key in param) {
-        let hiddenField = document.createElement('input');
-        hiddenField.setAttribute('type', 'hidden');
-        hiddenField.setAttribute('name', key);
-        hiddenField.setAttribute('value', param[key]);
-        form.appendChild(hiddenField);
-	}
-	document.body.appendChild(form);
-	form.submit();
 }

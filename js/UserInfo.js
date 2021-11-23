@@ -8,7 +8,7 @@ const CheckHttpResponseStatus = res => {
 }
 
 onload = () => {
-	SessionCheck();
+	/*SessionCheck();*/
 	LoadUser();
 	DisableUserInfoChange(true);
 }

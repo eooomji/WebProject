@@ -6,17 +6,6 @@
     font-family: 'Do Hyeon', sans-serif;
   }
   
-.LOGOimg { 
-  text-align: center;
-}
-
-.nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
 .btnDiv {
   display: grid;
   grid-template-columns: 50px 130px 50px;

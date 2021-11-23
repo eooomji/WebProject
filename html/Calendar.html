@@ -33,16 +33,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
 
     <!-- CSS -->
+    <link rel="stylesheet" href="../css/Header.css">
     <link rel="stylesheet" href="../css/Calendar.css">
 
     <!-- JavaScript -->
+    <script src="../js/Logout.js"></script>
     <script src="../js/Calendar.js"></script>
 </head>
 <body>
     <!-- <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
     <header>
+        <div></div>
         <div class="LOGOimg">
             <a href="../html/main.html"><img src="../images/LOGO.png" width="200" height="100"></a>
+        </div>
+        <div onclick="logout()">
+            <div class="logout">
+                <span class="door">로그아웃</span>
+                <div class="runner"><img src="../images/runner.png" width=70 height=70></div>
+            </div>
         </div>
     </header>
 

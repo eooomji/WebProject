@@ -1,31 +1,46 @@
 let ToDay = new Date(); 
 let nowMonth = ToDay.getMonth(); 
+let userName ='eooomji';
 
 // DB에서 미션 다 불러오기
 const arr = async(nowMonth, maxDay) => {
   try {
     let missionHTML = '';
-    const userName = 'user1'; // TEST용
-    const responsemission = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
-    const responseday = await axios.post('../php/getMissionDay.php', {userName:userName, nowMonth: nowMonth+1});
- 
-    if(responsemission.data) {
-      // console.log(responsemission.data);
-      console.log(responseday.data);
-      
-      for (let i = 0; i < maxDay; i++) {
-        if(responsemission.data[i] === undefined) responsemission.data[i] = {content : ""};
-        else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input${i+1}" type="checkbox" name="${nowMonth + 1}" onclick='getCheckedCnt(${i+1}, ${nowMonth + 1})'>${responsemission.data[i].missionName}</div>`;
+    const response = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
+    const checkTrue = await axios.post('../php/getCheck.php', {userName: userName, nowMonth: nowMonth+1});
+    
+    if(response.data) {
+      let checkTrueNum = checkTrue.data.length;
+      let j = 0;
+
+      if(checkTrue.data) {
+        for (let i = 0; i < maxDay; i++) {
+          if(response.data[i] === undefined) response.data[i] = {content : ""};
+          else if (i + 1 == checkTrue.data[j][`DAY(date)`]) {
+            // console.log(nowMonth+1, "if문: ", checkTrue.data[j][`DAY(date)`]);
+            missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})' checked />${response.data[i].missionName}</div>`;
+            if(j < checkTrueNum - 1) j++;
+          }
+          else {
+            missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${response.data[i].missionName}</div>`;       
+          }
+        }
+      }
+      else {
+        for (let i = 0; i < maxDay; i++) {
+          if(response.data[i] === undefined) response.data[i] = {content : ""};
+          else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${response.data[i].missionName}</div>`;
+        }
       }
     } 
     else {
       alert(`${nowMonth+1}월의 미션 데이터가 없어 로딩 실패`);
     }
-      
+    j = 0;
     document.querySelector('.missionName').innerHTML = missionHTML;
-    for (let i = 1; i <= maxDay; i++) {
-      let mission = document.querySelector(`.missions${i}`);
-      mission.style.display='none';
+    for (let i = 1; i <= 30; i++) {
+        let mission = document.querySelector(`.missions${i}`);
+        mission.style.display='none';
     }
   } catch(error) {
   console.log(error); 
@@ -70,6 +85,8 @@ window.onload = function() {
 
   arr(nowMonth, maxDay);
 
+  CheckedCnt(nowMonth);
+
   let html = '';
 
   // 요일과 마지막 일을 합친 수만큼 반복문
@@ -85,7 +102,7 @@ window.onload = function() {
   document.querySelector('.dateSel').innerHTML = html;
   document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
   
-  for (let i = 1; i <= maxDay; i++) {
+  for (let i = 1; i <= 30; i++) {
     document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
   }
 }
@@ -101,6 +118,8 @@ const writeCal = (nowMonth) => {
 
   arr(nowMonth, maxDay);
 
+  CheckedCnt(nowMonth);
+
   let html = '';
 
   // 요일과 마지막 일을 합친 수만큼 반복문
@@ -115,7 +134,7 @@ const writeCal = (nowMonth) => {
   document.querySelector('.dateSel').innerHTML = html;
   document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
 
-  for (let i = 1; i <= maxDay; i++) {
+  for (let i = 1; i <= 30; i++) { // 30으로 바꿔주면 addEventListener은 오류나지 않음.
     document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
   }
 };
@@ -133,11 +152,20 @@ const thisMonth = () => {
   writeCal(nowMonth);
 };
 
+const CheckedCnt = async(nowMonth) => {
+  const checkTrue = await axios.post('../php/getCheck.php', {nowMonth: nowMonth+1, userName: userName});
+  const checkcnt = checkTrue.data.length;
+  
+  if(checkcnt > 0) document.querySelector('.checkNum').innerText = `${checkcnt}개의 미션을 완료했습니다!`;
+  else document.querySelector('.checkNum').innerText = `0개의 미션을 완료했습니다!`;
+};
+
 const getCheckedCnt = (i, nowMonth) => {
   // 선택된 목록 가져오기
   const query = `input[name="${nowMonth}"]:checked`;
 
   changeCB(i, nowMonth);  // DB에 체크 유무 표시 (0 -> 1)
+  
   changeScore();
 
   const selectedElements = document.querySelectorAll(query);
@@ -145,9 +173,6 @@ const getCheckedCnt = (i, nowMonth) => {
   // 선택된 목록의 개수 세기
   const selectedElementsCnt = selectedElements.length;
   
-  // document.querySelector(query).innerHTML = `<input class="form-check-input${i+1}" type="checkbox" name="${nowMonth + 1}" onclick='getCheckedCnt(${nowMonth + 1})' checked/>`;
-  // 출력
-  // console.log(selectedElementsCnt);
   document.querySelector('.checkNum').innerText = `${selectedElementsCnt}개의 미션을 완료했습니다!`;
 
 };
@@ -155,33 +180,27 @@ const getCheckedCnt = (i, nowMonth) => {
 // 값이 1로 하나씩 바뀔 때마다 스코어가 1씩 증가! 
 const changeScore = async() => {
   try {
-    username = 'user1';
-  
     let response = await axios.post('../php/changeScore.php', {userName: userName});
   
     if(response.data) {
-    // console.log(missionName.data);
-    // console.log(response.data);
+      console.log("점수가 증가하였습니다.");
     } else {
-        alert("실패!");
+        alert("점수 증가 실패!");
     }
   } catch(error) {
   console.log(error); 
   } 
 };
 
+
+// DB isDone 값 0 -> 1로 변경
 const changeCB = async(i, nowMonth) => {
   try {
-    userName ='user1';
     let nowDay = i;
-    // console.log("i는: ", i);
-    // console.log("nowMonth는: ", nowMonth);
-    // console.log("userName은: ", userName);
-    // let missionName = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth});
-    let response = await axios.post('../php/changeCheck.php', {nowMonth: nowMonth, nowDay: nowDay, userName: userName});
-    
+    userName = 'eooomji';
+    const response = await axios.post('../php/changeCheck.php', {nowMonth: nowMonth, nowDay: nowDay, userName: userName});
+
     if(response.data) {
-      // console.log(missionName.data);
       // console.log(response.data);
     } else {
         alert("실패!");

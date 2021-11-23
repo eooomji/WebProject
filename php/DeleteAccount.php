@@ -5,7 +5,7 @@ session_start();
 
 $Name_on_Session = $_SESSION["sess_username"];
 
-$sql = "DELETE FROM `test`.`user` WHERE `username` = '$Name_on_Session'";
+$sql = "DELETE FROM `user` WHERE `username` = '$Name_on_Session'";
 $res = $db->query($sql); 
 
 $success = $res;

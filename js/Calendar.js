@@ -1,7 +1,6 @@
 let ToDay = new Date(); 
 let nowMonth = ToDay.getMonth(); 
 let userName ='eooomji';
-let j = 0;
 
 // DB에서 미션 다 불러오기
 const arr = async(nowMonth, maxDay) => {
@@ -11,22 +10,18 @@ const arr = async(nowMonth, maxDay) => {
     const checkTrue = await axios.post('../php/getCheck.php', {userName: userName, nowMonth: nowMonth+1});
     
     if(response.data) {
-      // console.log(checkTrue.data);
-      // console.log(checkTrue.data.length);
-      // console.log(checkTrue.data);
-      // console.log("maxDay: ", maxDay);
       let checkTrueNum = checkTrue.data.length;
+      let j = 0;
 
       if(checkTrue.data) {
         for (let i = 0; i < maxDay; i++) {
           if(response.data[i] === undefined) response.data[i] = {content : ""};
           else if (i + 1 == checkTrue.data[j][`DAY(date)`]) {
-            console.log("if문: ", checkTrue.data[j][`DAY(date)`]);
+            // console.log(nowMonth+1, "if문: ", checkTrue.data[j][`DAY(date)`]);
             missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})' checked />${response.data[i].missionName}</div>`;
             if(j < checkTrueNum - 1) j++;
           }
           else {
-            // console.log("else문 작동");
             missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${response.data[i].missionName}</div>`;       
           }
         }
@@ -41,9 +36,9 @@ const arr = async(nowMonth, maxDay) => {
     else {
       alert(`${nowMonth+1}월의 미션 데이터가 없어 로딩 실패`);
     }
-      
+    j = 0;
     document.querySelector('.missionName').innerHTML = missionHTML;
-    for (let i = 1; i <= maxDay; i++) {
+    for (let i = 1; i <= 30; i++) {
         let mission = document.querySelector(`.missions${i}`);
         mission.style.display='none';
     }
@@ -107,7 +102,7 @@ window.onload = function() {
   document.querySelector('.dateSel').innerHTML = html;
   document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
   
-  for (let i = 1; i <= maxDay; i++) {
+  for (let i = 1; i <= 30; i++) {
     document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
   }
 }
@@ -139,7 +134,7 @@ const writeCal = (nowMonth) => {
   document.querySelector('.dateSel').innerHTML = html;
   document.querySelector('.date_text').innerText = `엄지님의 ${y}년 ${pad(m)}월,`;
 
-  for (let i = 1; i <= maxDay; i++) {
+  for (let i = 1; i <= 30; i++) { // 30으로 바꿔주면 addEventListener은 오류나지 않음.
     document.querySelector(`.dateIn${i}`).addEventListener("click", handleClick);
   }
 };

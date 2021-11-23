@@ -1,3 +1,18 @@
+/* 회원가입 직접접근 처리 */
+onload = async() => {
+    try {
+        const response = await axios.get("../php/sessionCheck.php");
+        if(response.data) { 
+            // 세션에 로그인정보가 있을 경우
+            location.replace("../html/Main.html");
+        } else {  
+            ;// 세션에 로그인정보가 없을 경우
+        }
+    } catch(error) {
+      console.log(error);
+    }
+};
+
 /* 아이디 입력표시와, 캡션정보 켜고 크는 함수 정의 */
 // 캡션정보 띄우기
 const caption_print = (num, text) => {

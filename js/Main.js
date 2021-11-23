@@ -81,39 +81,3 @@ window.onload = async function() {
     const mission = document.querySelector(`.missions${monthDay2.data.length+1}`);
     mission.style.display=''; 
 }
-
-// 값이 1로 하나씩 바뀔 때마다 스코어가 1씩 증가! 
-const changeScore = async(userName) => {
-  try {
-    const getName = await axios.get('../php/LoadUser.php');
-    let userName = getName.data.username;
-    let response = await axios.post('../php/changeScore.php', {userName: userName});
-  
-    if(response.data) {
-      console.log("점수가 증가하였습니다.");
-    } else {
-        alert("점수 증가 실패!");
-    }
-  } catch(error) {
-  console.log(error); 
-  } 
-};
-
-
-// DB isDone 값 0 -> 1로 변경
-const changeCB = async(i, nowMonth) => {
-  try {
-    let nowDay = i;
-    const getName = await axios.get('../php/LoadUser.php');
-    let userName = getName.data.username;
-    const response = await axios.post('../php/changeCheck.php', {nowMonth: nowMonth, nowDay: nowDay, userName: userName});
-
-    if(response.data) {
-      console.log(`${nowMonth}월 ${nowDay}일의 미션 완료`);
-    } else {
-        alert("실패!");
-    }
-  } catch(error) {
-  console.log(error); 
-  } 
-};

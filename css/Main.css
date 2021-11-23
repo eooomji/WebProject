@@ -43,6 +43,10 @@
     background: #e2f2d7;
 }
 
+article{
+    height: 15em;
+}
+
 /*하위 단락에 대한 CSS 코드*/
 .left-in{
     float: left;

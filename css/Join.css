@@ -1,23 +1,6 @@
 * {
     font-family: 'Do Hyeon', sans-serif;
 }
-
-#login_box{
-    width : 600px;
-    min-height : 700px;
-    animation-name : load;
-    animation-duration : 2s;
-    animation-iteration-count : 3;
-    @-webkit-keyframes load {
-        0% {
-            left : 450px;
-        }
-        100% {
-            left : 600px;
-        }
-    }
-}
-
 ul, li, label {
     margin : 0;
     padding : 0;

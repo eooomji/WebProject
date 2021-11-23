@@ -28,12 +28,13 @@ onload = async() => {
             }
 
             judge_data(email, name);
-            naverLogin.logout();
 
         } else {
             console.log("callback 처리에 실패하였습니다.");
         }
     });
+
+
 }
 
 const judge_data = async(username, name) => {

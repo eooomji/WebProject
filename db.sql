@@ -9,13 +9,13 @@ CREATE TABLE `user` (
 
 CREATE TABLE `missions` (
   `missionName` VARCHAR(255) NOT NULL PRIMARY KEY,
-  `category` TINYINT NOT NULL
+  `category` INT NOT NULL
 );
 
 CREATE TABLE `misson_log` (
   `username` VARCHAR(45) NOT NULL,
   `missionName` VARCHAR(255),
-  `isDone` TINYINT NOT NULL,
+  `check` TINYINT NOT NULL,
   `date` DATE NOT NULL,
   FOREIGN KEY (username) REFERENCES user(username) ON DELETE CASCADE,
   FOREIGN KEY (missionName) REFERENCES missions(missionName) ON DELETE SET NULL
@@ -26,6 +26,9 @@ CREATE TABLE `login_log` (
   `loginLog` DATE NOT NULL,
   FOREIGN KEY (username) REFERENCES `user`(username) ON DELETE CASCADE
 );
+
+++
+ALTER TABLE misson_log ADD ( isDone TINYINT NOT NULL );
 
 INSERT INTO `missions`
 (`missionName`, `category`)

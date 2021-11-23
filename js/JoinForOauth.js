@@ -29,10 +29,22 @@ const k_sign_up_demand = async() => {
             if(response.data) {
                 alert("회원가입 성공!");
                 sessionStorage.clear();
-                location.replace("../html/Main.html");
+                const res = await axio.post("../php/LoginForOauth.php", {
+                    username : userID
+                });
+                
+                if(res.data) {
+                    // 기존 사용자일 경우
+                    location.replace("../html/Main.html");
+                } else {
+                    // 처음 사용자일 경우
+                    sessionStorage.setItem("info", JSON.stringify(info));
+                    location.replace("../html/JoinForOauth.html");
+                }
             } else {
                 alert("회원가입 실패!");
             }
+
         } catch(error) {
             console.log(error);
         }

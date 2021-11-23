@@ -175,7 +175,20 @@ const join_demand = async() => {
             if (response.data) {
                 // 회원가입 성공 시
                 alert("회원가입 성공!");
-                location.replace("../index.html");
+                try {
+                    const res = await axios.post("../php/login.php", {
+                        username : username,
+                        password : password
+                    });
+            
+                    if(res.data) {
+                        location.replace("../html/Main.html");
+                    } else {
+                        alert("예기치 못한 에러가 발생하였습니다. 관리자에게 문의주십시오.");
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
             } else {
                 // 회원가입 실패 시
                 alert("회원가입 실패!");

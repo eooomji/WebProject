@@ -4,8 +4,8 @@
     $_POST = JSON_DECODE(file_get_contents("php://input"), true);
 
     $username = $_POST["username"];
-    $name = $_POST["nickname"];
-    $email = $_POST["tel"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
     $choice = $_POST["choice"];
 
     $sqi = "INSERT INTO `user` (`username`, `password`, `name`, `email`, `choice`, `score`)

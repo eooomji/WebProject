@@ -10,10 +10,10 @@ $email = $_POST["email"];
 $Name_on_Session = $_SESSION["sess_username"];
 
 if(empty($_POST["password"])) {
-	$sql = "UPDATE `test`.`user` SET `username` = '$username', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
+	$sql = "UPDATE `user` SET `username` = '$username', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
 } else {
 	$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-	$sql = "UPDATE `test`.`user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
+	$sql = "UPDATE `user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
 }
 
 $res = $db->query($sql); 

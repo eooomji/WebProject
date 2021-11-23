@@ -8,7 +8,4 @@ window.onload = async function() {
 
   document.querySelector('.highlight-b').innerText = `${name}`;
   document.querySelector('.highlight-a').innerText = `${score}`;
-
-  const mission = document.querySelector(`.missions${Date+1}`);
-  mission.style.display=''; 
 }

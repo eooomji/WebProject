@@ -1,5 +1,6 @@
 * {
     font-family: 'Do Hyeon', sans-serif;
+    text-align: center;
 }
 ul, li, label {
     margin : 0;
@@ -19,4 +20,8 @@ ul { list-style : none; }
 
 h2 {
     margin-top : 0;
+}
+
+.btn {
+    margin-top: 15px;
 }

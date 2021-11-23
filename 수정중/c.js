@@ -1,33 +1,35 @@
 let ToDay = new Date(); 
 let nowMonth = ToDay.getMonth(); 
 const userName = 'user1'; // TEST용
-let j = 0;
+// let j = 0;
 
-// DB에서 미션 다 불러오기
+// DB에서 해당하는 미션 다 불러오기
 const arr = async(nowMonth, maxDay) => {
   try {
     let missionHTML = '';
-    
+    let j = 0;
     const responsemission = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
     const checkTrue = await axios.post('../php/getCheck.php', {userName: userName, nowMonth: nowMonth+1});
  
     if(responsemission.data) {
-      // console.log(responsemission.data[0]);
+      // console.log(responsemission.data[1]);
+      console.log(checkTrue.data);
       if(checkTrue.data) {
         for (let i = 0; i < maxDay; i++) {
           if(responsemission.data[i] === undefined) responsemission.data[i] = {content : ""};
           else if (i + 1 == checkTrue.data[j][`DAY(date)`]) {
-            console.log(responsemission.data[i].missionName);
-            missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth + 1}" onclick='getCheckedCnt(${i+1}, ${nowMonth + 1})' checked />${responsemission.data[i].missionName}</div>`;
+            // console.log(nowMonth+1);
+            // console.log('미션이름: ', responsemission.data[i].missionName);
+            missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})' checked />${responsemission.data[i].missionName}</div>`;
             if(j < checkTrue.data.length) j++;
           }
-          else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth + 1}" onclick='getCheckedCnt(${i+1}, ${nowMonth + 1})'>${responsemission.data[i].missionName}</div>`;       
+          else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${responsemission.data[i].missionName}</div>`;       
         }
       }
       else {
         for (let i = 0; i < maxDay; i++) {
           if(responsemission.data[i] === undefined) responsemission.data[i] = {content : ""};
-          else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth + 1}" onclick='getCheckedCnt(${i+1}, ${nowMonth + 1})'>${responsemission.data[i].missionName}</div>`;
+          else missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${i+1}, ${nowMonth+1})'>${responsemission.data[i].missionName}</div>`;
         }
       }
     }
@@ -107,8 +109,8 @@ window.onload = function() {
 }
 
 const writeCal = (nowMonth) => { 
-    
-  const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth))); 
+  console.log('writeCal: ', nowMonth);
+  const [y, m] = getDate(new Date(ToDay.setMonth(nowMonth+1))); 
 
   const lastDay = getDate(new Date(y, m, 0)).pop() * 1; 
   const day = new Date([y, m, 1].join("-")).getDay() * 1; 
@@ -151,8 +153,6 @@ const thisMonth = () => {
 };
 
 const CheckedCnt = async(nowMonth) => {
-
-
   const checkTrue = await axios.post('../php/getCheck.php', {nowMonth: nowMonth+1, userName: userName});
   const checkcnt = checkTrue.data.length;
   

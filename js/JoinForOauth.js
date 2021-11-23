@@ -2,10 +2,10 @@ let info;
 
 onload = () => {
     info = JSON.parse(sessionStorage.getItem("info"));
-    if(info === undefined || info === null) {
+    /*if(info === undefined || info === null) {
         alert("잘못된 접근입니다.");
         location.replace("../html/Login.html");
-    }
+    }*/
     document.querySelector(".kakaoID").value = info.username;
     document.querySelector(".name").value = info.name;
     document.querySelector(".email").value = info.email;
@@ -29,7 +29,7 @@ const k_sign_up_demand = async() => {
             if(response.data) {
                 alert("회원가입 성공!");
                 sessionStorage.clear();
-                location.replace("../index.html");
+                location.replace("../html/Main.html");
             } else {
                 alert("회원가입 실패!");
             }

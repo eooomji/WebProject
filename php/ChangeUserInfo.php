@@ -2,17 +2,20 @@
 require_once("dbconfig.php"); 
 
 $_POST = JSON_DECODE(file_get_contents("php://input"), true);
+session_start();
 
 $name= $_POST["name"];
-$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 $username = $_POST["username"]; 
 $email = $_POST["email"];
-
-session_start();
 $Name_on_Session = $_SESSION["sess_username"];
 
+if(empty($_POST["password"])) {
+	$sql = "UPDATE `test`.`user` SET `username` = '$username', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
+} else {
+	$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+	$sql = "UPDATE `test`.`user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
+}
 
-$sql = "UPDATE `test`.`user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
 $res = $db->query($sql); 
 
 $success = $res;
@@ -27,7 +30,6 @@ if($success) {
 }
 
 echo JSON_ENCODE($result);
-
 
 session_write_close();
 mysqli_close($db);

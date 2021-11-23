@@ -14,6 +14,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 		  rel="stylesheet"
 		  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+<<<<<<< Updated upstream
 		  crossorigin="anonymous" 
 	/>
 	
@@ -22,12 +23,43 @@
 			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 			crossorigin="anonymous" charset="utf-8">
 	</script>
+=======
+<<<<<<< HEAD
+		  crossorigin="anonymous" />
+	<link href="../css/UserInfo.css" rel="stylesheet" />
+	<link href="../css/Header.css" rel="stylesheet">
+
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous" charset="utf-8"></script>
+	<!-- axios -->
+	<script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+	<script src="../js/UserInfo.js" charset="utf-8"></script>
+	<script src="../js/module.js" charset="utf-8"></script>
+=======
+		  crossorigin="anonymous" 
+	/>
+	
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous" charset="utf-8">
+	</script>
+>>>>>>> 3f98b9eb2c5f5a832291ac1dae3d59805cbf8913
+>>>>>>> Stashed changes
 
 	<!-- font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Yeon+Sung&display=swap" rel="stylesheet">
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	<title>UserInfo</title>
+=======
+>>>>>>> Stashed changes
 	<!-- CSS -->
 	<link href="../css/Header.css" rel="stylesheet">
 	<link href="../css/UserInfo.css" rel="stylesheet" />
@@ -36,20 +68,24 @@
 	<script src="../js/UserInfo.js" charset="utf-8"></script>
 	<script src="../js/module.js" charset="utf-8"></script>
 	<script src="../js/Logout.js"></script>
+<<<<<<< Updated upstream
+=======
+>>>>>>> 3f98b9eb2c5f5a832291ac1dae3d59805cbf8913
+>>>>>>> Stashed changes
 </head>
 <body>
 	<header>
-        <div></div>
-        <div class="LOGOimg">
-            <a href="../html/main.html"><img src="../images/LOGO.png" width="200" height="100"></a>
-        </div>
-        <div onclick="logout()">
-            <div class="logout">
-                <span class="door">로그아웃</span>
-                <div class="runner"><img src="../images/runner.png" width=70 height=70></div>
-            </div>
-        </div>
-    </header>
+		<div></div>
+		<div class="LOGOimg">
+			<a href="../html/main.html"><img src="../images/LOGO.png" width="200" height="100"></a>
+		</div>
+		<div onclick="logout()">
+			<div class="logout">
+				<span class="door">로그아웃</span>
+				<div class="runner"><img src="../images/runner.png" width=70 height=70></div>
+			</div>
+		</div>
+	</header>
 	<nav>
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
 			<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick="location.href = '../html/UserInfo.html'">User</button>
@@ -58,17 +94,36 @@
 		</div>
 	</nav>
 	<div class="container" id="UserProfile">
-		<span class="form" id="three">
+		<span>
 			<img class="" src="../images/profileimage.png" alt="profile image" />
 		</span>
 		<div class="scoreboard">
 			<div class="line">
 				<label>점수</label>
-				<span id="score" name="score">1</span>
+				<span id="score" name="score"></span>
 			</div>
 			<div class="line">
 				<label>순위</label>
-				<span id="rank">1</span>
+				<span id="rank"></span>
+			</div>
+		</div>
+		<button class="btn btn-danger" id="DeleteAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">회원탈퇴</button>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">회원 탈퇴</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					정말 탈퇴하시겠습니까?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" onclick="DeleteAccount()">예</button>
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">아니오</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -84,34 +139,40 @@
 				   id="UserName"
 				   name="name"
 				   value="이름"
-				   maxlength="15" />
+				   maxlength="20"
+				   onchange="DataCheck()" />
 		</div>
 		<div class="line Item">
 			<label>아이디</label>
 			<input type="text"
 				   class="form-control UserInfoItem"
 				   id="UserId"
-				   name="username" />
+				   name="username"
+				   onchange="DataCheck()" />
 		</div>
 		<div class="line Item">
 			<label>이메일</label>
 			<input type="text"
 				   class="form-control UserInfoItem"
 				   id="UserEmail"
-				   name="email" />
+				   name="email"
+				   onchange="DataCheck()" />
 		</div>
 		<div class="line Item HideOnOAuth">
 			<label>비밀번호</label>
 			<input type="password"
 				   class="form-control UserInfoItem"
 				   id="UserPassword"
-				   name="password" />
+				   name="password"
+				   onchange="DataCheck()" />
 		</div>
 		<div class="line Item HideOnOAuth">
 			<label>비밀번호 확인</label>
 			<input type="password"
 				   class="form-control UserInfoItem"
-				   id="UserPasswordCheck" />
+				   id="UserPasswordCheck"
+				   name="passwordcheck"
+				   onchange="DataCheck()" />
 		</div>
 		<div class="line">
 			<button class="btn btn-primary" id="changeinfo" onclick="onClickChangeUserInfo()">변경하기</button>
@@ -126,10 +187,10 @@
 		<div class="line Item">
 			<label>분야선택</label>
 			<br />
-			<input class="SettingItem" type="radio" id="Settingexercise" name="choice"/>운동
-			<input class="SettingItem" type="radio" id="Settingvolunteer" name="choice"/>봉사
-			<input class="SettingItem" type="radio" id="Settinghabit" name="choice"/>습관
-			<input class="SettingItem" type="radio" id="Settingmanner" name="choice"/>예절
+			<input class="SettingItem choice" type="radio" id="Settingexercise" name="choice" index=1 />운동
+			<input class="SettingItem choice" type="radio" id="Settingvolunteer" name="choice" index=2 />봉사
+			<input class="SettingItem choice" type="radio" id="Settinghabit" name="choice" index=4 />습관
+			<input class="SettingItem choice" type="radio" id="Settingmanner" name="choice" index=8 />예절
 		</div>
 		<div class="line">
 			<button class="btn btn-primary visible" id="changesetting" onclick="onClickChangeSetting()">저장</button>

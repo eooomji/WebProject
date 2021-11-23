@@ -1,31 +1,27 @@
 
-const CheckHttpResponseStatus = (res => {
-	if (res.statusText === "OK") {
-		return res.json();
-	} else {
-		throw `${res.status} ${res.statusText}`;
-	}
-})
-
 onload = () => {
 	SessionCheck();
 	LoadRank();
 }
 
-const LoadRank = () => {
-	fetch('../php/LoadRank.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } }).then(Response => {
-		return CheckHttpResponseStatus(Response);
-	}).then((Result) => {
+const LoadRank = async () => {
+	try {
+		const Response = await fetch('../php/LoadRank.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+		if (!Response.ok) {
+			throw `${Response.status} ${Response.statusText}`;
+		}
+		const ResponseData = await Response.json();
+
 		const RankTable = document.getElementById("ranktable");
-		Result["data"].forEach((element) => {
+		for (const element of ResponseData["data"]) {
 			const row = RankTable.insertRow(-1);
-			row.insertCell(-1).innerText = Result["StartRank"]++;
-			element.forEach((CellData) => {
+			row.insertCell(-1).innerText = ResponseData["StartRank"]++;
+			for (const CellData of element) {
 				row.insertCell(-1).innerText = CellData;
-			});
-		});
-	}).catch(error => {
+			}
+		}
+	} catch (error) {
 		alert(error);
-	});
+	}
 }
 

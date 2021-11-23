@@ -18,6 +18,7 @@ if ($row) {
     echo json_encode($row,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
 } else {
     http_response_code(400);
+    echo json_encode($row,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
 }
 mysqli_close($db);
 

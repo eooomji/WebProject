@@ -17,32 +17,9 @@
 	margin-bottom: 10px;
 }
 
-.scoreboard {
-	font-size: x-large;
-	border: solid 2px;
-	width: 30%;
-	display: inline-block;
-	text-align: left;
-}
-
-.scoreboard .line {
-	
-}
-
-.scoreboard div span {
-	color: #ED5753;
-}
-
-#UserProfile {
-	display: flex;
-	justify-content: center;
-}
-
-.LoadingCircle {
-	visibility: visible;
-	color: #FFFFFF;
-}
-
+/*  
+################# HEADER 
+*/
 
 .container {
 	padding: 20px;
@@ -54,31 +31,54 @@
 	background: #A9D18E;
 }
 
-.container div {
-	margin-left: 15px;
-}
-
-
-#four {
-	float: left;
-	width: 40%;
-}
-
-#progress {
-	margin-left: 10px;
-}
-
+	.container div {
+		margin-left: 15px;
+	}
 
 .line {
 	margin-top: 20px;
 	margin-bottom: 5px;
 }
 
-.line * {
-	vertical-align: middle;
+	.line * {
+		vertical-align: middle;
+	}
+
+	.line label {
+		font-size: large;
+	}
+
+#UserProfile {
+	display: flex;
 }
-#changebutton {
-	margin-right: 5px;
+
+	#UserProfile span {
+		margin-left: 30%;
+	}
+
+	#UserProfile button {
+		margin-left: 19%;
+		margin-bottom: 10%;
+	}
+
+.scoreboard {
+	font-size: x-large;
+	border: solid 2px;
+	width: 30%;
+	display: inline-block;
+	text-align: left;
+}
+
+	.scoreboard div span {
+		color: #ED5753;
+	}
+
+.modal-dialog {
+	margin: auto;
+}
+
+.modal-footer .btn-danger {
+	width : 14%;
 }
 
 .Header {
@@ -89,19 +89,24 @@
 	color: #0D6EFD;
 }
 
-.line label {
-	font-size: large;
-}
-
 .Item {
 	width: 25%;
 }
 
-#changeinfo, #changesetting {
-	margin-right: 10px;
+.UserInfoItem {
+	margin-top: 10px;
 }
 
-.UserInfoItem {
-	disabled: true;
-	margin-top: 10px;
+#changebutton {
+	margin-right: 5px;
+}
+
+.LoadingCircle {
+	visibility: hidden;
+	color: #FFFFFF;
+}
+
+
+#changeinfo, #changesetting {
+	margin-right: 10px;
 }

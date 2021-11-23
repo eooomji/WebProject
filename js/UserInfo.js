@@ -1,14 +1,6 @@
-﻿
+
 onload = () => {
-<<<<<<< Updated upstream
-	SessionCheck();
-=======
-<<<<<<< HEAD
 	SessionCheck(); // module.js
-=======
-	SessionCheck();
->>>>>>> 3f98b9eb2c5f5a832291ac1dae3d59805cbf8913
->>>>>>> Stashed changes
 	LoadUser();
 	DisableUserInfoChange(true);
 }

@@ -26,6 +26,7 @@ div input {
     width : 98%;
     font-size : 20px;
     min-height : 35px;
+    border-radius : 10px;
 }
 
 span {
@@ -48,10 +49,12 @@ span {
     grid-template-columns : 1fr 1fr;
     margin-top : 20px;
     min-height : 50px;
+    gap : 50px;
 }
 
 #btn button {
     font-size : 20px;
+    border-radius: 15px;
 }
 
 #cancle { background-color : #FF0000; }

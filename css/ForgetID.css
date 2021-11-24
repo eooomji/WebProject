@@ -1,0 +1,71 @@
+* {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+img {
+    -webkit-user-drag : none;
+}
+
+#print {
+    text-align : center;
+    font-size : 20px;
+}
+
+ul, li, label {
+    margin : 0;
+    padding : 0;
+}
+
+ul { list-style : none; }
+
+.signup_label { font-size : 20px; }
+
+div { margin-top : 10px;}
+
+div input {
+    width : 98%;
+    font-size : 20px;
+    min-height : 35px;
+    border-radius : 10px;
+}
+
+span {
+    color : red;
+}
+
+.warning_text {
+    color : red;
+    font-size : 14px;
+    margin-left : 10px;
+    display : none;
+}
+
+.signup_label_star {
+    color : red;
+}
+
+#btn {
+    display : grid;
+    grid-template-columns : 1fr 1fr;
+    margin-top : 20px;
+    min-height : 50px;
+    gap : 50px;
+}
+
+#btn button {
+    font-size : 20px;
+    border-radius: 15px;
+}
+
+#cancle { background-color : #FF0000; }
+
+#cancle:hover { background-color : rgba(255, 0, 0, 0.5); }
+
+#demand, #pass { background-color : #0080FF; }
+
+#demand:hover, #pass:hover { background-color: rgba(0, 128, 255, 0.5); }
+
+#pass {
+    display : none;
+    grid-column : 1 / span 2;
+}

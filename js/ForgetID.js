@@ -8,15 +8,26 @@ const findID_demand = async() => {
                 email : email
             });
             if(response.data) {
+                console.log(response.data)
                 const username = response.data.username;
-                document.getElementById("print").innerText = name + "의 아이디는 " + username + " 입니다.";
+                document.getElementById("print").innerHTML = name + "의 아이디는 &lt;<span>" + username + "</span>&gt; 입니다.";
+                document.querySelector(".name").disabled = true;
+                document.querySelector(".email").disabled = true;
+                document.querySelector("#cancle").style.display = "none";
+                document.querySelector("#demand").style.display = "none";
+                document.querySelector("#pass").style.display = "block";
             } else {
-                alert("예기치 못한 오류로 정보를 가져오지 못했습니다. 다시 시도해 주세요.");
+                alert("사용자 정보에 맞는 아이디는 존재하지 않습니다. 다시 입력해주세요");
+                location.replace("../html/ForgetID.html");
             }
         } catch (error) {
             console.log(error);
         }
     } 
+}
+
+const pass = () => {
+    location.replace("../html/Login.html");
 }
 
 const findID_cancle = () => {
@@ -59,7 +70,7 @@ const checkName = () => {
         star_visible(0);
         return false;
     } else if(!ValidateName(name)) {
-        caption_print(0, "한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
+        caption_print(0, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
         star_visible(0);
         return false;
     } else {

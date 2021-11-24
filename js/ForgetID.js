@@ -7,7 +7,7 @@ const findID_demand = async() => {
                 name : name,
                 email : email
             });
-            if(response.data === true) {
+            if(response.data) {
                 const username = response.data.username;
                 document.getElementById("print").innerHTML = name + "의 아이디는 &lt;<span>" + username + "</span>&gt; 입니다.";
                 document.querySelector(".name").disabled = true;

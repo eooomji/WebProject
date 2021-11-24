@@ -23,7 +23,8 @@ CREATE TABLE `mission_log` (
 
 CREATE TABLE `login_log` (
   `username` VARCHAR(45) NOT NULL,
-  `loginLog` DATETIME2 NOT NULL,
+  `loginLog` DATETIME NOT NULL,
+  `inout` TINYINT NOT NULL,
   FOREIGN KEY (username) REFERENCES `user`(username) ON DELETE CASCADE
 );
 

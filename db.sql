@@ -12,7 +12,7 @@ CREATE TABLE `missions` (
   `category` TINYINT NOT NULL
 );
 
-CREATE TABLE `misson_log` (
+CREATE TABLE `mission_log` (
   `username` VARCHAR(45) NOT NULL,
   `missionName` VARCHAR(255),
   `isDone` TINYINT NOT NULL,
@@ -65,7 +65,7 @@ VALUES
 ('user3', 'user3', '주영준', 'jyj@naver.com', '4', '0'),
 ('user4', 'user4', '최승호', 'csh@naver.com', '8', '0');
 
-INSERT INTO `misson_log`
+INSERT INTO `mission_log`
 (`username`, `missionName`, `check`, `date`)
 VALUES
 ('user1', '11월 21일 카테고리 1번 미션', '0', '2021-11-21'),
@@ -90,7 +90,7 @@ VALUES
 ('user3', 'user3', '주영준', 'jyj@naver.com', '4', '0'),
 ('user4', 'user4', '최승호', 'csh@naver.com', '8', '0');
 
-INSERT INTO `misson_log`
+INSERT INTO `mission_log`
 (`username`, `missionName`, `check`, `date`)
 VALUES
 ('user1', '11월 21일 카테고리 1번 미션', '0', '2021-11-21'),
@@ -106,7 +106,7 @@ VALUES
 ('user1', '11월 29일 카테고리 1번 미션', '0', '2021-11-29'),
 ('user1', '11월 30일 카테고리 1번 미션', '0', '2021-11-30');
 
-INSERT INTO `misson_log`
+INSERT INTO `mission_log`
 (`username`, `missionName`, `check`, `date`, `isDone`)
 VALUES
 ('vnm5020@gmail.com', '10월 1일 카테고리 2번 미션', '0', '2021-10-01', 0),

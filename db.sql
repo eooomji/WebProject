@@ -23,7 +23,7 @@ CREATE TABLE `misson_log` (
 
 CREATE TABLE `login_log` (
   `username` VARCHAR(45) NOT NULL,
-  `loginLog` DATE NOT NULL,
+  `loginLog` DATETIME2 NOT NULL,
   FOREIGN KEY (username) REFERENCES `user`(username) ON DELETE CASCADE
 );
 

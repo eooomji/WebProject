@@ -17,13 +17,52 @@
 	margin-bottom: 10px;
 }
 
+html, body {
+	overflow-x: hidden;
+}
+
+.container {
+	display: flex;
+}
 
 #rankboard {
 	background-color: #A9D18E;
-	height: 800px;
+	flex-shrink: 1;
+	min-height: 60rem;
+	max-height: 60rem;
+	overflow-y: auto;
 }
 
+
 #ranktable {
+	border-color: #000000;
+	border: 1px solid black;
+	flex-shrink: 1;
 	background-color: #A9D18E;
-	width: 800px;
+	width: 75%;
+	margin: auto;
+	margin-top: 0%;
+	text-align: center;
 }
+
+	#ranktable thead {
+		background-color: #f3b3b3;
+	}
+
+		#ranktable thead th {
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+		}
+
+		#ranktable thead .rank {
+			width: 20%;
+		}
+
+	#ranktable tbody {
+		background-color: #6fbae8;
+	}
+
+		#ranktable tbody td {
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+		}

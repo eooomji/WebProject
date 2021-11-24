@@ -37,6 +37,7 @@ const LoadUser = async () => {
 			try {
 				switch (true) {
 					case element == 'score':
+					case element == 'rank':
 						property = 'textContent';
 						break;
 					case element == 'choice':
@@ -88,7 +89,7 @@ const GetChoiceValue = () => {
 const onClickChangeUserInfo = async () => {
 	for (const element of Array.from(document.querySelectorAll('.UserInfoItem'))) {
 		if (await DataCheck(element)) {
-			return ;
+			return;
 		}
 	}
 
@@ -179,7 +180,7 @@ const checkPW = (userPW) => {
 			return "비밀번호 : 필수 정보입니다.";
 		}
 	} else if (!ValidatePW(userPW)) {
-		return "비밀번호 : 8~20자 영문 대소문자, 숫자, 특수문자를 사용하세요.";
+		return "비밀번호 : 8~20자 영문 대소문자, 숫자를 조합해주세요.";
 	}
 }
 
@@ -224,7 +225,7 @@ const ValidateID = (userID) => {
 // 패스워드 검사
 const ValidatePW = (userPW) => {
 	// 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
-    const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
+	const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
 	return re.test(userPW);
 };
 

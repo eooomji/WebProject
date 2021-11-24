@@ -10,6 +10,10 @@
 ################# HEADER 
 */
 
+html, body {
+	overflow-x: hidden;
+}
+
 .container {
 	padding: 20px;
 	align-items: center;
@@ -38,17 +42,24 @@
 	}
 
 #UserProfile {
-	display: flex;
+	text-align: center;
 }
 
-	#UserProfile span {
-		margin-left: 30%;
+	#UserProfile img {
+		max-width: 30%;
+		max-height: 30%;
+	}
+
+	#UserProfile .scoreboard {
+		vertical-align: middle;
+		margin-left: 5%;
 	}
 
 	#UserProfile button {
-		margin-left: 19%;
-		margin-bottom: 10%;
+		float: right;
+		vertical-align: top;
 	}
+
 
 .scoreboard {
 	font-size: x-large;
@@ -67,7 +78,7 @@
 }
 
 .modal-footer .btn-danger {
-	width : 14%;
+	width: 14%;
 }
 
 .Header {
@@ -79,7 +90,7 @@
 }
 
 .Item {
-	width: 25%;
+	width: 18rem;
 }
 
 .UserInfoItem {

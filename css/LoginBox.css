@@ -6,6 +6,12 @@ html, body {
     /* 로그인박스 중앙정렬을 위한 상하 크기 초기화 */
     height : 100%;
     overflow : hidden;
+
+    /* 배경화면 사진넣기 및 전체화면화 */
+    background :
+        url(../images/background.svg) 
+        no-repeat center fixed;
+    background-size : cover;
 }
 
 #login_box {

@@ -55,7 +55,7 @@ const star_hide = (num) => {
 
 /* 입력 정보 유효성 체크 */
 // ID 유효성 체크
-const checkID = async() => {
+const checkID = () => {
     const userID = document.querySelector(".userID").value;
     
     if(userID === "") {

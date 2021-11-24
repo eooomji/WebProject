@@ -22,7 +22,7 @@ const join_demand = async() => {
     const email = document.querySelector(".email").value;
     const choice = choice_encoding();
 
-    if(checkID() & checkPW() & checkPWConfirm() & checkName() & checkEmail()) {
+    if(await checkID() & checkPW() & checkPWConfirm() & checkName() & checkEmail()) {
         try {
             const response = await axios.post("../php/Join.php", {
                 username : userID,
@@ -55,7 +55,7 @@ const join_demand = async() => {
         } catch(error) {
             console.log(error);
         }
-    }
+    } 
 };
 
 /* 아이디 입력표시와, 캡션정보 켜고 크는 함수 정의 */

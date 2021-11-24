@@ -7,15 +7,23 @@ header {
     display : grid;
     grid-template-columns : 1fr 1fr 1fr;
     justify-items : center;
+    align-items : center;
     margin-bottom : 10px;
 }
 
 .LOGOimg { 
     text-align: center;
+    padding : 10px 5px;;
+}
+
+.LOGOimg a img {
+    width : 180px;
+    height : 90px;
+    background-color: transparent;
 }
 
 .logout {
-    width : 100px;
+    width : 64px;
     height : 80px;
 }
   
@@ -40,26 +48,34 @@ img {
     transition: all 1s;
     opacity : 0;
 }
+
+.runner img {
+    width : 50px;
+    height : 50px;
+}
+
 .logout {
-    width : 80px;
-    height : 100px;
+    width : 64px;
+    height : 80px;
     background-color : #555555;
+    border-radius: 10px;
     font-weight : bold;
     text-align : center;
     position: relative;
     transform-style: preserve-3d;
     transform: perspective(2000px);
 }
+
 .door {
-    width: 80px;
-    height: 100px;
-    border: 1px solid black;
+    width: 64px;
+    height: 80px;
+    border-radius: 10px;
     position: absolute;
     top : 0;
     left : 0;
-    font-size : 20px;
-    line-height : 100px;
-    background-color: #089136;
+    font-size : 16px;
+    line-height : 80px;
+    background-color: #A9D18E;
     transform-style: preserve-3d;
     transform-origin: left;
     transition: all 1s;
@@ -71,6 +87,6 @@ img {
 }
 
 .logout:hover .runner {
-    transform : translateX(-70px);
+    transform : translateX(-80px);
     opacity : 1;
 }

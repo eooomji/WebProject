@@ -11,10 +11,10 @@ $res = $db->query($sql);
 $success = $res;
 
 if($success) {
-	echo JSON_ENCODE(true);
+	echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     session_unset();
 } else {
-	echo JSON_ENCODE(false);
+	echo JSON_ENCODE(false, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 }
 
 session_write_close();

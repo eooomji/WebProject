@@ -11,7 +11,7 @@
     $sqi = "INSERT INTO `user` (`username`, `password`, `name`, `email`, `choice`, `score`)
     VALUES ('$username', 'Oauth', '$name', '$email', '$choice', '0')";
     $db->query($sqi);
-    echo true;
+    echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
     mysqli_close($db);
 ?>

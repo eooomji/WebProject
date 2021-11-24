@@ -8,7 +8,7 @@
     
     $sqi = "UPDATE `user` SET `password` = '$password' WHERE `username` = '$username'";
     $db->query($sqi);
-    echo true;
+    echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
     mysqli_close($db);
 ?>

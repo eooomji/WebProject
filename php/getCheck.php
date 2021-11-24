@@ -18,10 +18,10 @@
     }
 
     if ($data != null) {
-        echo JSON_ENCODE($data, JSON_UNESCAPED_UNICODE);
+        echo JSON_ENCODE($data, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     }
     else {
-        echo JSON_ENCODE(false, JSON_UNESCAPED_UNICODE);
+        echo JSON_ENCODE(false, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     } 
 
     mysqli_close($db);

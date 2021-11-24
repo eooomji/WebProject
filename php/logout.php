@@ -9,5 +9,5 @@
     session_start(); // 세션 시작
     session_unset(); // 세션 삭제
     session_write_close();  // 세션 종료
-    echo true;
+    echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 ?>

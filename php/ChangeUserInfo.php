@@ -29,7 +29,7 @@ if($success) {
 	$result = array("Result"=>"Failure", "Message"=>"수정 실패");
 }
 
-echo JSON_ENCODE($result, JSON_UNESCAPED_UNICODE);
+echo JSON_ENCODE($result, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
 session_write_close();
 mysqli_close($db);

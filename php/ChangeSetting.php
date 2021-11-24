@@ -8,18 +8,18 @@ $choice = $_POST["choice"];
 session_start();
 $Name_on_Session = $_SESSION["sess_username"];
 
-$sql = "UPDATE `test`.`user` SET `choice` = $choice WHERE `username` = '$Name_on_Session'";
+$sql = "UPDATE `user` SET `choice` = $choice WHERE `username` = '$Name_on_Session'";
 $res = $db->query($sql); 
 
 $success = $res;
 
 if($success) {
-	$result = array("Result"=>"Success", "Message"=>"Success");
+	$result = array("Result"=>"Success", "Message"=>"수정 완료");
 } else {
-	$result = array("Result"=>"Failure", "Message"=>"FailReason");
+	$result = array("Result"=>"Failure", "Message"=>"수정 실패");
 }
 
-echo JSON_ENCODE($result);
+echo JSON_ENCODE($result, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 
 
 session_write_close();

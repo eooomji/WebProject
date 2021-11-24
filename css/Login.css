@@ -1,8 +1,18 @@
-span {
-    display : inline-block;
-    vertical-align: middle;
-    position : relative;
-    top : 2px;
+* {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+img {
+    margin : auto;
+    vertical-align : middle;
+    -webkit-user-drag : none;
+}
+
+/* <로그인 정보 입력 세션> */
+#inputID, #inputPW {
+    display : grid;
+    grid-template-columns: 1fr 9fr;
+    margin-top : 1px;
 }
 
 input.input_box {
@@ -13,23 +23,28 @@ input.input_box {
     border-bottom-width : 1px;
 
     /* 상자 크기 및 글자크기 조정 */
-    min-width : 330px;
     min-height : 35px;
     font-size : 16px;
 }
 
+:is(#idInput, #pwInput):focus {
+    background-color: #cccccc;
+}
+
+/* <회원가입, 아이디찾기, 비밀번호찾기> */
 #other_option {
     display : grid;
-    grid-template-columns : 2fr 1fr 2fr;
+    grid-template-columns : 1fr 1fr 1fr;
     margin-top : 25px;
     margin-bottom : 20px;
     text-align : center;
-    font-size : 13px;
+    font-size : 15px;
 }
 
 a {
     font-weight : bolder;
 }
+
 a:link, a:visited, a:active {
     color : #000000;
     text-decoration : none;
@@ -40,41 +55,72 @@ a:hover {
     text-decoration : underline;
 }
 
-#login, #kakao_login {
-    margin-top : 7px;
+/* 
+<로그인 버튼 섹션>
+# 참고자료
+  - 구글 로그인 버튼 가이드라인 
+    https://developers.google.com/identity/branding-guidelines?hl=ko
+  - 네이버 로그인 버튼 가이드라인
+    https://developers.naver.com/docs/login/bi/bi.md
+  - 카카오 로그인 버튼 가이드라인
+    https://developers.kakao.com/docs/latest/ko/reference/design-guide
+*/
+
+#button_sec {
+    display : grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    justify-items : center;
+}
+
+#login, #google_login, #naver_login, #kakao_login {
+    margin-top : 10px;
     height : 50px;
-    width : 100%;
-    font-size : 18px;
+    width : 90%;
     border-style : none;
     border-radius : 12px;
     font-weight : bolder;
+    box-shadow : 1px 1px 10px black;
+    text-align : center;
+    font-size : 18px;
 }
 
 #login {
     background-color : #000000;
     color : #FFFFFF;
-    text-align : center;
-    line-height : 40px;
+    vertical-align : middle;
 }
 
 #login:hover {
     cursor : pointer;
+    box-shadow : none;
     background-color : #0077FF;
 }
 
-#kakao_login {
-    background-color : #FFE500;
-    text-align : left;
-    line-height : 30px;
+#google_login, #naver_login, #kakao_login {
+    display : grid;
+    grid-template-columns : 1fr 7fr;
+    justify-items : center;
+    align-items : center;
 }
 
-#kakao_login:hover {
+#google_login {
+    font-family: 'Roboto', sans-serif;
+    background-color : #FFFFFF;
+    border-style : solid;
+    border-width : 1px;
+    color : rgba(0, 0, 0, 0.54);
+}
+
+#naver_login { 
+    background-color : #1EC800;
+    color : #FFFFFF;
+}
+
+#kakao_login { 
+    background-color : #FEE500;
+}
+
+#google_login:hover, #naver_login:hover, #kakao_login:hover {
     cursor : pointer;
-    text-decoration : underline;
-}
-
-#kakao_icon {
-    margin-top : 3px;
-    margin-left : 10px;
-    margin-right : 67px;
+    box-shadow : none;
 }

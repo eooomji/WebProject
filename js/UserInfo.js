@@ -223,8 +223,8 @@ const ValidateID = (userID) => {
 
 // 패스워드 검사
 const ValidatePW = (userPW) => {
-	// 6~20자 영어, 숫자 중 하나 이상 모두 포함
-	const re = /^(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).*$/;
+	// 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
+    const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
 	return re.test(userPW);
 };
 

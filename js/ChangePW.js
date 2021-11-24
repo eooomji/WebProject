@@ -45,8 +45,8 @@ const changePW_cancle = () => {
 
 // 패스워드 검사
 const ValidatePW = (userPW) => {
-    // 6~20자 영어, 숫자 중 하나 이상 모두 포함
-    const re = /^(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).*$/;
+    // 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
+    const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
     return re.test(userPW);
 };
 
@@ -65,7 +65,7 @@ const checkPW = () => {
         star_visible(0);
         return false;
     } else if(!ValidatePW(userPW)) {
-        caption_print(0, "8~20자 영문 대소문자, 숫자, 특수문자를 사용하세요.");
+        caption_print(0, "8~20자 영문 대소문자, 숫자 특수문자 중 두가지를 조합해주세요.");
         star_visible(0);
         return false;
     } else {

@@ -6,18 +6,17 @@ onload = () => {
         alert("잘못된 접근입니다.");
         location.replace("../html/Login.html");
     }
-    document.querySelector(".kakaoID").value = info.username;
+    document.querySelector(".UserID").value = info.username;
     document.querySelector(".name").value = info.name;
     document.querySelector(".email").value = info.email;
     sessionStorage.removeItem("info");
 }
 
-const k_sign_up_demand = async() => {
-    const userID = document.querySelector(".kakaoID").value;
+const oauth_sign_up_demand = async() => {
+    const userID = document.querySelector(".UserID").value;
     const name = document.querySelector(".name").value;
     const email = document.querySelector(".email").value;
     const choice = choice_encoding();
-
     if (checkID() & checkName() & checkEmail()) {
         try {
             const response = await axios.post("../php/JoinForOauth.php", {
@@ -26,38 +25,43 @@ const k_sign_up_demand = async() => {
                 email : email,
                 choice : choice
             });
-
             if(response.data) {
                 alert("회원가입 성공!");
-                sessionStorage.clear();
-                const res = await axios.post("../php/LoginForOauth.php", {
-                    username : userID
-                });
+                try {
+                    const res = await axios.post("../php/LoginForOauth.php", {
+                        username : userID
+                    });
                 
-                if(res.data) {
-                    // 기존 사용자일 경우
-                    location.replace("../html/Main.html");
-                } else {
-                    // 처음 사용자일 경우
-                    sessionStorage.setItem("info", JSON.stringify(info));
-                    location.replace("../html/JoinForOauth.html");
+                    if(res.data) {
+                        // 기존 사용자일 경우
+                        location.replace("../html/Main.html");
+                    } else {
+                        alert("예기치 못한 에러가 발생하였습니다. 로그인 페이지로 돌아갑니다.");
+                        location.replace("../html/Login.html");
+                    }
+                alert("멈춰!");
+                } catch(error) {
+                    console.log(error);
                 }
             } else {
                 alert("회원가입 실패!");
             }
-
         } catch(error) {
             console.log(error);
         }
+    } else {
+        alert("???");
     }
 }
 
 const checkID = () => {
-    const userID = document.querySelector(".kakaoID").value;
+    const userID = document.querySelector(".UserID").value;
     if(userID === undefined || userID === null) {
         alert("예기치 못한 에러가 발생하였습니다. 로그인 페이지로 돌아갑니다.");
         location.replace("../html/Login.html");
+        return false;
     }
+    return true;
 }
 
 // Name 유효성 체크

@@ -13,6 +13,51 @@ onload = async() => {
     }
 };
 
+/* 가입하기 버튼을 눌렀을 경우 - PHP 통신 -> DB에 값 집어넣기 */
+const join_demand = async() => {
+    // DOM 조작
+    const userID = document.querySelector(".userID").value;
+    const userPW = document.querySelector(".userPW").value;
+    const name = document.querySelector(".name").value;
+    const email = document.querySelector(".email").value;
+    const choice = choice_encoding();
+
+    if(checkID() & checkPW() & checkPWConfirm() & checkName() & checkEmail()) {
+        try {
+            const response = await axios.post("../php/Join.php", {
+                username : userID,
+                password : userPW,
+                name : name,
+                email : email,
+                choice : choice
+            });
+            if (response.data) {
+                // 회원가입 성공 시
+                alert("회원가입 성공!");
+                try {
+                    const res = await axios.post("../php/login.php", {
+                        username : userID,
+                        password : userPW
+                    });
+            
+                    if(res.data) {
+                        location.replace("../html/Main.html");
+                    } else {
+                        alert("예기치 못한 에러가 발생하였습니다. 관리자에게 문의주십시오.");
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+                // 회원가입 실패 시
+                alert("회원가입 실패!");
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }
+};
+
 /* 아이디 입력표시와, 캡션정보 켜고 크는 함수 정의 */
 // 캡션정보 띄우기
 const caption_print = (num, text) => {
@@ -101,7 +146,7 @@ const checkPW = () => {
         star_visible(1);
         return false;
     } else if(!ValidatePW(userPW)) {
-        caption_print(1, "8~20자 영문 대소문자, 숫자, 특수문자를 사용하세요.");
+        caption_print(1, "8~20자 영문 대소문자, 숫자를 조합해주세요.");
         star_visible(1);
         return false;
     } else {
@@ -169,51 +214,6 @@ const checkEmail = () => {
     }
 }
 
-/* 가입하기 버튼을 눌렀을 경우 - PHP 통신 -> DB에 값 집어넣기 */
-const join_demand = async() => {
-    // DOM 조작
-    const userID = document.querySelector(".userID").value;
-    const userPW = document.querySelector(".userPW").value;
-    const name = document.querySelector(".name").value;
-    const email = document.querySelector(".email").value;
-    const choice = choice_encoding();
-
-    if(await checkID() & checkPW() & checkPWConfirm() & checkName() & checkEmail()) {
-        try {
-            const response = await axios.post("../php/Join.php", {
-                username : userID,
-                password : userPW,
-                name : name,
-                email : email,
-                choice : choice
-            });
-            if (response.data) {
-                // 회원가입 성공 시
-                alert("회원가입 성공!");
-                try {
-                    const res = await axios.post("../php/login.php", {
-                        username : userID,
-                        password : userPW
-                    });
-            
-                    if(res.data) {
-                        location.replace("../html/Main.html");
-                    } else {
-                        alert("예기치 못한 에러가 발생하였습니다. 관리자에게 문의주십시오.");
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            } else {
-                // 회원가입 실패 시
-                alert("회원가입 실패!");
-            }
-        } catch(error) {
-            console.log(error);
-        }
-    }
-};
-
 /* 취소하기 버튼을 눌렀을 경우 -> 메인페이지로 돌아가기 */
 const join_cancel = () => {
     location.replace("../html/Login.html");
@@ -229,8 +229,8 @@ const ValidateID = (userID) => {
 
 // 패스워드 검사
 const ValidatePW = (userPW) => {
-    // 6~20자 영어, 숫자 중 하나 이상 모두 포함
-    const re = /^(?=.{6,20})(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).*$/;
+    // 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
+    const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
     return re.test(userPW);
 };
 

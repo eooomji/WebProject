@@ -27,6 +27,11 @@ CREATE TABLE `login_log` (
   FOREIGN KEY (username) REFERENCES `user`(username) ON DELETE CASCADE
 );
 
+// 테이블 오타 
+//===================================
+RENAME TABLE misson_log TO mission_log;
+//===================================
+
 INSERT INTO `missions`
 (`missionName`, `category`)
 VALUES

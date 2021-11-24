@@ -6,6 +6,7 @@
 #inputID, #inputPW {
     display : grid;
     grid-template-columns: 1fr 9fr;
+    margin-top : 1px;
 }
 
 img {

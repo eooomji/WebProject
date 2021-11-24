@@ -8,7 +8,7 @@ $choice = $_POST["choice"];
 session_start();
 $Name_on_Session = $_SESSION["sess_username"];
 
-$sql = "UPDATE `test`.`user` SET `choice` = $choice WHERE `username` = '$Name_on_Session'";
+$sql = "UPDATE `user` SET `choice` = $choice WHERE `username` = '$Name_on_Session'";
 $res = $db->query($sql); 
 
 $success = $res;

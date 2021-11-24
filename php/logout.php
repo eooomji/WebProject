@@ -1,13 +1,17 @@
 <?php
-    // 에러 처리
-    error_reporting(E_ALL);
-    ini_set("display_errors", 1);
-
-    // json통신
-    header("Content-Type:application/json");
+    require_once("dbconfig.php");
     
-    session_start(); // 세션 시작
-    session_unset(); // 세션 삭제
-    session_write_close();  // 세션 종료
+    // 세션 삭제
+    session_start();
+    $username = $_SESSION["sess_username"];
+    session_unset();
+    session_write_close();
+
+    // 로그아웃 찍기
+    $date = date("Y-m-d H:i:s", time());
+    $sql = "INSERT INTO `login_log` (`username`, `loginLog`, `inout`) VALUE ('$username', '$date', 0)";
+    $res = $db->query($sql);
+
     echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+    mysqli_close($db);
 ?>

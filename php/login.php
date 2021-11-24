@@ -12,9 +12,15 @@
     if($row) {
         $passwordResult = password_verify($password, $row["password"]);
         if ($passwordResult) {
+            // 세션 저장
             session_start();
             $_SESSION["sess_username"] = $username;
             session_write_close();
+
+            // 로그인 찍기
+            $date = date("Y-m-d H:i:s", time());
+            $sql = "INSERT INTO `login_log` (`username`, `loginLog`, `inout`) VALUE ('$username', '$date', 1)";
+            $res = $db->query($sql);
 
             echo JSON_ENCODE(true,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
         } else {

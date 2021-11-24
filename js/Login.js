@@ -31,7 +31,7 @@ const login = async() => {
                 password : password
             });
     
-            if(response.data) {
+            if(response.data === true) {
                 alert("로그인 성공 !!");
                 location.replace("../html/Main.html");
             } else {
@@ -107,13 +107,15 @@ const judge_data = async(username, name) => {
         const response = await axios.post("../php/LoginForOauth.php", {
             username : username
         })
-        if(response.data) {
+        if(response.data === true) {
             // 기존 사용자일 경우
             location.replace("../html/Main.html");
-        } else {
+        } else if (response.data === false) {
             // 처음 사용자일 경우
             sessionStorage.setItem("info", JSON.stringify(info));
             location.replace("../html/JoinForOauth.html");
+        } else {
+            alert("예기치 않은 에러가 발생하였습니다. 다시 시도해 주세요.");
         }
     } catch(error) {
         console.log(error);

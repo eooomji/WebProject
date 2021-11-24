@@ -17,7 +17,7 @@ const changePW_demand = async() => {
                 username : username,
                 password : userPW
         });
-            if(response.data) {
+            if(response.data === true) {
                 document.getElementById("print").innerText = "비밀번호 변경에 성공하였습니다.";
                 document.querySelector(".userPW").style.display = "none";
                 document.querySelector(".userPWConfirm").style.display = "none";

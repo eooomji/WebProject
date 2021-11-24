@@ -47,7 +47,7 @@ const judge_data = async(username, name) => {
         const response = await axios.post("../php/LoginForOauth.php", {
             username : username
         })
-        if(response.data) {
+        if(response.data === true) {
             // 기존 사용자일 경우
             opener.location.replace("../html/Main.html");
         } else {

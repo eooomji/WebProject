@@ -31,7 +31,7 @@ const join_demand = async() => {
                 email : email,
                 choice : choice
             });
-            if (response.data) {
+            if (response.data === true) {
                 // 회원가입 성공 시
                 alert("회원가입 성공!");
                 try {
@@ -40,7 +40,7 @@ const join_demand = async() => {
                         password : userPW
                     });
             
-                    if(res.data) {
+                    if(res.data === true) {
                         location.replace("../html/Main.html");
                     } else {
                         alert("예기치 못한 에러가 발생하였습니다. 관리자에게 문의주십시오.");

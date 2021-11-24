@@ -10,7 +10,7 @@ const findPW_demand = async() => {
                 name : name,
                 email : email
             });
-            if(response.data) {
+            if(response.data === true) {
                 alert("유저 정보가 확인되었습니다. 비밀번호 변경창으로 넘어갑니다.");
                 sessionStorage.setItem("username", username);
                 location.replace("../html/ChangePW.html");

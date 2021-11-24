@@ -25,21 +25,20 @@ const oauth_sign_up_demand = async() => {
                 email : email,
                 choice : choice
             });
-            if(response.data) {
+            if(response.data === true) {
                 alert("회원가입 성공!");
                 try {
                     const res = await axios.post("../php/LoginForOauth.php", {
                         username : userID
                     });
                 
-                    if(res.data) {
+                    if(res.data === true) {
                         // 기존 사용자일 경우
                         location.replace("../html/Main.html");
                     } else {
                         alert("예기치 못한 에러가 발생하였습니다. 로그인 페이지로 돌아갑니다.");
                         location.replace("../html/Login.html");
                     }
-                alert("멈춰!");
                 } catch(error) {
                     console.log(error);
                 }

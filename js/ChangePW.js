@@ -65,7 +65,7 @@ const checkPW = () => {
         star_visible(0);
         return false;
     } else if(!ValidatePW(userPW)) {
-        caption_print(0, "8~20자 영문 대소문자, 숫자 특수문자 중 두가지를 조합해주세요.");
+        caption_print(0, "8~20자 영문 대소문자, 숫자, 특수문자를 조합해주세요.");
         star_visible(0);
         return false;
     } else {

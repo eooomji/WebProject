@@ -8,7 +8,7 @@
     $email = $_POST["email"];
 
     $sqi = "SELECT * FROM `user` WHERE `username` = '$username' AND `name` = '$name' AND `email` = '$email'";
-    $db->query($sqi);
+    $res = $db->query($sqi);
     $row = $res->fetch_array(MYSQLI_ASSOC);
 
     if($row) {

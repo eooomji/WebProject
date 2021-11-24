@@ -190,6 +190,8 @@ const checkID = async (userID) => {
 
 	if (userID === "") {
 		return "아이디 : 필수 정보입니다.";
+	} else if (!Validatenbsp(userID)) {
+		return "아이디 : 공백문자가 포함되어 있습니다.";
 	} else if (!ValidateID(userID)) {
 		return "아이디 : 6~20자 대소문자 영문부터 시작하여 숫자, 대소문자 영문만 입력 가능합니다.";
 	} else if (userID !== document.getElementById('UserId').origin & (await axios.post("../php/idOverlapCheck.php", { username: userID })).data == true) {
@@ -204,6 +206,8 @@ const checkPW = (userPW) => {
 		if (document.getElementById('UserPasswordCheck').value !== "") {
 			return "비밀번호가 일치하지 않습니다.";
 		}
+	} else if (Validatenbsp(userPW)) {
+		return "비밀번호 : 공백문자가 포함되어 있습니다.";
 	} else if (!ValidatePW(userPW)) {
 		return "비밀번호 : 8~20자 영문 대소문자, 숫자를 조합해주세요.";
 	}
@@ -214,6 +218,9 @@ const checkPWConfirm = (userPWConfirm) => {
 
 	if (userPWConfirm === "" & document.getElementById('UserPassword').value !== "") {
 		return "비밀번호가 일치하지 않습니다.";
+		return "비밀번호 확인 : 필수 정보입니다.";
+	} else if (Validatenbsp(userPWConfirm)) {
+		return "비밀번호 확인 : 공백문자가 포함되어 있습니다.";
 	} else if (!ValidatePWConfirm(document.getElementById('UserPassword').value, userPWConfirm)) {
 		return "비밀번호가 일치하지 않습니다.";
 	}
@@ -224,7 +231,7 @@ const checkName = (name) => {
 
 	if (name === "") {
 		return "이름 : 필수 정보입니다.";
-	} else if (!ValidateName(name)) {
+	} else if (!ValidateName(name) && Validatenbsp(name)) {
 		return "이름 : 한글로 입력하세요. (숫자, 특수기호, 공백 사용 불가)";
 	}
 }
@@ -234,6 +241,8 @@ const checkEmail = (email) => {
 
 	if (email === "") {
 		return "이메일 : 필수 정보입니다.";
+	} else if (Validatenbsp(email)) {
+		return "이메일 : 공백문자가 포함되어 있습니다. ex) test@site.com";
 	} else if (!ValidateEmail(email)) {
 		return "이메일 : 이메일 형식에 알맞게 입력해주세요. ex) test@site.com";
 	}
@@ -250,7 +259,7 @@ const ValidateID = (userID) => {
 // 패스워드 검사
 const ValidatePW = (userPW) => {
 	// 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
-	const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
+	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])[A-Za-z\d*[$`~!@$!%*#^?&\\(\\)\-_=+]{8,}$/;
 	return re.test(userPW);
 };
 
@@ -272,4 +281,10 @@ const ValidateName = (name) => {
 const ValidateEmail = (email) => {
 	const re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	return re.test(email)
+}
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
 }

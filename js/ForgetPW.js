@@ -82,20 +82,20 @@ const checkName = () => {
     const name = document.querySelector(".name").value;
 
     if(name === "") {
-        caption_print(3, "필수 정보입니다.");
-        star_visible(3);
+        caption_print(1, "필수 정보입니다.");
+        star_visible(1);
         return false;
     } else if(Validatenbsp(name)) {
-        caption_print(3, "공백문자가 있습니다.");
-        star_visible(3);
+        caption_print(1, "공백문자가 있습니다.");
+        star_visible(1);
         return false;
     } else if(!ValidateName(name)) {
-        caption_print(3, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
-        star_visible(3);
+        caption_print(1, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
+        star_visible(1);
         return false;
     } else {
-        star_hide(3);
-        caption_hide(3);
+        star_hide(1);
+        caption_hide(1);
         return true;
     }
 }
@@ -105,20 +105,20 @@ const checkEmail = () => {
     const email = document.querySelector(".email").value;
 
     if(email === "") {
-        caption_print(4, "필수 정보입니다.");
-        star_visible(4);
+        caption_print(2, "필수 정보입니다.");
+        star_visible(2);
         return false;
     } else if(Validatenbsp(email)) {
-        caption_print(4, "공백문자가 있습니다.");
-        star_visible(4);
+        caption_print(2, "공백문자가 있습니다.");
+        star_visible(2);
         return false;
     } else if(!ValidateEmail(email)) {
-        caption_print(4, "이메일 형식에 알맞게 입력해주세요. ex) test@site.com");
-        star_visible(4);
+        caption_print(2, "이메일 형식에 알맞게 입력해주세요. ex) test@site.com");
+        star_visible(2);
         return false;
     } else {
-        star_hide(4);
-        caption_hide(4);
+        star_hide(2);
+        caption_hide(2);
         return true;
     }
 }

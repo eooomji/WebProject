@@ -4,6 +4,7 @@ onload = () => {
 	LoadRank();
 }
 
+// 서버에서 사용자들의 순위를 받아서 표시
 const LoadRank = async () => {
 	try {
 		const Response = await fetch('../php/LoadRank.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } });

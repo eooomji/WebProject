@@ -9,9 +9,9 @@ $username = $_POST["username"];
 $email = $_POST["email"];
 $Name_on_Session = $_SESSION["sess_username"];
 
-if(empty($_POST["password"])) {
+if(empty($_POST["password"])) {	// 비밀번호를 변경하지 않을 경우
 	$sql = "UPDATE `user` SET `username` = '$username', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
-} else {
+} else {						// 비밀번호를 변경하는 경우
 	$password = password_hash($_POST["password"], PASSWORD_BCRYPT);
 	$sql = "UPDATE `user` SET `username` = '$username', `password` = '$password', `name` = '$name', `email` = '$email' WHERE `username` = '$Name_on_Session'";
 }

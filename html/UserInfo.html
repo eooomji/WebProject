@@ -69,6 +69,7 @@
 		</div>
 		<button class="btn btn-danger" id="DeleteAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">회원탈퇴</button>
 	</div>
+
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
@@ -87,13 +88,15 @@
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
+
 	<div class="container" id="UserInfo">
 		<div class="Header">
 			<label class="">사용자 정보</label>
 			<button class="btn btn-success" id="changebutton" onclick="DisableUserInfoChange(false)">Change</button>
 		</div>
 		<div class="line Item HideOnOAuth">
-			<label>이름</label>
+			<label>*이름</label>
 			<input type="text"
 				   class="form-control UserInfoItem"
 				   id="UserName"
@@ -102,7 +105,7 @@
 				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line Item">
-			<label>아이디</label>
+			<label>*아이디</label>
 			<input type="text"
 				   class="form-control UserInfoItem"
 				   id="UserId"
@@ -110,7 +113,7 @@
 				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line Item">
-			<label>이메일</label>
+			<label>*이메일</label>
 			<input type="text"
 				   class="form-control UserInfoItem"
 				   id="UserEmail"
@@ -136,7 +139,7 @@
 		<div class="line">
 			<button class="btn btn-primary" id="changeinfo" onclick="onClickChangeUserInfo()">변경하기</button>
 			<span class="spinner-border LoadingCircle" id="UserInfoLoadingCircle"></span>
-			<span class="text-danger Result" id="UserInfoResult"></span>
+			<span class="Result" id="UserInfoResult"></span>
 		</div>
 	</div>
 	<div class="container" id="Setting">
@@ -154,7 +157,7 @@
 		<div class="line">
 			<button class="btn btn-primary visible" id="changesetting" onclick="onClickChangeSetting()">저장</button>
 			<span class="spinner-border LoadingCircle" id="SettingLoadingCircle"></span>
-			<span class="text-danger Result" id="SettingResult"></span>
+			<span class="Result" id="SettingResult"></span>
 		</div>
 	</div>
 </body>

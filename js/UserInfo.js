@@ -5,25 +5,7 @@ onload = () => {
 	DisableUserInfoChange(true);
 }
 
-const DeleteAccount = async () => {
-	try {
-		const Response = await fetch('../php/DeleteAccount.php', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
-		if (!Response.ok) {
-			throw `${Response.status} ${Response.statusText}`;
-		}
-		const ResponseData = await Response.json();
-
-		if (ResponseData == true) {
-			location.replace("../html/Login.html"); // 어디로 ?
-		} else {
-			throw `실패`;
-		}
-	}
-	catch (error) {
-		alert(error);
-	}
-}
-
+// 서버로부터 사용자 정보를 받고 표시
 const LoadUser = async () => {
 	try {
 		const Response = await fetch('../php/LoadUser.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
@@ -48,14 +30,16 @@ const LoadUser = async () => {
 				document.getElementsByName(element)[0][property] = ResponseData[element];
 			} catch (error) {
 				switch (element) {
-					case 'IsOAuth':
+					case 'IsOAuth': // OAuth 사용자는 아이디와 비밀번호 항목을 제거
 						if (ResponseData[element] == true) {
 							for (const elem of document.querySelectorAll('.HideOnOAuth')) {
 								elem.remove();
 							}
+						} else {
+							document.querySelector('#UserId').origin = document.querySelector('#UserId').value; // 원래 아이디 저장
 						}
 						break;
-					case 'choice':
+					case 'choice': // 분야 선택의 체크박스 설정
 						for (const [index, elem] of document.querySelectorAll('#Setting .choice').entries()) {
 							elem.checked = (ResponseData[element] & Math.pow(2, index)) != 0 ? true : false;
 						}
@@ -65,34 +49,21 @@ const LoadUser = async () => {
 				}
 			}
 		}
-		document.querySelector('#UserId').origin = document.querySelector('#UserId').value;
 	} catch (error) {
 		alert(error);
 	}
 }
 
-const DisableUserInfoChange = (IsDisable) => {
-	for (const element of document.querySelectorAll('.UserInfoItem')) {
-		element.disabled = IsDisable;
-	}
-	document.getElementById('changeinfo').style.visibility = IsDisable ? 'hidden' : 'visible';
-}
-
-const GetChoiceValue = () => {
-	let choice = 0;
-	for (const [index, element] of document.querySelectorAll('#Setting .choice').entries()) {
-		choice += element.checked == true ? Math.pow(2, index) : 0;
-	}
-	return choice;
-}
-
+// 사용자 정보 변경
 const onClickChangeUserInfo = async () => {
+	// 입력된 값을 확인
 	for (const element of Array.from(document.querySelectorAll('.UserInfoItem'))) {
 		if (await DataCheck(element)) {
-			return;
+			return null;
 		}
 	}
 
+	// 보낼 데이터
 	const Data = {};
 	for (const element of document.querySelectorAll(`.UserInfoItem`)) {
 		if (element.name == 'passwordcheck') { continue; }
@@ -102,17 +73,65 @@ const onClickChangeUserInfo = async () => {
 	SaveChange('UserInfo', Data, (ResponseData) => {
 		if (ResponseData["Result"] === "Success") {
 			DisableUserInfoChange(true);
-			document.querySelector('#UserId').origin = document.querySelector('#UserId').value;
+			if (document.querySelector('#UserId') !== null) {
+				document.querySelector('#UserId').origin = document.querySelector('#UserId').value; // 저장된 원래 아이디 변경
+			}
+			document.querySelector(`#UserInfo .Result`).style.color = '#0D6EFD'; // 결과 메세지를 성공 시 파란색으로 변경
 		}
 	});
 }
 
+// 사용자 정보 입력 요소들을 비활성화, 변경 버튼 표시
+const DisableUserInfoChange = (IsDisable) => {
+	for (const element of document.querySelectorAll('.UserInfoItem')) {
+		element.disabled = IsDisable;
+	}
+	document.getElementById('changeinfo').style.visibility = IsDisable ? 'hidden' : 'visible';
+	document.querySelector(`#UserInfo .Result`).style.color = '#FF0000'; // 안내 메세지를 빨간 색으로 설정
+
+}
+
+// 설정 변경
 const onClickChangeSetting = () => {
 	SaveChange('Setting', { choice: GetChoiceValue() }, (ResponseData) => {
-		;
+		if (ResponseData["Result"] === "Success") {
+			document.querySelector(`#Setting .Result`).style.color = '#0D6EFD';
+		} else if (ResponseData["Result"] === "Failure") { // 결과 메세지를 성공 시 파란색, 실패 시 빨간색으로 변경
+			document.querySelector(`#Setting .Result`).style.color = '#FF0000';
+		}
 	});
 }
 
+// 분야 선택 사항을 숫자로 계산
+const GetChoiceValue = () => {
+	let choice = 0;
+	for (const [index, element] of document.querySelectorAll('#Setting .choice').entries()) {
+		choice += element.checked == true ? Math.pow(2, index) : 0; //  1, 2, 4, 8
+	}
+	return choice;
+}
+
+// 회원 탈퇴
+const DeleteAccount = async () => {
+	try {
+		const Response = await fetch('../php/DeleteAccount.php', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+		if (!Response.ok) {
+			throw `${Response.status} ${Response.statusText}`;
+		}
+		const ResponseData = await Response.json();
+
+		if (ResponseData === true) {
+			location.replace("../html/Login.html");
+		} else {
+			throw `실패`;
+		}
+	}
+	catch (error) {
+		alert(error);
+	}
+}
+
+// 변경사항을 서버로 전송하고 결과 처리
 const SaveChange = async (target, Data, ProcessFunc) => {
 	document.querySelector(`#${target} .LoadingCircle`).style.visibility = 'visible';
 	try {
@@ -122,14 +141,18 @@ const SaveChange = async (target, Data, ProcessFunc) => {
 		}
 		const ResponseData = await Response.json();
 
+		// 로딩 바, 결과 메세지 표시
 		document.querySelector(`#${target} .Result`).textContent = ResponseData["Message"];
-		ProcessFunc(ResponseData);
 		document.querySelector(`#${target} .LoadingCircle`).style.visibility = 'hidden';
+
+		// 결과 처리
+		ProcessFunc(ResponseData);
 	} catch (error) {
 		alert(error);
 	}
 }
 
+// 입력된 값을 검증
 const DataCheck = async (element) => {
 	let ErrorMessage;
 	switch (element.id) {
@@ -149,11 +172,13 @@ const DataCheck = async (element) => {
 			ErrorMessage = checkPWConfirm(element.value);
 			break;
 	}
-	document.querySelector('#UserInfoResult').textContent = ErrorMessage ? ErrorMessage : "";
-	if (ErrorMessage !== undefined) {
+	if (ErrorMessage === undefined) {
+		document.querySelector('#UserInfoResult').textContent = "";
+		return false;
+	} else {
+		document.querySelector('#UserInfoResult').textContent = ErrorMessage;
 		return true;
 	}
-	return false;
 }
 
 
@@ -177,7 +202,7 @@ const checkPW = (userPW) => {
 
 	if (userPW === "") {
 		if (document.getElementById('UserPasswordCheck').value !== "") {
-			return "비밀번호 : 필수 정보입니다.";
+			return "비밀번호가 일치하지 않습니다.";
 		}
 	} else if (!ValidatePW(userPW)) {
 		return "비밀번호 : 8~20자 영문 대소문자, 숫자를 조합해주세요.";
@@ -188,7 +213,7 @@ const checkPW = (userPW) => {
 const checkPWConfirm = (userPWConfirm) => {
 
 	if (userPWConfirm === "" & document.getElementById('UserPassword').value !== "") {
-		return "비밀번호 확인 : 필수 정보입니다.";
+		return "비밀번호가 일치하지 않습니다.";
 	} else if (!ValidatePWConfirm(document.getElementById('UserPassword').value, userPWConfirm)) {
 		return "비밀번호가 일치하지 않습니다.";
 	}

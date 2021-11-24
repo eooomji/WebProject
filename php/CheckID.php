@@ -1,6 +1,9 @@
 <?php
     require_once("dbconfig.php");   // db 초기설정
 
+    //오류끄기
+    ini_set( 'display_errors', '0' );
+
     $_POST = JSON_DECODE(file_get_contents("php://input"), true);
 
     $name = $_POST["name"];

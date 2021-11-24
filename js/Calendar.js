@@ -23,7 +23,7 @@ const arr = async(nowMonth, userName) => {
           else if (i + 1 == checkTrue.data[j][`DAY(date)`]) {
             missionHTML += `<div class="oneDateSel missions${i+1}"><input class="form-check-input" type="checkbox" name="${nowMonth}" onclick='getCheckedCnt(${i+1}, ${nowMonth})' checked />${response.data[i].missionName}</div>`;
             document.querySelector('.missionName').innerHTML = missionHTML;
-            // document.querySelector(`.missions${i+1}`).style.back
+            document.querySelector(`.dateIn${i+1}`).style.backgroundColor = '#c4dbed';
             if(j < checkTrueNum - 1) j++;
           }
           else {
@@ -44,9 +44,7 @@ const arr = async(nowMonth, userName) => {
       alert(`${nowMonth}월의 미션 데이터가 없어 로딩 실패`);
     }
     j = 0;
-    // document.querySelector('.missionName').innerHTML = missionHTML;
 
-    // let last1 = document.querySelector(`.dateIn31`) ? 31 : 30; 
     for (let i = 1; i <= monthDay.data.length; i++) {
         let mission = document.querySelector(`.missions${i}`);
         mission.style.display='none';
@@ -61,7 +59,7 @@ const handleClick = async (event) => {
     const dateInArr = ['dateIn1', 'dateIn2', 'dateIn3', 'dateIn4', 'dateIn5', 'dateIn6', 'dateIn7', 'dateIn8', 'dateIn9', 'dateIn10', 'dateIn11', 'dateIn12', 'dateIn13', 'dateIn14', 'dateIn15', 'dateIn16', 'dateIn17', 'dateIn18', 'dateIn19', 'dateIn20', 'dateIn21', 'dateIn22', 'dateIn23', 'dateIn24', 'dateIn25', 'dateIn26', 'dateIn27', 'dateIn28', 'dateIn29', 'dateIn30', 'dateIn31'];
     const getName = await axios.get('../php/LoadUser.php');
     let userName = getName.data.username;
-    
+
     if(nowMonth+1 == 0) nowMonth = 11;  // 12월을 0월로 인식하는거 방지
     const monthDay2 = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});
 

@@ -55,11 +55,15 @@ const star_hide = (num) => {
 
 /* 입력 정보 유효성 체크 */
 // ID 유효성 체크
-const checkID = () => {
+const checkID = async() => {
     const userID = document.querySelector(".userID").value;
     
     if(userID === "") {
         caption_print(0, "필수 정보입니다.");
+        star_visible(0);
+        return false;
+    } else if(Validatenbsp(userID)) {
+        caption_print(0, "공백문자가 있습니다.");
         star_visible(0);
         return false;
     } else if(!ValidateID(userID)) {
@@ -78,16 +82,20 @@ const checkName = () => {
     const name = document.querySelector(".name").value;
 
     if(name === "") {
-        caption_print(1, "필수 정보입니다.");
-        star_visible(1);
+        caption_print(3, "필수 정보입니다.");
+        star_visible(3);
+        return false;
+    } else if(Validatenbsp(name)) {
+        caption_print(3, "공백문자가 있습니다.");
+        star_visible(3);
         return false;
     } else if(!ValidateName(name)) {
-        caption_print(1, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
-        star_visible(1);
+        caption_print(3, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
+        star_visible(3);
         return false;
     } else {
-        star_hide(1);
-        caption_hide(1);
+        star_hide(3);
+        caption_hide(3);
         return true;
     }
 }
@@ -97,16 +105,20 @@ const checkEmail = () => {
     const email = document.querySelector(".email").value;
 
     if(email === "") {
-        caption_print(2, "필수 정보입니다.");
-        star_visible(2);
+        caption_print(4, "필수 정보입니다.");
+        star_visible(4);
+        return false;
+    } else if(Validatenbsp(email)) {
+        caption_print(4, "공백문자가 있습니다.");
+        star_visible(4);
         return false;
     } else if(!ValidateEmail(email)) {
-        caption_print(2, "이메일 형식에 알맞게 입력해주세요. ex) test@site.com");
-        star_visible(2);
+        caption_print(4, "이메일 형식에 알맞게 입력해주세요. ex) test@site.com");
+        star_visible(4);
         return false;
     } else {
-        star_hide(2);
-        caption_hide(2);
+        star_hide(4);
+        caption_hide(4);
         return true;
     }
 }
@@ -131,4 +143,10 @@ const ValidateName = (name) => {
 const ValidateEmail = (email) => {
     const re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return re.test(email)
+}
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
 }

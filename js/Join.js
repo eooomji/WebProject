@@ -122,6 +122,10 @@ const checkID = async() => {
         caption_print(0, "필수 정보입니다.");
         star_visible(0);
         return false;
+    } else if(Validatenbsp(userID)) {
+        caption_print(0, "공백문자가 있습니다.");
+        star_visible(0);
+        return false;
     } else if(!ValidateID(userID)) {
         caption_print(0, "6~20자 대소문자 영문부터 시작하여 숫자, 대소문자 영문만 입력 가능합니다.");
         star_visible(0);
@@ -145,6 +149,10 @@ const checkPW = () => {
         caption_print(1, "필수 정보입니다.");
         star_visible(1);
         return false;
+    } else if(Validatenbsp(userPW)) {
+        caption_print(1, "공백문자가 있습니다.");
+        star_visible(1);
+        return false;
     } else if(!ValidatePW(userPW)) {
         caption_print(1, "8~20자 영문 대소문자, 숫자, 특수문자를 조합해주세요.");
         star_visible(1);
@@ -163,6 +171,10 @@ const checkPWConfirm = () => {
 
     if(userPWConfirm === "") {
         caption_print(2, "필수 정보입니다.");
+        star_visible(2);
+        return false;
+    } else if(Validatenbsp(userPWConfirm)) {
+        caption_print(2, "공백문자가 있습니다.");
         star_visible(2);
         return false;
     } else if(!ValidatePWConfirm(userPW, userPWConfirm)) {
@@ -184,6 +196,10 @@ const checkName = () => {
         caption_print(3, "필수 정보입니다.");
         star_visible(3);
         return false;
+    } else if(Validatenbsp(name)) {
+        caption_print(3, "공백문자가 있습니다.");
+        star_visible(3);
+        return false;
     } else if(!ValidateName(name)) {
         caption_print(3, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
         star_visible(3);
@@ -201,6 +217,10 @@ const checkEmail = () => {
 
     if(email === "") {
         caption_print(4, "필수 정보입니다.");
+        star_visible(4);
+        return false;
+    } else if(Validatenbsp(email)) {
+        caption_print(4, "공백문자가 있습니다.");
         star_visible(4);
         return false;
     } else if(!ValidateEmail(email)) {
@@ -223,6 +243,7 @@ const join_cancel = () => {
 // 아이디 검사
 const ValidateID = (userID) => {
     // 6~20자 대소문자 영문부터 시작하여 숫자, 대소문자 영문만 입력 가능
+    // 공백있으면 안되게 처리
     const re = /^[a-zA-Z]+[a-zA-Z0-9]{5,19}$/;
     return re.test(userID);
 };
@@ -230,7 +251,7 @@ const ValidateID = (userID) => {
 // 패스워드 검사
 const ValidatePW = (userPW) => {
     // 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
-    const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
+    const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])[A-Za-z\d*[$`~!@$!%*#^?&\\(\\)\-_=+]{8,}$/;
     return re.test(userPW);
 };
 
@@ -252,4 +273,10 @@ const ValidateName = (name) => {
 const ValidateEmail = (email) => {
     const re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return re.test(email)
+}
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
 }

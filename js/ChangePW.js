@@ -43,58 +43,6 @@ const changePW_cancle = () => {
     location.replace("../html/Login.html");
 }
 
-// 패스워드 검사
-const ValidatePW = (userPW) => {
-    // 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
-    const re = /^(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z])(?=.*[$@$!%*?&]).*$/;
-    return re.test(userPW);
-};
-
-// 패스워드와 패스워드 확인이 같은지 검사
-const ValidatePWConfirm = (userPW, userPWConfirm) => {
-    // 비밀번호와 비밀번호 확인이 같은지 확인
-    return userPW === userPWConfirm;
-};
-
-// PW 유효성 체크
-const checkPW = () => {
-    const userPW = document.querySelector(".userPW").value;
-
-    if(userPW === "") {
-        caption_print(0, "필수 정보입니다.");
-        star_visible(0);
-        return false;
-    } else if(!ValidatePW(userPW)) {
-        caption_print(0, "8~20자 영문 대소문자, 숫자, 특수문자를 조합해주세요.");
-        star_visible(0);
-        return false;
-    } else {
-        star_hide(0);
-        caption_hide(0);
-        return true;
-    }
-}
-
-// PW와 PWConfirm이 맞는지 체크
-const checkPWConfirm = () => {
-    const userPW = document.querySelector(".userPW").value;
-    const userPWConfirm = document.querySelector(".userPWConfirm").value;
-
-    if(userPWConfirm === "") {
-        caption_print(1, "필수 정보입니다.");
-        star_visible(1);
-        return false;
-    } else if(!ValidatePWConfirm(userPW, userPWConfirm)) {
-        caption_print(1, "비밀번호가 일치하지 않습니다.");
-        star_visible(1);
-        return false;
-    } else {
-        star_hide(1);
-        caption_hide(1);
-        return true;
-    }
-}
-
 /* 아이디 입력표시와, 캡션정보 켜고 크는 함수 정의 */
 // 캡션정보 띄우기
 const caption_print = (num, text) => {
@@ -119,4 +67,70 @@ const star_visible = (num) => {
 const star_hide = (num) => {
     let x = document.getElementsByClassName("signup_label_star")[num];
     x.style.display = "none";
+}
+
+// PW 유효성 체크
+const checkPW = () => {
+    const userPW = document.querySelector(".userPW").value;
+
+    if(userPW === "") {
+        caption_print(0, "필수 정보입니다.");
+        star_visible(0);
+        return false;
+    } else if(Validatenbsp(userPW)) {
+        caption_print(0, "공백문자가 있습니다.");
+        star_visible(0);
+        return false;
+    } else if(!ValidatePW(userPW)) {
+        caption_print(0, "8~20자 영문 대소문자, 숫자, 특수문자를 조합해주세요.");
+        star_visible(0);
+        return false;
+    } else {
+        star_hide(0);
+        caption_hide(0);
+        return true;
+    }
+}
+
+// PW와 PWConfirm이 맞는지 체크
+const checkPWConfirm = () => {
+    const userPW = document.querySelector(".userPW").value;
+    const userPWConfirm = document.querySelector(".userPWConfirm").value;
+
+    if(userPWConfirm === "") {
+        caption_print(1, "필수 정보입니다.");
+        star_visible(1);
+        return false;
+    } else if(Validatenbsp(userPWConfirm)) {
+        caption_print(1, "공백문자가 있습니다.");
+        star_visible(1);
+        return false;
+    } else if(!ValidatePWConfirm(userPW, userPWConfirm)) {
+        caption_print(1, "비밀번호가 일치하지 않습니다.");
+        star_visible(1);
+        return false;
+    } else {
+        star_hide(1);
+        caption_hide(1);
+        return true;
+    }
+}
+
+// 패스워드 검사
+const ValidatePW = (userPW) => {
+    // 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
+    const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    return re.test(userPW);
+};
+
+// 패스워드와 패스워드 확인이 같은지 검사
+const ValidatePWConfirm = (userPW, userPWConfirm) => {
+    // 비밀번호와 비밀번호 확인이 같은지 확인
+    return userPW === userPWConfirm;
+};
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
 }

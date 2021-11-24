@@ -58,13 +58,16 @@ const star_hide = (num) => {
     x.style.display = "none";
 }
 
-/* 입력 정보 유효성 체크 */
 // Name 유효성 체크
 const checkName = () => {
     const name = document.querySelector(".name").value;
 
     if(name === "") {
         caption_print(0, "필수 정보입니다.");
+        star_visible(0);
+        return false;
+    } else if(Validatenbsp(name)) {
+        caption_print(0, "공백문자가 있습니다.");
         star_visible(0);
         return false;
     } else if(!ValidateName(name)) {
@@ -86,6 +89,10 @@ const checkEmail = () => {
         caption_print(1, "필수 정보입니다.");
         star_visible(1);
         return false;
+    } else if(Validatenbsp(email)) {
+        caption_print(1, "공백문자가 있습니다.");
+        star_visible(1);
+        return false;
     } else if(!ValidateEmail(email)) {
         caption_print(1, "이메일 형식에 알맞게 입력해주세요. ex) test@site.com");
         star_visible(1);
@@ -97,7 +104,7 @@ const checkEmail = () => {
     }
 }
 
-/* 입력 정규식 검사 */
+/* 정규식을 이용한 유효성 검사 */
 // 이름 검사
 // 한국에서 가장 긴 이름 17자리
 const ValidateName = (name) => {
@@ -110,4 +117,10 @@ const ValidateName = (name) => {
 const ValidateEmail = (email) => {
     const re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return re.test(email)
+}
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
 }

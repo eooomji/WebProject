@@ -19,13 +19,15 @@
     width : 100vw;
     height : 100vh;
     font-size: 50px;
-    line-height : 20vh;
+    line-height : 15vh;
     text-align: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: rgba(240, 248, 255, 0.7);
+    background-color: rgba(240, 248, 255, 0.75);
+}
+
+.text1 {
+    margin-top: 200px;
 }
 
 .text2 {
-    color:cadetblue;
+    color:#6a5acd;
 }

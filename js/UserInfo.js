@@ -217,7 +217,6 @@ const checkPW = (userPW) => {
 const checkPWConfirm = (userPWConfirm) => {
 
 	if (userPWConfirm === "" & document.getElementById('UserPassword').value !== "") {
-		return "비밀번호가 일치하지 않습니다.";
 		return "비밀번호 확인 : 필수 정보입니다.";
 	} else if (Validatenbsp(userPWConfirm)) {
 		return "비밀번호 확인 : 공백문자가 포함되어 있습니다.";

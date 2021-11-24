@@ -6,6 +6,12 @@ img {
     -webkit-user-drag : none;
 }
 
+#print {
+    text-align : center;
+    font-size : 30px;
+    color : blue;
+}
+
 ul, li, label {
     margin : 0;
     padding : 0;
@@ -27,6 +33,7 @@ div input {
     color : red;
     font-size : 14px;
     margin-left : 10px;
+    display : none;
 }
 
 .signup_label_star {
@@ -48,6 +55,11 @@ div input {
 
 #cancle:hover { background-color : rgba(255, 0, 0, 0.5); }
 
-#demand { background-color : #0080FF; }
+#demand, #pass { background-color : #0080FF; }
 
-#demand:hover { background-color: rgba(0, 128, 255, 0.5); }
+#demand:hover, #pass:hover { background-color: rgba(0, 128, 255, 0.5); }
+
+#pass {
+    display : none;
+    grid-column : 1 / span 2;
+}

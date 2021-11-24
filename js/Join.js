@@ -140,7 +140,7 @@ const checkName = () => {
         star_visible(3);
         return false;
     } else if(!ValidateName(name)) {
-        caption_print(3, "한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
+        caption_print(3, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
         star_visible(3);
         return false;
     } else {
@@ -192,8 +192,8 @@ const join_demand = async() => {
                 alert("회원가입 성공!");
                 try {
                     const res = await axios.post("../php/login.php", {
-                        username : username,
-                        password : password
+                        username : userID,
+                        password : userPW
                     });
             
                     if(res.data) {

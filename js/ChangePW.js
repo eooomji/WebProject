@@ -1,25 +1,42 @@
+onload = () => {
+    const value = sessionStorage.getItem("username");
+    if(value === undefined || value === null) {
+        alert("잘못된 접근입니다.");
+        location.replace("../html/Login.html");
+    }
+}
+
 const changePW_demand = async() => {
     const username = sessionStorage.getItem("username");
+    sessionStorage.removeItem("username");
     const userPW = document.querySelector(".userPW").value;
-    const userPWConfirm = document.querySelector(".usrPWConfirm").value;
 
     if(checkPW() & checkPWConfirm()) {
         try {
             const response = await axios.post("../php/changePW.php", {
                 username : username,
-                password : userPW,
+                password : userPW
         });
             if(response.data) {
-                alert(username);
+                document.getElementById("print").innerText = "비밀번호 변경에 성공하였습니다.";
+                document.querySelector(".userPW").style.display = "none";
+                document.querySelector(".userPWConfirm").style.display = "none";
+                document.querySelector("#PW").style.display = "none";
+                document.querySelector("#PWC").style.display = "none";
+                document.querySelector("#cancle").style.display = "none";
+                document.querySelector("#demand").style.display = "none";
+                document.querySelector("#pass").style.display = "block";
             } else {
-                alert("예기치 못한 오류로 정보를 가져오지 못했습니다. 다시 시도해 주세요.");
+                alert("예기치 못한 오류로 비밀번호 변경에 실패했습니다. 다시 시도해 주세요.");
             }
         } catch (error) {
             console.log(error);
         }
-    } else {
-        alert("예기치 못한 오류로 정보를 가져오기 못했습니다.");
     }
+}
+
+const pass = () => {
+    location.replace("../html/Login.html");
 }
 
 const changePW_cancle = () => {
@@ -76,4 +93,30 @@ const checkPWConfirm = () => {
         caption_hide(1);
         return true;
     }
+}
+
+/* 아이디 입력표시와, 캡션정보 켜고 크는 함수 정의 */
+// 캡션정보 띄우기
+const caption_print = (num, text) => {
+    let x = document.getElementsByClassName("warning_text")[num];
+    x.innerText = text;
+    x.style.display = "inline";
+}
+
+// 캡션정보 숨기기
+const caption_hide = (num) => {
+    let x = document.getElementsByClassName("warning_text")[num];
+    x.style.display = "none";
+}
+
+// * 보이기
+const star_visible = (num) => {
+    let x = document.getElementsByClassName("signup_label_star")[num];
+    x.style.display = "inline";
+}
+
+// * 숨기기
+const star_hide = (num) => {
+    let x = document.getElementsByClassName("signup_label_star")[num];
+    x.style.display = "none";
 }

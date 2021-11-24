@@ -18,7 +18,6 @@ const findID_demand = async() => {
                 document.querySelector("#pass").style.display = "block";
             } else {
                 alert("사용자 정보에 맞는 아이디는 존재하지 않습니다. 다시 입력해주세요");
-                location.replace("../html/ForgetID.html");
             }
         } catch (error) {
             console.log(error);

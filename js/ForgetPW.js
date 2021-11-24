@@ -5,18 +5,17 @@ const findPW_demand = async() => {
 
     if(checkID() & checkName() & checkEmail()) {
         try {
-            const response = await axios.post("../php/checkPW.php", {
+            const response = await axios.post("../php/CheckPW.php", {
                 username : username,
                 name : name,
                 email : email
             });
             if(response.data) {
-                console.log(response.data)
                 alert("유저 정보가 확인되었습니다. 비밀번호 변경창으로 넘어갑니다.");
                 sessionStorage.setItem("username", username);
                 location.replace("../html/ChangePW.html");
             } else {
-                alert("예기치 못한 오류로 정보를 가져오지 못했습니다. 다시 시도해 주세요.");
+                alert("사용자 정보에 맞는 아이디는 존재하지 않습니다. 다시 입력해주세요");
             }
         } catch (error) {
             console.log(error);
@@ -83,7 +82,7 @@ const checkName = () => {
         star_visible(1);
         return false;
     } else if(!ValidateName(name)) {
-        caption_print(1, "한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)");
+        caption_print(1, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
         star_visible(1);
         return false;
     } else {

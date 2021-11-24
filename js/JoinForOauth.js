@@ -9,6 +9,7 @@ onload = () => {
     document.querySelector(".kakaoID").value = info.username;
     document.querySelector(".name").value = info.name;
     document.querySelector(".email").value = info.email;
+    sessionStorage.removeItem("info");
 }
 
 const k_sign_up_demand = async() => {

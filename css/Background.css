@@ -1,7 +1,0 @@
-html, body {
-    /* 배경화면 사진넣기 및 전체화면화 */
-    background :
-        url(../images/background.svg) 
-        no-repeat center fixed;
-    background-size : cover;
-}

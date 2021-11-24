@@ -15,6 +15,7 @@
             session_start();
             $_SESSION["sess_username"] = $username;
             session_write_close();
+
             echo JSON_ENCODE(true,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);
         } else {
             echo JSON_ENCODE(false,JSON_UNESCAPED_UNICODE|JSON_NUMERIC_CHECK);

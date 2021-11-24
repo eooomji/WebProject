@@ -7,7 +7,7 @@
     $nowMonth = $_POST["nowMonth"];
     $userName = $_POST["userName"];
 
-    $sql = "SELECT DAY(date) FROM misson_log WHERE username = '$userName' AND MONTH(date)=$nowMonth";
+    $sql = "SELECT DAY(date) FROM mission_log WHERE username = '$userName' AND MONTH(date)=$nowMonth";
     
     // $sql = "SELECT missionName FROM misson_log WHERE username = '$userName'";
 

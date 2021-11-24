@@ -8,7 +8,7 @@
     $userName = $_POST["userName"];
     
     // $sql = "UPDATE misson_log SET check=1 WHERE msDate = '${msdate}' AND msMonth = '${nowMonth}'";
-    $sql = "UPDATE misson_log SET isDone=1 WHERE username='${userName}' AND MONTH(date) = ${nowMonth} AND DAY(date)=${nowDay}";
+    $sql = "UPDATE mission_log SET isDone=1 WHERE username='${userName}' AND MONTH(date) = ${nowMonth} AND DAY(date)=${nowDay}";
 
     $db->query($sql);
     

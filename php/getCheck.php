@@ -6,7 +6,7 @@
     $userName = $_POST["userName"];
     $nowMonth = $_POST["nowMonth"];
     
-    $sql = "SELECT DAY(date) FROM misson_log WHERE isDone='1' AND username='${userName}' AND MONTH(date) = ${nowMonth}";
+    $sql = "SELECT DAY(date) FROM mission_log WHERE isDone='1' AND username='${userName}' AND MONTH(date) = ${nowMonth}";
 
     $data = array();
 

@@ -16,7 +16,7 @@ html, body {
 
     /* 로그인박스의 기본스타일 지정 */
     background : #FFFFFF;
-    border : 1px solid #B3B3B3;
+    border : 1px solid #D3D3D3;
     box-shadow: 1px 1px 10px black;
     border-radius : 15px;
     width : 450px;
@@ -27,6 +27,7 @@ html, body {
 
     /* 패딩 자동증가 방지 */
     box-sizing : border-box;
+    transition : all 1s;
 }
 
 /* 헤더구간 */

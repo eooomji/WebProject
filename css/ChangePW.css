@@ -27,7 +27,12 @@ div input {
     width : 98%;
     font-size : 20px;
     min-height : 35px;
+    padding-left : 10px;
     border-radius : 10px;
+}
+
+div input:focus {
+    background-color: #cccccc;
 }
 
 .warning_text {

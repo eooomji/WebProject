@@ -21,40 +21,34 @@
     <!-- CSS -->
     <link href="../css/Background.css" rel="stylesheet">
     <link href="../css/LoginBox.css" rel="stylesheet">
-    <link href="../css/ForgetPW.css" rel="stylesheet">
+    <link href="../css/ChangePW.css" rel="stylesheet">
 
     <!-- JavaScript -->
-    <script src="../js/ForgetPW.js"></script>
+    <script src="../js/ChangePW.js"></script>
 </head>
 <body>
     <div id="login_box">
         <header>
             <img src="../images/LOGO.png" width=100 height=50>
-            <div id="info">비밀번호찾기</div>
+            <div id="info">비밀번호변경</div>
         </header>
         <section>
             <div>
                 <label class="signup_label_star">*</label>
-                <label class="signup_label">아이디</label>
+                <label class="signup_label">새로운 비밀번호</label>
                 <label class="warning_text"></label>
-                <br><input type="text" class="userID" placeholder="ID" onblur="checkID()">
+                <br><input type="text" class="userPW" placeholder="ID" onblur="checkID()">
             </div>
             <div>
                 <label class="signup_label_star">*</label>
-                <label class="signup_label">이름</label>
+                <label class="signup_label">새로운 비밀번호 확인</label>
                 <label class="warning_text"></label>
-                <br><input type="text" class="name" placeholder="이름" onblur="checkName()">
-            </div>
-            <div>
-                <label class="signup_label_star">*</label>
-                <label class="signup_label">이메일</label>
-                <label class="warning_text"></label>
-                <br><input type="email" class="email" placeholder="이메일주소" onblur="checkEmail()">
+                <br><input type="text" class="userPWConfirm" placeholder="이름" onblur="checkName()">
             </div>
         </section>
         <footer id="btn">
-            <button id="cancle" type="button" onclick="findPW_cancle()">취소하기</button>
-            <button id="demand" type="button" onclick="findPW_demand()">찾기</button>
+            <button type="button" onclick="changePW_cancle()">취소하기</button>
+            <button type="button" onclick="changePW_demand()">바꾸기</button>
         </footer>
     </div>
 </body>

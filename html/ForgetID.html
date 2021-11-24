@@ -21,6 +21,7 @@
     <!-- CSS -->
     <link href="../css/Background.css" rel="stylesheet">
     <link href="../css/LoginBox.css" rel="stylesheet">
+    <link href="../css/ForgetID.css" rel="stylesheet">
 
     <!-- JavaScript -->
     <script src="../js/ForgetID.js"></script>
@@ -31,14 +32,25 @@
             <img src="../images/LOGO.png" width=100 height=50>
             <div id="info">아이디찾기</div>
         </header>
-        <div>이름</div>
-        <input class="name" type="text" placeholder="이름">
-        <div>이메일주소</div>
-        <input class="email" type="eamil" placeholder="이메일주소">
-        <div id="submit">
-            <button type="button" onclick="findID_demand()">찾기</button>
-            <button type="button" onclick="findID_cancle()">취소하기</button>
-        </div>
+        <div id="print"></div>
+        <section>
+            <div>
+                <label class="signup_label_star">*</label>
+                <label class="signup_label">이름</label>
+                <label class="warning_text"></label>
+                <br><input type="text" class="name" placeholder="이름" onblur="checkName()">
+            </div>
+            <div>
+                <label class="signup_label_star">*</label>
+                <label class="signup_label">이메일</label>
+                <label class="warning_text"></label>
+                <br><input type="email" class="email" placeholder="이메일주소" onblur="checkEmail()">
+            </div>
+        </section>
+        <footer id="btn">
+            <button id="cancle" type="button" onclick="findID_cancle()">취소하기</button>
+            <button id="demand" type="button" onclick="findID_demand()">찾기</button>
+        </footer>
     </div>
 </body>
 </html>

@@ -49,20 +49,22 @@ const LoadUser = async () => {
 				switch (element) {
 					case 'IsOAuth':
 						if (ResponseData[element] == true) {
-							for(const elem of document.querySelectorAll('.HideOnOAuth')) {
+							for (const elem of document.querySelectorAll('.HideOnOAuth')) {
 								elem.remove();
 							}
 						}
 						break;
 					case 'choice':
-						document.querySelectorAll('.choice')[Math.log(ResponseData['choice']) / Math.log(2)].checked = true;
+						for (const [index, elem] of document.querySelectorAll('#Setting .choice').entries()) {
+							elem.checked = (ResponseData[element] & Math.pow(2, index)) != 0 ? true : false;
+						}
 						break;
 					default:
 						throw `${error} ${element}`;
 				}
 			}
 		}
-		document.getElementById('UserId').origin = document.getElementById('UserId').value;
+		document.querySelector('#UserId').origin = document.querySelector('#UserId').value;
 	} catch (error) {
 		alert(error);
 	}
@@ -75,33 +77,43 @@ const DisableUserInfoChange = (IsDisable) => {
 	document.getElementById('changeinfo').style.visibility = IsDisable ? 'hidden' : 'visible';
 }
 
-const onClickChangeUserInfo = async () => {
-	if (await DataCheck()) {
-		return;
+const GetChoiceValue = () => {
+	let choice = 0;
+	for (const [index, element] of document.querySelectorAll('#Setting .choice').entries()) {
+		choice += element.checked == true ? Math.pow(2, index) : 0;
 	}
+	return choice;
+}
+
+const onClickChangeUserInfo = async () => {
+	for (const element of Array.from(document.querySelectorAll('.UserInfoItem'))) {
+		if (await DataCheck(element)) {
+			return ;
+		}
+	}
+
 	const Data = {};
 	for (const element of document.querySelectorAll(`.UserInfoItem`)) {
 		if (element.name == 'passwordcheck') { continue; }
 		Data[element.name] = element['value'];
-		
 	}
 
 	SaveChange('UserInfo', Data, (ResponseData) => {
 		if (ResponseData["Result"] === "Success") {
 			DisableUserInfoChange(true);
-			document.getElementById('UserId').origin = document.getElementById('UserId').value;
+			document.querySelector('#UserId').origin = document.querySelector('#UserId').value;
 		}
 	});
 }
 
 const onClickChangeSetting = () => {
-	SaveChange('Setting', { choice: document.querySelector('.choice:checked').getAttribute('index') }, (ResponseData) => {
+	SaveChange('Setting', { choice: GetChoiceValue() }, (ResponseData) => {
 		;
 	});
 }
 
 const SaveChange = async (target, Data, ProcessFunc) => {
-	document.getElementById(`${target}LoadingCircle`).style.visibility = 'visible';
+	document.querySelector(`#${target} .LoadingCircle`).style.visibility = 'visible';
 	try {
 		const Response = await fetch(`../php/Change${target}.php`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Data) });
 		if (!Response.ok) {
@@ -109,40 +121,37 @@ const SaveChange = async (target, Data, ProcessFunc) => {
 		}
 		const ResponseData = await Response.json();
 
-		document.getElementById(`${target}Result`).textContent = ResponseData["Message"];
+		document.querySelector(`#${target} .Result`).textContent = ResponseData["Message"];
 		ProcessFunc(ResponseData);
-		document.getElementById(`${target}LoadingCircle`).style.visibility = 'hidden';
+		document.querySelector(`#${target} .LoadingCircle`).style.visibility = 'hidden';
 	} catch (error) {
 		alert(error);
 	}
 }
 
-const DataCheck = async () => {
-	for (const element of Array.from(document.querySelectorAll('.UserInfoItem'))) {
-		let ErrorMessage;
-		switch (element.id) {
-			case 'UserName':
-				ErrorMessage = checkName(element.value);
-				break;
-			case 'UserId':
-				ErrorMessage = await checkID(element.value);
-				break;
-			case 'UserEmail':
-				ErrorMessage = checkEmail(element.value);
-				break;
-			case 'UserPassword':
-				ErrorMessage = checkPW(element.value);
-				break;
-			case 'UserPasswordCheck':
-				ErrorMessage = checkPWConfirm(element.value);
-				break;
-		}
-		if (ErrorMessage !== undefined) {
-			document.getElementById('UserInfoResult').textContent = ErrorMessage;
-			return true;
-		}
+const DataCheck = async (element) => {
+	let ErrorMessage;
+	switch (element.id) {
+		case 'UserName':
+			ErrorMessage = checkName(element.value);
+			break;
+		case 'UserId':
+			ErrorMessage = await checkID(element.value);
+			break;
+		case 'UserEmail':
+			ErrorMessage = checkEmail(element.value);
+			break;
+		case 'UserPassword':
+			ErrorMessage = checkPW(element.value);
+			break;
+		case 'UserPasswordCheck':
+			ErrorMessage = checkPWConfirm(element.value);
+			break;
 	}
-	document.getElementById('UserInfoResult').textContent = "";
+	document.querySelector('#UserInfoResult').textContent = ErrorMessage ? ErrorMessage : "";
+	if (ErrorMessage !== undefined) {
+		return true;
+	}
 	return false;
 }
 
@@ -179,7 +188,7 @@ const checkPWConfirm = (userPWConfirm) => {
 
 	if (userPWConfirm === "" & document.getElementById('UserPassword').value !== "") {
 		return "비밀번호 확인 : 필수 정보입니다.";
-	} else if (userPWConfirm !== document.getElementById('UserPassword').value) {
+	} else if (!ValidatePWConfirm(document.getElementById('UserPassword').value, userPWConfirm)) {
 		return "비밀번호가 일치하지 않습니다.";
 	}
 }
@@ -190,7 +199,7 @@ const checkName = (name) => {
 	if (name === "") {
 		return "이름 : 필수 정보입니다.";
 	} else if (!ValidateName(name)) {
-		return "이름 : 한글과 영문 대 소문자를 사용하세요.(특수기호, 공백 사용 불가)"; // 이게 맞나요??
+		return "이름 : 한글로 입력하세요. (숫자, 특수기호, 공백 사용 불가)";
 	}
 }
 

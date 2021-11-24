@@ -24,12 +24,12 @@ if($success) {
 	if($_SESSION["sess_username"] != $username) {
 		$_SESSION["sess_username"] = $username;
 	}
-	$result = array("Result"=>"Success", "Message"=>"Success");
+	$result = array("Result"=>"Success", "Message"=>"수정 완료");
 } else {
-	$result = array("Result"=>"Failure", "Message"=>"FailReason");
+	$result = array("Result"=>"Failure", "Message"=>"수정 실패");
 }
 
-echo JSON_ENCODE($result);
+echo JSON_ENCODE($result, JSON_UNESCAPED_UNICODE);
 
 session_write_close();
 mysqli_close($db);

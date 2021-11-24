@@ -11,7 +11,7 @@ $res = $db->query($sql);
 $row = $res->fetch_array(MYSQLI_ASSOC);
 
 if ($row) {
-    if($row['password'] == 'KAKAOLOGIN') { // if($row['password'] == 'OAuth') { 
+    if($row['password'] == 'OAuth') { 
         $row['IsOAuth'] = true;
     } 
     unset($row['password']);

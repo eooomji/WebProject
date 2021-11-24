@@ -12,7 +12,7 @@ const LoadRank = async () => {
 		}
 		const ResponseData = await Response.json();
 
-		const RankTable = document.getElementById("ranktable");
+		const RankTable = document.querySelector('#ranktable');
 		for (const element of ResponseData["data"]) {
 			const row = RankTable.insertRow(-1);
 			row.insertCell(-1).innerText = ResponseData["StartRank"]++;

@@ -100,9 +100,8 @@
 				   class="form-control UserInfoItem"
 				   id="UserName"
 				   name="name"
-				   value="이름"
 				   maxlength="20"
-				   onchange="DataCheck()" />
+				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line Item">
 			<label>아이디</label>
@@ -110,7 +109,7 @@
 				   class="form-control UserInfoItem"
 				   id="UserId"
 				   name="username"
-				   onchange="DataCheck()" />
+				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line Item">
 			<label>이메일</label>
@@ -118,7 +117,7 @@
 				   class="form-control UserInfoItem"
 				   id="UserEmail"
 				   name="email"
-				   onchange="DataCheck()" />
+				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line Item HideOnOAuth">
 			<label>비밀번호</label>
@@ -126,7 +125,7 @@
 				   class="form-control UserInfoItem"
 				   id="UserPassword"
 				   name="password"
-				   onchange="DataCheck()" />
+				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line Item HideOnOAuth">
 			<label>비밀번호 확인</label>
@@ -134,12 +133,12 @@
 				   class="form-control UserInfoItem"
 				   id="UserPasswordCheck"
 				   name="passwordcheck"
-				   onchange="DataCheck()" />
+				   onchange="DataCheck(this)" />
 		</div>
 		<div class="line">
 			<button class="btn btn-primary" id="changeinfo" onclick="onClickChangeUserInfo()">변경하기</button>
 			<span class="spinner-border LoadingCircle" id="UserInfoLoadingCircle"></span>
-			<span class="text-danger" id="UserInfoResult"></span>
+			<span class="text-danger Result" id="UserInfoResult"></span>
 		</div>
 	</div>
 	<div class="container" id="Setting">
@@ -149,15 +148,15 @@
 		<div class="line Item">
 			<label>분야선택</label>
 			<br />
-			<input class="SettingItem choice" type="radio" id="Settingexercise" name="choice" index=1 />운동
-			<input class="SettingItem choice" type="radio" id="Settingvolunteer" name="choice" index=2 />봉사
-			<input class="SettingItem choice" type="radio" id="Settinghabit" name="choice" index=4 />습관
-			<input class="SettingItem choice" type="radio" id="Settingmanner" name="choice" index=8 />예절
+			<input class="SettingItem choice" type="checkbox" id="Settingexercise" name="choice" />운동
+			<input class="SettingItem choice" type="checkbox" id="Settingvolunteer" name="choice" />봉사
+			<input class="SettingItem choice" type="checkbox" id="Settinghabit" name="choice" />습관
+			<input class="SettingItem choice" type="checkbox" id="Settingmanner" name="choice" />예절
 		</div>
 		<div class="line">
 			<button class="btn btn-primary visible" id="changesetting" onclick="onClickChangeSetting()">저장</button>
 			<span class="spinner-border LoadingCircle" id="SettingLoadingCircle"></span>
-			<span class="text-danger" id="SettingResult"></span>
+			<span class="text-danger Result" id="SettingResult"></span>
 		</div>
 	</div>
 </body>

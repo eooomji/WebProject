@@ -52,21 +52,6 @@ article{
     height: 15em;
 }
 
-/*하위 단락에 대한 CSS 코드*/
-.left-in{
-    float: left;
-    width: 8em;
-    height: 5em;
-    margin: 5px;
-}
-
-.right-in{
-    float: right;
-    width: 10em;
-    height: 5em;
-    padding: 5px;
-}
-
 /* 글자에 대한 CSS 코드*/
 .title{
     background-color: #548235;
@@ -110,10 +95,7 @@ article{
     border-radius: 2px;
     display:inline-block;
     width: 12em;
-}
-
-.cb{
-    margin: 0em 0em 0em 0.5em;
+    word-break:break-all;
 }
 
 .link{

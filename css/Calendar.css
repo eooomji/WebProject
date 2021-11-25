@@ -73,7 +73,37 @@ border-radius: 10px;
 border: 3px solid #a6a6a6;
 }
 
-.oneDateSel:hover {
+.dateIn1:hover, 
+.dateIn2:hover, 
+.dateIn3:hover, 
+.dateIn4:hover, 
+.dateIn5:hover, 
+.dateIn6:hover, 
+.dateIn7:hover, 
+.dateIn8:hover, 
+.dateIn9:hover, 
+.dateIn10:hover, 
+.dateIn11:hover,
+.dateIn12:hover,
+.dateIn13:hover,
+.dateIn14:hover,
+.dateIn15:hover,
+.dateIn16:hover,
+.dateIn17:hover,
+.dateIn18:hover,
+.dateIn19:hover,
+.dateIn20:hover,
+.dateIn21:hover, 
+.dateIn22:hover, 
+.dateIn23:hover, 
+.dateIn24:hover, 
+.dateIn25:hover, 
+.dateIn26:hover, 
+.dateIn27:hover, 
+.dateIn28:hover, 
+.dateIn29:hover, 
+.dateIn30:hover, 
+.dateIn21:hover {
 background: #dfecdf;
 }
 

@@ -9,7 +9,7 @@ window.onload = async function() {
 
   document.querySelector('.highlight-b').innerText = `${name}`;
   document.querySelector('.highlight-a').innerText = `${score}`;
-  
+
   let username = getName.data.username;
   const getMission = await axios.post('../php/getMissions.php', {userName: userName, nowMonth: nowMonth+1});
   const getMonth = await axios.post('../php/getMissionDay.php', {userName: userName, nowMonth: nowMonth+1});;
@@ -17,12 +17,24 @@ window.onload = async function() {
   document.querySelector('.mission').innerText = `${getMission.data[getMonth.data.length].missionName}`;
   
   if (getMission.data){
-    document.getElementById('missioncheck');
-    element.innerHTML 
-    = `<div class="oneDateSel missions${getMonth.data.length+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${getMonth.data.length+1}, ${nowMonth+1})'>${response.data[getMonth.data.length].missionName}</div>`;
+    document.getElementById("missioncheck").innerHTML = `<div class="oneDateSel missions${getMonth.data.length+1}"><input class="form-check-input" type="checkbox" name="${nowMonth+1}" onclick='getCheckedCnt(${getMonth.data.length+1}, ${nowMonth+1})'>${response.data[getMonth.data.length].missionName}</div>`;
   }
   
-  const getCheckedCnt = (i, nowMonth) => {
+  let massagecode = Math.floor(Math.random() * 3);
+  switch(massagecode){
+    case 0:
+      document.getElementById("down").innerText = "오늘 하루도 힘내보아요!";
+      break;
+    case 1:
+      document.getElementById("down").innerText = "천리길도 한걸음부터!";
+      break;
+    case 2:
+      document.getElementById("down").innerText = "오늘도 열심히 해봅시다!";
+      break;
+  }
+}
+
+const getCheckedCnt = (i, nowMonth) => {
   // 선택된 목록 가져오기
   const query = `input[name="${nowMonth}"]:checked`;
 
@@ -74,5 +86,3 @@ const changeCB = async(i, nowMonth) => {
   console.log(error); 
   } 
 };
-
-}

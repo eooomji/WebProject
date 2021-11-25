@@ -4,11 +4,16 @@
 }
 
 /*상위 단락에 대한 CSS 코드*/
-.division{
+.up{
     display: flex;
     justify-content: center;
     padding: 20px;
     margin: 0.5em;
+}
+
+#down {
+    font-size: 50px;
+    text-align: center;
 }
 
 /*중위 단락에 대한 CSS 코드*/
@@ -126,9 +131,4 @@ article{
 
 .link:hover {
     background-color: #6A5ACD;
-}
-
-.ftMission {
-    font-size: 50px;
-    text-align: center;
 }

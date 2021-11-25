@@ -5,11 +5,15 @@ window.onload = async function() {
   SessionCheck();
 
   const getName = await axios.get('../php/LoadUser.php');
+  const getRank = await fetch('../php/LoadUser.php', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+  const getRankData = await getRank.json();
   let name = getName.data.name;
   let score = getName.data.score;
+  let rank = getRankData['rank'];
 
-  document.querySelector('.highlight-b').innerText = `${name}`;
-  document.querySelector('.highlight-a').innerText = `${score}`;
+  document.getElementById("name").innerText = `${name}`;
+  document.getElementById("score").innerText = `${score}`;
+  document.getElementById("rank").innerText = `${rank}`;
 
   let massagecode = Math.floor(Math.random() * 3);
   switch(massagecode){
@@ -30,5 +34,4 @@ window.onload = async function() {
 
   document.querySelector('.mission').innerText = `${getMission.data[getMonth.data.length].missionName}`;
 
- 
 }

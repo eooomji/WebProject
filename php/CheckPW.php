@@ -13,15 +13,7 @@
     $row = $res->fetch_array(MYSQLI_ASSOC);
 
     if($row) {
-        // 유저의 패스워드가 Oauth일 경우 Oauth 유저임을 알림
-        $sql = "SELECT * FROM `user` WHERE `username` = '$username' AND `password` = 'Oauth'";
-        $res = $db->query($sql);
-        $row = $res->fetch_array(MYSQLI_ASSOC);
-        if($row)
-            echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
-        else {
-            echo JSON_ENCODE("oauth", JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
-        }
+        echo JSON_ENCODE(true, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     } else {
         echo JSON_ENCODE(false, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
     }

@@ -68,7 +68,7 @@ article{
     font-size: 25px;
 }
 
-.highlight-a{
+#score{
     margin: 0em 0em 0em 1.5em;
     font-size: 5em;
     line-height: 5px;
@@ -77,7 +77,16 @@ article{
     display: inline-block;
 }
 
-.highlight-b{
+#slash, #rank{
+    font-size: 5em;
+    line-height: 5px;
+    color: #548235;
+    text-align: right;
+    display: inline-block;
+}
+
+
+#name{
     font-size: 2em;
     color: #6A5ACD;
     margin: 0.25em;
@@ -85,7 +94,7 @@ article{
     font-size: 38px;
 }
 
-.highlight-c {
+#highlight-c {
     font-size: 20px;
 }
 

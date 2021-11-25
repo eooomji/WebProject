@@ -55,7 +55,8 @@
 			<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="location.href = '../html/Rank.html'">Rank</button>
 		</div>
 	</nav>
-	<div class="container" id="UserProfile">
+
+	<section class="container" id="UserProfile">
 		<img class="" src="../images/profileimage.png" alt="profile image" />
 		<div class="scoreboard">
 			<div class="line">
@@ -67,15 +68,15 @@
 				<span id="rank" name="rank"></span>
 			</div>
 		</div>
-		<button class="btn btn-danger" id="DeleteAccount" data-bs-toggle="modal" data-bs-target="#exampleModal">회원탈퇴</button>
-	</div>
+		<button class="btn btn-danger" id="DeleteAccount" data-bs-toggle="modal" data-bs-target="#Modal">회원탈퇴</button>
+	</section>
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<section class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">회원 탈퇴</h5>
+					<h5 class="modal-title" id="ModalTitle">회원 탈퇴</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
@@ -87,10 +88,11 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 	<!-- Modal -->
 
-	<div class="container" id="UserInfo">
+	<!--사용자 정보-->
+	<section class="container" id="UserInfo">
 		<div class="Header">
 			<label class="">사용자 정보</label>
 			<button class="btn btn-success" id="changebutton" onclick="DisableUserInfoChange(false)">Change</button>
@@ -141,8 +143,10 @@
 			<span class="spinner-border LoadingCircle" id="UserInfoLoadingCircle"></span>
 			<span class="Result" id="UserInfoResult"></span>
 		</div>
-	</div>
-	<div class="container" id="Setting">
+	</section>
+
+	<!--설정-->
+	<section class="container" id="Setting">
 		<div class="Header">
 			<label class="">설정</label>
 		</div>
@@ -159,6 +163,6 @@
 			<span class="spinner-border LoadingCircle" id="SettingLoadingCircle"></span>
 			<span class="Result" id="SettingResult"></span>
 		</div>
-	</div>
+	</section>
 </body>
 </html>

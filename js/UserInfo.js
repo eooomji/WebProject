@@ -81,7 +81,7 @@ const onClickChangeUserInfo = async () => {
 	});
 }
 
-// 사용자 정보 입력 요소들을 비활성화, 변경 버튼 표시
+// 사용자 정보 입력 요소들을 활성화 또는 비활성화, 변경 버튼 표시
 const DisableUserInfoChange = (IsDisable) => {
 	for (const element of document.querySelectorAll('.UserInfoItem')) {
 		element.disabled = IsDisable;
@@ -106,7 +106,7 @@ const onClickChangeSetting = () => {
 const GetChoiceValue = () => {
 	let choice = 0;
 	for (const [index, element] of document.querySelectorAll('#Setting .choice').entries()) {
-		choice += element.checked == true ? Math.pow(2, index) : 0; //  1, 2, 4, 8
+		choice += element.checked == true ? Math.pow(2, index) : 0; //  각 선택은 1, 2, 4, 8 의 값
 	}
 	return choice;
 }
@@ -190,12 +190,12 @@ const checkID = async (userID) => {
 
 	if (userID === "") {
 		return "아이디 : 필수 정보입니다.";
-	} else if (Validatenbsp(userID)) {
+	} else if (!Validatenbsp(userID)) {
 		return "아이디 : 공백문자가 포함되어 있습니다.";
 	} else if (!ValidateID(userID)) {
 		return "아이디 : 6~20자 대소문자 영문부터 시작하여 숫자, 대소문자 영문만 입력 가능합니다.";
 	} else if (userID !== document.getElementById('UserId').origin & (await axios.post("../php/idOverlapCheck.php", { username: userID })).data == true) {
-		return "아이디가 중복됩니다.";
+		return "아이디가 중복됩니다."; // idOverlapCheck.php 이 현재 로그인한 사용자의 아이디도 중복된다 판단하기에 따로 저장한 값을 확인
 	}
 }
 
@@ -284,6 +284,6 @@ const ValidateEmail = (email) => {
 
 // 공백검사
 const Validatenbsp = (target) => {
-    const re = /[\s]/g;
-    return re.test(target);
+	const re = /[\s]/g;
+	return re.test(target);
 }

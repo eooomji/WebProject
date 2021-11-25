@@ -1,5 +1,5 @@
 // 아이디 찾기
-const findID_demand = async() => {
+const findID_demand = () => {
     const name = document.querySelector(".name").value;
     const email = document.querySelector(".email").value;
     if(checkName() & checkEmail()) {

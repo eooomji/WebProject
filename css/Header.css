@@ -39,8 +39,6 @@ img { -webkit-user-drag : none; }
     top : 25px;
     left : 120px;
     position : absolute;
-    transform-style: preserve-3d;
-    transform-origin: left;
     transition: all 1s;
     opacity : 0;
 }
@@ -60,8 +58,6 @@ img { -webkit-user-drag : none; }
     font-weight : bold;
     text-align : center;
     position: relative;
-    transform-style: preserve-3d;
-    transform: perspective(2000px);
 }
 
 /* 로그아웃 밖에 표시되는 부분 */

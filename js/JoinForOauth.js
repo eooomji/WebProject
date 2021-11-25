@@ -71,6 +71,10 @@ const checkName = () => {
         caption_print(0, "필수 정보입니다.");
         star_visible(0);
         return false;
+    } else if(Validatenbsp(name)) {
+        caption_print(0, "공백문자가 포함되어 있습니다.");
+        star_visible(0);
+        return false;
     } else if(!ValidateName(name)) {
         caption_print(0, "이름을 정확히 입력해주세요. (특수기호, 영문, 공백 사용 불가)");
         star_visible(0);
@@ -88,6 +92,10 @@ const checkEmail = () => {
 
     if(email === "") {
         caption_print(1, "필수 정보입니다.");
+        star_visible(1);
+        return false;
+    } else if(Validatenbsp(email)) {
+        caption_print(1, "공백문자가 포함되어 있습니다.");
         star_visible(1);
         return false;
     } else if(!ValidateEmail(email)) {
@@ -149,4 +157,10 @@ const ValidateName = (name) => {
 const ValidateEmail = (email) => {
     const re = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     return re.test(email)
+}
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
 }

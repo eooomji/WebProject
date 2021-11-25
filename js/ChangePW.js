@@ -47,13 +47,19 @@ const ValidatePW = (userPW) => {
     // 8~20자 적어도 한개 이상의 대소문자, 숫자, 특수문자가 있어야함.
     const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])[A-Za-z\d*[$`~!@$!%*#^?&\\(\\)\-_=+]{8,}$/;
     return re.test(userPW);
-};
+}
 
 // 패스워드와 패스워드 확인이 같은지 검사
 const ValidatePWConfirm = (userPW, userPWConfirm) => {
     // 비밀번호와 비밀번호 확인이 같은지 확인
     return userPW === userPWConfirm;
-};
+}
+
+// 공백검사
+const Validatenbsp = (target) => {
+    const re = /[\s]/g;
+    return re.test(target);
+}
 
 // PW 유효성 체크
 const checkPW = () => {
@@ -61,6 +67,10 @@ const checkPW = () => {
 
     if(userPW === "") {
         caption_print(0, "필수 정보입니다.");
+        star_visible(0);
+        return false;
+    } else if(Validatenbsp(userPW)) {
+        caption_print(0, "공백문자가 포함되어 있습니다.");
         star_visible(0);
         return false;
     } else if(!ValidatePW(userPW)) {
@@ -81,6 +91,10 @@ const checkPWConfirm = () => {
 
     if(userPWConfirm === "") {
         caption_print(1, "필수 정보입니다.");
+        star_visible(1);
+        return false;
+    } else if(Validatenbsp(userPWConfirm)) {
+        caption_print(1, "공백문자가 포함되어 있습니다.");
         star_visible(1);
         return false;
     } else if(!ValidatePWConfirm(userPW, userPWConfirm)) {

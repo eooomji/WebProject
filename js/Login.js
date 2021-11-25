@@ -17,7 +17,7 @@ onload = async() => {
 };
 
 // 로그인 버튼을 눌렀을 경우
-const login = async() => {ㅇ
+const login = async() => {
     const username = document.querySelector("#idInput").value;
     const password = document.querySelector("#pwInput").value;
 

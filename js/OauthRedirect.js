@@ -1,3 +1,4 @@
+// 네이버 Oauth 로그인을 위한 함수
 const naverLogin = new naver.LoginWithNaverId(
     {
             clientId : "lu6p3IJh8_cSRKZpHEkS",
@@ -36,6 +37,7 @@ onload = async() => {
     });
 }
 
+// 사용자 데이터가 있는지 판별 후 추가 정보 입력 / 로그인 하는 함수
 const judge_data = async(username, name) => {
     const info = {
         username : username,

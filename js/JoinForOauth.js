@@ -1,5 +1,6 @@
-let info;
+let info; // 세션에 user 정보 데이터를 저장할 변수
 
+// Oauth 정보가 비어있을 경우
 onload = () => {
     info = JSON.parse(sessionStorage.getItem("info"));
     if(info === undefined || info === null) {
@@ -12,12 +13,13 @@ onload = () => {
     sessionStorage.removeItem("info");
 }
 
+// Oauth 초기에 필요한 정보 처리
 const oauth_sign_up_demand = async() => {
     const userID = document.querySelector(".UserID").value;
     const name = document.querySelector(".name").value;
     const email = document.querySelector(".email").value;
     const choice = choice_encoding();
-    if (checkID() & checkName() & checkEmail()) {
+    if (checkName() & checkEmail()) {
         try {
             const response = await axios.post("../php/JoinForOauth.php", {
                 username : userID,
@@ -27,15 +29,17 @@ const oauth_sign_up_demand = async() => {
             });
             if(response.data === true) {
                 alert("회원가입 성공!");
+                // 회원가입 성공 시 자동로그인
                 try {
                     const res = await axios.post("../php/LoginForOauth.php", {
                         username : userID
                     });
                 
                     if(res.data === true) {
-                        // 기존 사용자일 경우
+                        // 로그인 정보 존재
                         location.replace("../html/Main.html");
                     } else {
+                        // 예기치 못한 에러로 정보가 들어가지 않았을 경우
                         alert("예기치 못한 에러가 발생하였습니다. 로그인 페이지로 돌아갑니다.");
                         location.replace("../html/Login.html");
                     }
@@ -53,14 +57,10 @@ const oauth_sign_up_demand = async() => {
     }
 }
 
-const checkID = () => {
-    const userID = document.querySelector(".UserID").value;
-    if(userID === undefined || userID === null) {
-        alert("예기치 못한 에러가 발생하였습니다. 로그인 페이지로 돌아갑니다.");
-        location.replace("../html/Login.html");
-        return false;
-    }
-    return true;
+/* 취소하기 버튼을 눌렀을 경우 -> 메인페이지로 돌아가기 */
+const sign_up_cancel = () => {
+    sessionStorage.clear();
+    location.replace("../html/Login.html");
 }
 
 // Name 유효성 체크
@@ -135,12 +135,6 @@ const choice_encoding = () => {
     const study = document.querySelector(".study").checked;
 
     return exercise * 1 + habit * 2 + manner * 4 + study * 8;
-}
-
-/* 취소하기 버튼을 눌렀을 경우 -> 메인페이지로 돌아가기 */
-const sign_up_cancel = () => {
-    sessionStorage.clear();
-    location.replace("../html/Login.html");
 }
 
 // 이름 검사

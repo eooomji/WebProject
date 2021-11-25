@@ -8,6 +8,7 @@
     $email = $_POST["email"];
     $choice = $_POST["choice"];
 
+    // 회원정보 넣기
     $sqi = "INSERT INTO `user` (`username`, `password`, `name`, `email`, `choice`, `score`)
     VALUES ('$username', 'Oauth', '$name', '$email', '$choice', '0')";
     $db->query($sqi);

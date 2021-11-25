@@ -16,7 +16,8 @@ onload = async() => {
     }
 };
 
-const login = async() => {
+// 로그인 버튼을 눌렀을 경우
+const login = async() => {ㅇ
     const username = document.querySelector("#idInput").value;
     const password = document.querySelector("#pwInput").value;
 
@@ -43,6 +44,7 @@ const login = async() => {
     }
 }
 
+// 구글 Oauth 로그인 버튼을 눌렀을 경우
 const google_login = () => {
     document.querySelector(".abcRioButtonContentWrapper").click();
 }
@@ -56,7 +58,7 @@ function onSignIn(googleUser) {
     auth2.disconnect();
 }
 
-
+// 네이버 로그인 버튼을 눌렀을 경우
 const naver_login = () => {
     const naverLogin = new naver.LoginWithNaverId({
         clientId : "lu6p3IJh8_cSRKZpHEkS",
@@ -71,8 +73,7 @@ const naver_login = () => {
     document.querySelector("#naverIdLogin_loginButton").click()
 }
 
-
-
+// 카카오 로그인 버튼을 눌렀을 경우
 const kakao_login = () => {
     if(flag === 0) {
         Kakao.init("36fe7aa2beef85ae40b6a5601f75dc43");
@@ -96,6 +97,7 @@ const kakao_login = () => {
     });
 }
 
+// 사용자 데이터가 있는지 판별 후 추가 정보 입력 / 로그인 하는 함수
 const judge_data = async(username, name) => {
     const info = {
         username : username,

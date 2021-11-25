@@ -13,7 +13,7 @@ onload = async() => {
     }
 };
 
-/* 가입하기 버튼을 눌렀을 경우 - PHP 통신 -> DB에 값 집어넣기 */
+/* 가입하기 버튼을 눌렀을 경우 - PHP 통신 -> DB에 값 집어넣기(회원가입) */
 const join_demand = async() => {
     // DOM 조작
     const userID = document.querySelector(".userID").value;
@@ -39,7 +39,7 @@ const join_demand = async() => {
                         username : userID,
                         password : userPW
                     });
-            
+                    // 회원가입 성공하면 자동 로그인
                     if(res.data === true) {
                         location.replace("../html/Main.html");
                     } else {
@@ -56,7 +56,12 @@ const join_demand = async() => {
             console.log(error);
         }
     }
-};
+}
+
+/* 취소하기 버튼을 눌렀을 경우 -> 메인페이지로 돌아가기 */
+const join_cancel = () => {
+    location.replace("../html/Login.html");
+}
 
 /* 아이디 입력표시와, 캡션정보 켜고 크는 함수 정의 */
 // 캡션정보 띄우기
@@ -212,11 +217,6 @@ const checkEmail = () => {
         caption_hide(4);
         return true;
     }
-}
-
-/* 취소하기 버튼을 눌렀을 경우 -> 메인페이지로 돌아가기 */
-const join_cancel = () => {
-    location.replace("../html/Login.html");
 }
 
 /* 입력 정규식 검사 */

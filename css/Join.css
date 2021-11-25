@@ -1,11 +1,10 @@
-* {
-    font-family: 'Do Hyeon', sans-serif;
-}
+/* 통일 폰트 적용 */
+* { font-family: 'Do Hyeon', sans-serif; }
 
-img {
-    -webkit-user-drag : none;
-}
+/* 이미지 드래그 막기 */
+img { -webkit-user-drag : none; }
 
+/* 로그인 박스의 크기 재지정 */
 #login_box{
     width : 600px;
     min-height : 800px;
@@ -13,29 +12,36 @@ img {
     left : calc(50% - 300px);
 }
 
+/* 리스트 디폴트 간격 없애기 */
 ul, li, label {
     margin : 0;
     padding : 0;
 }
 
+/* 리스트 점 찍히는 것 끄기 */
 ul { list-style : none; }
 
+/* input박스 간 간격 지정 */
 li { margin-top : 10px;}
 
+/* 정규식 비교하여 입력이 잘못되었으면 표시하는 알림문구 디자인 */
 .warning_text {
     color : red;
     font-size : 14px;
     margin-left : 10px;
 }
 
+/* 입력 잘못되었을 시 표시하는 * 문자 디자인 */
 .signup_label_star {
     color : red;
 }
 
+/* input박스 설명 및 분야선택 설명 글자크기 지정 */
 .signup_label, fieldset {
     font-size : 20px;
 }
 
+/* input박스 디자인 지정 */
 li input {
     width : 98%;
     font-size : 20px;
@@ -44,10 +50,10 @@ li input {
     border-radius : 10px;
 }
 
-li input:focus {
-    background-color: #cccccc;
-}
+/* 아이디, 비밀번호 입력창 선택시 디자인 */
+li input:focus { background-color: #cccccc; }
 
+/* 분야선택 그리드 지정 */
 fieldset {
     display : grid;
     grid-template-columns: 1fr 1fr;
@@ -64,9 +70,10 @@ fieldset label {
     align-items : center;
 }
 
-/* 분야선택 라벨 colspan */
+/* 분야선택 라벨 합치기 */
 #exercise, #habit, #manner, #study { grid-column : 1 / span 2; }
 
+/* 버튼 부분 grid와 디자인 */ 
 #btn {
     display : grid;
     grid-template-columns : 1fr 1fr;

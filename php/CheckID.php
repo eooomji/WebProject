@@ -6,8 +6,8 @@
     $name = $_POST["name"];
     $email = $_POST["email"];
 
-    $sqi = "SELECT `username` FROM `user` WHERE `name` = '$name' AND `email` = '$email'";
-    $res = $db->query($sqi);
+    $sql = "SELECT `username` FROM `user` WHERE `name` = '$name' AND `email` = '$email'";
+    $res = $db->query($sql);
     $row = $res->fetch_array(MYSQLI_ASSOC);
 
     if($row) {

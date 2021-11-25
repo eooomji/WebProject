@@ -1,27 +1,22 @@
-* {
-    font-family: 'Do Hyeon', sans-serif;
-}
+/* 통일 폰트 적용 */
+* { font-family: 'Do Hyeon', sans-serif; }
 
-img {
-    -webkit-user-drag : none;
-}
+/* 이미지 드래그 막기 */
+img { -webkit-user-drag : none; }
 
+/* 비밀번호 변경 성공 시 알림문구 디자인 */
 #print {
     text-align : center;
     font-size : 20px;
 }
 
-ul, li, label {
-    margin : 0;
-    padding : 0;
-}
-
-ul { list-style : none; }
-
+/* input박스 설명 글자크기 지정 */
 .signup_label { font-size : 20px; }
 
+/* input박스 간 간격 지정 */
 div { margin-top : 10px;}
 
+/* input박스 디자인 지정 */
 div input {
     width : 98%;
     font-size : 20px;
@@ -30,14 +25,13 @@ div input {
     border-radius : 10px;
 }
 
-div input:focus {
-    background-color: #cccccc;
-}
+/* 아이디, 비밀번호 입력창 선택시 디자인 */
+div input:focus { background-color: #cccccc; }
 
-span {
-    color : red;
-}
+/* 찾은 아이디 강조 */
+span { color : red; }
 
+/* 정규식 비교하여 입력이 잘못되었으면 표시하는 알림문구 디자인 */
 .warning_text {
     color : red;
     font-size : 14px;
@@ -45,10 +39,10 @@ span {
     display : none;
 }
 
-.signup_label_star {
-    color : red;
-}
+/* 입력 잘못되었을 시 표시하는 * 문자 디자인 */
+.signup_label_star { color : red; }
 
+/* 버튼 부분 grid와 디자인 */
 #btn {
     display : grid;
     grid-template-columns : 1fr 1fr;
@@ -70,6 +64,8 @@ span {
 
 #demand:hover, #pass:hover { background-color: rgba(0, 128, 255, 0.5); }
 
+
+/* 아이디 찾기 성공 시 클릭하는 버튼 */
 #pass {
     display : none;
     grid-column : 1 / span 2;

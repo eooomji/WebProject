@@ -1,9 +1,10 @@
 <?php
-    require_once("dbconfig.php");
+    require_once("dbconfig.php");   // db 초기설정
     
     $_POST = JSON_DECODE(file_get_contents("php://input"), true);
     $username = $_POST["username"];
 
+    // 위의 아이디에 해당하는 정보가 있는지 판별
     $sql = "SELECT * FROM user WHERE username = '$username'";
     $res = $db->query($sql);
     $row = $res->fetch_array(MYSQLI_ASSOC);

@@ -1,3 +1,4 @@
+// 아이디 찾기
 const findID_demand = async() => {
     const name = document.querySelector(".name").value;
     const email = document.querySelector(".email").value;
@@ -24,10 +25,7 @@ const findID_demand = async() => {
     } 
 }
 
-const pass = () => {
-    location.replace("../html/Login.html");
-}
-
+// 아이디 찾기 뒤 확인 버튼 또는 취소 버튼 눌렀을 때
 const findID_cancle = () => {
     location.replace("../html/Login.html");
 }

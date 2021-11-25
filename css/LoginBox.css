@@ -1,6 +1,5 @@
-* {
-    font-family: 'Do Hyeon', sans-serif;
-}
+/* 통일 폰트 적용 */
+* { font-family: 'Do Hyeon', sans-serif; }
 
 html, body {
     /* 로그인박스 중앙정렬을 위한 상하 크기 초기화 */

@@ -1,4 +1,5 @@
 onload = () => {
+    // ForgetPW.html에서 넘어온 정보가 없을 때 예외처리
     const value = sessionStorage.getItem("username");
     if(value === undefined || value === null) {
         alert("잘못된 접근입니다.");
@@ -6,6 +7,7 @@ onload = () => {
     }
 }
 
+// 비밀번호 변경
 const changePW_demand = async() => {
     const username = sessionStorage.getItem("username");
     sessionStorage.removeItem("username");
@@ -35,10 +37,7 @@ const changePW_demand = async() => {
     }
 }
 
-const pass = () => {
-    location.replace("../html/Login.html");
-}
-
+// 비밀번호 변경 뒤 확인 버튼 또는 취소 버튼 눌렀을 때
 const changePW_cancle = () => {
     location.replace("../html/Login.html");
 }

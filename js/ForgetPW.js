@@ -1,3 +1,4 @@
+// 패스워드 변경을 위한 유저정보 판단
 const findPW_demand = async() => {
     const username = document.querySelector(".userID").value;
     const name = document.querySelector(".name").value;
@@ -14,6 +15,8 @@ const findPW_demand = async() => {
                 alert("유저 정보가 확인되었습니다. 비밀번호 변경창으로 넘어갑니다.");
                 sessionStorage.setItem("username", username);
                 location.replace("../html/ChangePW.html");
+            } else if(response.data === "oauth") {
+                alert("유저 정보가 확인되었으나, 회원이 아닙니다. 구글, 네이버, 카카오 로그인을 이용해주세요");
             } else {
                 alert("사용자 정보에 맞는 아이디는 존재하지 않습니다. 다시 입력해주세요");
             }
@@ -23,6 +26,7 @@ const findPW_demand = async() => {
     }
 }
 
+// 취소 버튼을 눌렀을 때 동작
 const findPW_cancle = () => {
     location.replace("../html/Login.html");
 }

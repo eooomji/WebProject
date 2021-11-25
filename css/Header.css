@@ -1,6 +1,5 @@
-html, body {
-    background-color: #F7F7F7;
-}
+/* 로그인 제외한 구간 배경색 지정 */
+html, body { background-color: #F7F7F7; }
 
 /* 헤더관련 CSS 파일 */
 header {
@@ -11,22 +10,20 @@ header {
     margin-bottom : 10px;
 }
 
+/* 로고 이미지 간격 조정 */
 .LOGOimg { 
     text-align: center;
     padding : 10px 5px;;
 }
 
+/* 로고 이미지 크기 조정 */
 .LOGOimg a img {
     width : 180px;
     height : 90px;
     background-color: transparent;
 }
 
-.logout {
-    width : 64px;
-    height : 80px;
-}
-  
+/* Header 부분 그리드 짜기 */
 .nav {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -35,10 +32,9 @@ header {
 }
 
 /* 이미지 드래그 방지 */
-img {
-    -webkit-user-drag : none;
-}
+img { -webkit-user-drag : none; }
 
+/* 달리는 이미지 CSS */
 .runner {
     top : 25px;
     left : 120px;
@@ -49,11 +45,13 @@ img {
     opacity : 0;
 }
 
+/* 달리는 이미지 크기 지정 */
 .runner img {
     width : 50px;
     height : 50px;
 }
 
+/* 로그아웃 안에 검은 부분 */
 .logout {
     width : 64px;
     height : 80px;
@@ -66,6 +64,7 @@ img {
     transform: perspective(2000px);
 }
 
+/* 로그아웃 밖에 표시되는 부분 */
 .door {
     width: 64px;
     height: 80px;
@@ -81,11 +80,13 @@ img {
     transition: all 1s;
 }
 
+/* 로그아웃 부분에 마우스 올렸을 때 밖에 표시되는 부분 변경 */
 .logout:hover .door {
     background-color: black;
     transform : rotateY(-70deg);
 }
 
+/* 로그아웃 부분에 마우스 올렸을 때 달리는 이미지 변경 */
 .logout:hover .runner {
     transform : translateX(-80px);
     opacity : 1;

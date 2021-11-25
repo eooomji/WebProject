@@ -1,3 +1,4 @@
+/* 통일 폰트 적용 및 기타 설정 */
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +15,7 @@
     background-size : cover;
 }
 
+/* 글자 출력 화면 지정 */
 .loading {
     position : absolute;
     width : 100vw;
@@ -26,6 +28,7 @@
     background-color: rgba(240, 248, 255, 0.7);
 }
 
+/* 글자 강조 */
 .text2 {
     color:cadetblue;
 }

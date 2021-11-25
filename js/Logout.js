@@ -1,3 +1,4 @@
+// 로그아웃
 const logout = async() => {
     try {
         const response = await axios.get("../php/logout.php");

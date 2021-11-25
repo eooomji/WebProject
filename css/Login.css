@@ -1,14 +1,15 @@
-* {
-    font-family: 'Do Hyeon', sans-serif;
-}
+/* 통일 폰트 적용 */
+* { font-family: 'Do Hyeon', sans-serif; }
 
+/* 이미지 드래그 막기 및 정렬*/
 img {
     margin : auto;
     vertical-align : middle;
     -webkit-user-drag : none;
 }
 
-/* <로그인 정보 입력 세션> */
+/* <로그인 박스 쪽 디자인> */
+/* 로그인 정보 입력 그리드 지정 */
 #inputID, #inputPW {
     display : grid;
     grid-template-columns: 1fr 9fr;
@@ -27,11 +28,10 @@ input.input_box {
     font-size : 16px;
 }
 
-:is(#idInput, #pwInput):focus {
-    background-color: #cccccc;
-}
+/* 아이디, 비밀번호 입력창 선택시 디자인 */
+:is(#idInput, #pwInput):focus { background-color: #cccccc; }
 
-/* <회원가입, 아이디찾기, 비밀번호찾기> */
+/* <회원가입, 아이디찾기, 비밀번호찾기 쪽 디자인> */
 #other_option {
     display : grid;
     grid-template-columns : 1fr 1fr 1fr;
@@ -41,9 +41,7 @@ input.input_box {
     font-size : 15px;
 }
 
-a {
-    font-weight : bolder;
-}
+a { font-weight : bolder; }
 
 a:link, a:visited, a:active {
     color : #000000;

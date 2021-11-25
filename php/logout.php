@@ -1,7 +1,7 @@
 <?php
     require_once("dbconfig.php");
     
-    // 세션 삭제
+    // 세션 종료
     session_start();
     $username = $_SESSION["sess_username"];
     session_unset();

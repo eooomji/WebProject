@@ -12,7 +12,7 @@
     if($row) {
         $passwordResult = password_verify($password, $row["password"]);
         if ($passwordResult) {
-            // 세션 저장
+            // 세션 시작
             session_start();
             $_SESSION["sess_username"] = $username;
             session_write_close();

@@ -22,7 +22,6 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
             crossorigin="anonymous">
         </script>
-        <script src="../js/main.js"></script>
 
         <!-- favicon -->
         <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
@@ -71,13 +70,13 @@
                         <article>
                             <p class="title">나의 정보</p>
                             <p class="zeromargin">안녕하세요,</p>
-                            <span class="highlight-b">Guest</span>
-                            <span class="highlight-c">님!</span><br>
+                            <span id="name">Guest</span>
+                            <span id="highlight-c">님!</span><br>
                         </article>
                         <button class="link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab" aria-controls="nav-home" aria-selected="true" onclick = "location.href = '../html/UserInfo.html'">자세히 알아보기</button>
                     </div>
                     <div class="center">
-                        <article id="missioncheck">
+                        <article>
                             <p class="title">오늘의 미션</p><br>
                             <p class="mission">오늘의 미션이 없습니다.</p>
                         </article>
@@ -85,8 +84,8 @@
                     </div>
                     <div class="right">
                         <article>
-                            <p class="title">매달달성점수</p><br><br>
-                            <span class="highlight-a">0</span><br>
+                            <p class="title">매달달성점수/랭크</p><br><br>
+                            <span id="score">0</span><span id="slash">/</span><span id="rank">0</span><br>
                         </article>
                         <button class="link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-rank" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" onclick = "location.href = '../html/Rank.html'">자세히 알아보기</button>
                     </div>
@@ -96,4 +95,3 @@
         </main>
     </body>
 </html>
-

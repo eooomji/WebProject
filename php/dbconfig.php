@@ -7,7 +7,7 @@ ini_set("display_errors", 1);
 header("Content-Type:application/json");
 
 // DB 초기설정
-$host = '127.0.0.1';
+$host = '127.0.0.1'; // localhost X. 참고 -> https://stackoverflow.com/questions/13439817/why-is-my-mysqli-connection-so-slow
 $user = 'root';
 $pw = 'password';
 $dbName = 'goodPerson';

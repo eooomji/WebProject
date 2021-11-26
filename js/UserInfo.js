@@ -190,7 +190,7 @@ const checkID = async (userID) => {
 
 	if (userID === "") {
 		return "아이디 : 필수 정보입니다.";
-	} else if (!Validatenbsp(userID)) {
+	} else if (Validatenbsp(userID)) {
 		return "아이디 : 공백문자가 포함되어 있습니다.";
 	} else if (!ValidateID(userID)) {
 		return "아이디 : 6~20자 대소문자 영문부터 시작하여 숫자, 대소문자 영문만 입력 가능합니다.";

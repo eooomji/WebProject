@@ -165,11 +165,13 @@ const DataCheck = async (element) => {
 		case 'UserEmail':
 			ErrorMessage = checkEmail(element.value);
 			break;
-		case 'UserPassword':
-			ErrorMessage = checkPW(element.value);
-			break;
 		case 'UserPasswordCheck':
 			ErrorMessage = checkPWConfirm(element.value);
+			if (ErrorMessage !== undefined) {
+				break;
+			}
+		case 'UserPassword':
+			ErrorMessage = checkPW(element.value);
 			break;
 	}
 	if (ErrorMessage === undefined) {
